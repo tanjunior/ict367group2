@@ -1,0 +1,11 @@
+Model Information:
+* title:	Honda Civic Hybrid Sedan
+* source:	https://sketchfab.com/3d-models/honda-civic-hybrid-sedan-6990f791a58c4260a6d73042b77a1f28
+* author:	BadKarma™ (https://sketchfab.com/890244234)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Honda Civic Hybrid Sedan" (https://sketchfab.com/3d-models/honda-civic-hybrid-sedan-6990f791a58c4260a6d73042b77a1f28) by BadKarma™ (https://sketchfab.com/890244234) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
