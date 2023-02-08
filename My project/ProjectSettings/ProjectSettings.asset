@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 20
-  productGUID: 06546b9a8ceb1e14689199f93374c3f8
+  productGUID: bf358d99e46dda14b8867c76c3ce8dc9
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -333,8 +333,7 @@ PlayerSettings:
   openGLRequireES32: 0
   m_TemplateCustomTags:
     DESCRIPTION: 
-    META_TAGS: 
-    NAME: 
+    WEBXR_POLYFILL_CONFIG: 
   mobileMTRendering:
     Android: 1
     iPhone: 1
