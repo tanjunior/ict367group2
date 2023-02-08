@@ -6,6 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Samples/WebXR Interactions/0.16.3-preview/Sample Scene/Scenes/Desert.unity
     guid: 85380d4847db7b74a850284461349c36
   m_configObjects:
@@ -13,4 +14,14 @@ EditorBuildSettings:
       type: 2}
     WebXR.Settings: {fileID: 11400000, guid: 520df7552a184c143b05a35a7650ef3b, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3cce3fcd70b99bd4b888ec3ddf92e82e,
+=======
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9b1ee51abf726c44498916bbfa9d00a3,
+      type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: d358f1098ffaa434e867fb251664ee2d,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: cae0039865d1d2746bc76edb6e7c263f,
+>>>>>>> Stashed changes
       type: 2}
