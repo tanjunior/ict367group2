@@ -23,5 +23,8 @@ EditorBuildSettings:
     com.unity.input.settings: {fileID: 11400000, guid: d358f1098ffaa434e867fb251664ee2d,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: cae0039865d1d2746bc76edb6e7c263f,
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       type: 2}
