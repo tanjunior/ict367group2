@@ -2,8 +2,11 @@
 %TAG !u! tag:unity3d.com,2011:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!114 &-7964829933916952248
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!114 &-6711673624199477648
@@ -22,6 +25,9 @@ MonoBehaviour:
   m_InitManagerOnStart: 1
 --- !u!114 &-4473369648144124569
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -38,9 +44,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_LoaderManagerInstance: {fileID: 2421021328451889001}
   m_InitManagerOnStart: 1
 --- !u!114 &-1889162435233531888
+=======
+  m_LoaderManagerInstance: {fileID: 7403458746726220908}
+  m_InitManagerOnStart: 1
+--- !u!114 &-2646970687115760241
+>>>>>>> Stashed changes
 =======
   m_LoaderManagerInstance: {fileID: 7403458746726220908}
   m_InitManagerOnStart: 1
@@ -67,8 +79,12 @@ MonoBehaviour:
   m_AutomaticRunning: 0
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_Loaders:
   - {fileID: 11400000, guid: 998b6bbac417124479eba87c4ad80b81, type: 2}
+=======
+  m_Loaders: []
+>>>>>>> Stashed changes
 =======
   m_Loaders: []
 >>>>>>> Stashed changes
@@ -91,9 +107,15 @@ MonoBehaviour:
   Values:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 6118269499053839103}
   - {fileID: -7964829933916952248}
 --- !u!114 &2421021328451889001
+=======
+  - {fileID: -6711673624199477648}
+  - {fileID: -4473369648144124569}
+--- !u!114 &7403458746726220908
+>>>>>>> Stashed changes
 =======
   - {fileID: -6711673624199477648}
   - {fileID: -4473369648144124569}
@@ -121,6 +143,7 @@ MonoBehaviour:
   m_Loaders:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 11400000, guid: 52338fb10e7fa1b409dd3d0333992858, type: 2}
 --- !u!114 &6118269499053839103
 MonoBehaviour:
@@ -136,6 +159,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LoaderManagerInstance: {fileID: -1889162435233531888}
   m_InitManagerOnStart: 1
+=======
+  - {fileID: 11400000, guid: e3b3ddbec41f27f4da69953d3b00cf74, type: 2}
+>>>>>>> Stashed changes
 =======
   - {fileID: 11400000, guid: e3b3ddbec41f27f4da69953d3b00cf74, type: 2}
 >>>>>>> Stashed changes
