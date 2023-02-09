@@ -10,6 +10,7 @@ public class CarController : MonoBehaviour
 
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;
+    [SerializeField] private bool animateWheels;
 
     // Wheel Colliders
     [SerializeField] private WheelCollider frontLeftWheelCollider, frontRightWheelCollider;
@@ -35,7 +36,7 @@ public class CarController : MonoBehaviour
         GetInput();
         HandleMotor();
         HandleSteering();
-        UpdateWheels();
+        if (animateWheels) UpdateWheels();
     }
 
     private void GetInput() {
