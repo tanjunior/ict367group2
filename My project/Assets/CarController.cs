@@ -32,6 +32,21 @@ public class CarController : MonoBehaviour
         
     }
 
+    public void OnSteeringWheelValueChanged(float SteeringWheelValue) {
+        if (SteeringWheelValue > 180)
+        {
+            currentSteerAngle = maxSteerAngle * (360 - SteeringWheelValue) / 180;
+ 
+        } else {
+            currentSteerAngle = -maxSteerAngle * SteeringWheelValue / 180;
+        }
+    }
+
+    public void OnHandBrakeValueChanged(float HandBrakeValue) {
+        Debug.Log("HandBrake: " + HandBrakeValue);
+        //if (HandBrakeValue > ?) isBreaking = true;
+    }
+
     private void FixedUpdate() {
         GetInput();
         HandleMotor();
