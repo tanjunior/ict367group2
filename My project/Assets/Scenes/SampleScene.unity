@@ -542,10 +542,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1292189497355990088, guid: d131945ccc3f0564c9c4f20f448c12fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485721673483617796, guid: d131945ccc3f0564c9c4f20f448c12fa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7945698578260382120, guid: d131945ccc3f0564c9c4f20f448c12fa,
         type: 3}
       propertyPath: m_Name
       value: civic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992423428498696368, guid: d131945ccc3f0564c9c4f20f448c12fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d131945ccc3f0564c9c4f20f448c12fa, type: 3}
@@ -954,6 +969,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Interactions.Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774344186399642229, guid: 1bb7642ebf8d0a34aa23fc586ea87e6a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090891674275893548, guid: 1bb7642ebf8d0a34aa23fc586ea87e6a,
         type: 3}
