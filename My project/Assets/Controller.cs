@@ -9,6 +9,6 @@ public class Controller : BooleanAction
     // Update is called once per frame
     void Update()
     {
-        Receive(controller.GetButton(WebXRController.ButtonTypes.Trigger));
+        Receive(controller.GetButton(WebXRController.ButtonTypes.Grip));
     }
 }
