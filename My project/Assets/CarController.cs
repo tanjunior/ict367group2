@@ -8,7 +8,7 @@ public class CarController : MonoBehaviour
 {
     private float horizontalInput, verticalInput;
     private float currentTorque, currentSteerAngle, currentbreakForce;
-    private bool isBrake, isAccel, isShiftUp, isShiftDown;
+    private bool isBrake, isAccel, isShiftUp, isShiftDown, isHandBrake;
     private float steeringWheelRotation;
     private Rigidbody rb;
     public float finalDriveRatio = 1;
@@ -62,8 +62,11 @@ public class CarController : MonoBehaviour
     }
 
     public void OnHandBrakeValueChanged(float HandBrakeValue) {
-        Debug.Log("HandBrake: " + HandBrakeValue);
-        //if (HandBrakeValue > ?) isBreaking = true;
+        Debug.Log("HandBrakeValue: " + HandBrakeValue);
+        if (HandBrakeValue <= -70) {
+            isHandBrake = true;
+            Debug.Log("isHandBrake: " + isHandBrake);
+        }
     }
 
     private void FixedUpdate() {
