@@ -151,8 +151,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -378,8 +376,6 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
-      Script: {instanceID: 0}
-    - Class: 258
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -2761,4 +2757,4 @@ ScriptsOnlyBuild:
   platform: 20
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: E:/dev/GitHub/ict367group2/Build
+  playerPath: E:/dev/GitHub/ict367group2/My project/Builds
