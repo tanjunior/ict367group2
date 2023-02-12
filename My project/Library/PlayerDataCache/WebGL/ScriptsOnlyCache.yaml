@@ -1,37 +1,40 @@
 ScriptsOnlyBuild:
   usedScripts:
     Definitions.dll:
-    - CarController
-    - Controller
+    - WebXRGrip
+    - WebXRTouchpad
+    - WebXRTrigger
     Tilia.CameraRigs.TrackedAlias.Unity.Runtime.dll:
     - Tilia.CameraRigs.TrackedAlias.TrackedAliasConfigurator
     - Tilia.CameraRigs.TrackedAlias.TrackedAliasFacade
-    Tilia.Interactions.Controllables.Unity.Runtime.dll:
-    - Tilia.Interactions.Controllables.AngularDriver.AngularDriveFacade
-    - Tilia.Interactions.Controllables.AngularDriver.AngularDriveTag
-    - Tilia.Interactions.Controllables.AngularDriver.AngularTransformDrive
+    Tilia.Indicators.ObjectPointers.Unity.Runtime.dll:
+    - Tilia.Indicators.ObjectPointers.Operation.Extraction.PointerFacadeComponentGameObjectExtractor
+    - Tilia.Indicators.ObjectPointers.Operation.Extraction.PointerFacadeGameObjectExtractor
+    - Tilia.Indicators.ObjectPointers.PointerConfigurator
+    - Tilia.Indicators.ObjectPointers.PointerFacade
+    Tilia.Indicators.SpatialTargets.Unity.Runtime.dll:
+    - Tilia.Indicators.SpatialTargets.ComponentTags.SpatialTargetDisabledTag
+    - Tilia.Indicators.SpatialTargets.SpatialTarget
+    - Tilia.Indicators.SpatialTargets.SpatialTargetConfigurator
+    - Tilia.Indicators.SpatialTargets.SpatialTargetDispatcher
+    - Tilia.Indicators.SpatialTargets.SpatialTargetFacade
+    Tilia.Input.UnityInputManager.Runtime.dll:
+    - Tilia.Input.UnityInputManager.UnityInputManagerButtonAction
     Tilia.Interactions.Interactables.Unity.Runtime.dll:
-    - Tilia.Interactions.Interactables.Interactables.Grab.Action.GrabInteractableControlDirectionAction
-    - Tilia.Interactions.Interactables.Interactables.Grab.Action.GrabInteractableFollowAction
-    - Tilia.Interactions.Interactables.Interactables.Grab.Action.GrabInteractableNullAction
-    - Tilia.Interactions.Interactables.Interactables.Grab.Action.GrabInteractableScaleAction
-    - Tilia.Interactions.Interactables.Interactables.Grab.Action.GrabInteractableSwapAction
-    - Tilia.Interactions.Interactables.Interactables.Grab.GrabInteractableConfigurator
-    - Tilia.Interactions.Interactables.Interactables.Grab.Provider.GrabInteractableListInteractorProvider
-    - Tilia.Interactions.Interactables.Interactables.Grab.Provider.GrabInteractableStackInteractorProvider
-    - Tilia.Interactions.Interactables.Interactables.Grab.Receiver.GrabInteractableReceiver
-    - Tilia.Interactions.Interactables.Interactables.InteractableConfigurator
-    - Tilia.Interactions.Interactables.Interactables.InteractableFacade
-    - Tilia.Interactions.Interactables.Interactables.Touch.TouchInteractableConfigurator
-    - Tilia.Interactions.Interactables.Interactors.ComponentTags.AllowInteractorCollisionTag
     - Tilia.Interactions.Interactables.Interactors.GrabInteractorConfigurator
     - Tilia.Interactions.Interactables.Interactors.InteractorFacade
-    - Tilia.Interactions.Interactables.Interactors.Operation.Extraction.InteractorAttachPointExtractor
-    - Tilia.Interactions.Interactables.Interactors.Operation.Extraction.InteractorExtractor
-    - Tilia.Interactions.Interactables.Interactors.Operation.Extraction.InteractorPrecisionPointExtractor
     - Tilia.Interactions.Interactables.Interactors.TouchInteractorConfigurator
+    Tilia.Interactions.SpatialButtons.Runtime.dll:
+    - Tilia.Interactions.SpatialButtons.SpatialButtonConfigurator
+    - Tilia.Interactions.SpatialButtons.SpatialButtonFacade
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshPro
     Unity.XR.Management.Editor.dll:
     - UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget
     Unity.XR.Management.dll:
@@ -47,12 +50,22 @@ ScriptsOnlyBuild:
     UnityEngine.SpatialTracking.dll:
     - UnityEngine.SpatialTracking.TrackedPoseDriver
     UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.InputField
     - UnityEngine.UI.Text
+    - UnityEngine.UI.Toggle
     WebXR.Samples.Scripts.dll:
+    - PlayWebcam
     - WebXR.Interactions.ControllerInteraction
+    - WebXR.Interactions.FPSCounter
+    - WebXR.Interactions.MixedRealityCaptureController
+    - WebXR.Interactions.MouseDragObject
+    - WebXR.Interactions.SceneHitTest
+    - WebXR.Interactions.SpectatorCamera
     WebXR.dll:
     - WebXR.WebXRCamera
     - WebXR.WebXRController
@@ -61,68 +74,51 @@ ScriptsOnlyBuild:
     - WebXR.WebXRSettings
     Zinnia.Runtime.dll:
     - Zinnia.Action.BooleanAction
-    - Zinnia.Data.Collection.Counter.GameObjectObservableCounter
-    - Zinnia.Data.Collection.GameObjectRelations
+    - Zinnia.Cast.Operation.Mutation.PointsCastPropertyMutator
+    - Zinnia.Cast.StraightLineCast
     - Zinnia.Data.Collection.List.BehaviourObservableList
     - Zinnia.Data.Collection.List.GameObjectObservableList
-    - Zinnia.Data.Collection.List.GameObjectRelationObservableList
     - Zinnia.Data.Collection.List.SerializableTypeComponentObservableList
     - Zinnia.Data.Collection.List.StringObservableList
     - Zinnia.Data.Collection.List.UnityObjectObservableList
-    - Zinnia.Data.Collection.Stack.GameObjectObservableStack
-    - Zinnia.Data.Type.Transformation.Conversion.FloatToBoolean
+    - Zinnia.Data.Operation.Extraction.RaycastHitPointExtractor
+    - Zinnia.Data.Operation.Extraction.SurfaceDataCollisionDataExtractor
     - Zinnia.Event.BehaviourEnabledObserver
     - Zinnia.Event.Proxy.EmptyEventProxyEmitter
-    - Zinnia.Event.Proxy.FloatEventProxyEmitter
-    - Zinnia.Event.Proxy.GameObjectEventProxyEmitter
-    - Zinnia.Event.Yield.WaitForEndOfFrameYieldEmitter
+    - Zinnia.Event.Proxy.SurfaceDataProxyEmitter
+    - Zinnia.Pointer.ObjectPointer
+    - Zinnia.Pointer.Operation.Mutation.PointerElementPropertyMutator
+    - Zinnia.Pointer.PointerElement
     - Zinnia.Process.Moment.Collection.MomentProcessObservableList
     - Zinnia.Process.Moment.MomentProcess
     - Zinnia.Process.Moment.MomentProcessor
     - Zinnia.Rule.ActiveInHierarchyRule
     - Zinnia.Rule.AnyComponentTypeRule
-    - Zinnia.Rule.Collection.RulesMatcherElementObservableList
     - Zinnia.Rule.ListContainsRule
     - Zinnia.Rule.NegationRule
-    - Zinnia.Rule.RulesMatcher
-    - Zinnia.Rule.StringInListRule
     - Zinnia.Tracking.CameraRig.Collection.LinkedAliasAssociationCollectionObservableList
     - Zinnia.Tracking.CameraRig.LinkedAliasAssociationCollection
-    - Zinnia.Tracking.Collision.Active.ActiveCollisionConsumer
     - Zinnia.Tracking.Collision.Active.ActiveCollisionPublisher
     - Zinnia.Tracking.Collision.Active.ActiveCollisionRegisteredConsumerContainer
     - Zinnia.Tracking.Collision.Active.ActiveCollisionsContainer
-    - Zinnia.Tracking.Collision.Active.CollisionPointContainer
-    - Zinnia.Tracking.Collision.Active.Event.Proxy.ActiveCollisionConsumerEventProxyEmitter
     - Zinnia.Tracking.Collision.Active.Event.Proxy.ActiveCollisionsContainerEventProxyEmitter
     - Zinnia.Tracking.Collision.Active.Operation.Extraction.NotifierContainerExtractor
-    - Zinnia.Tracking.Collision.Active.Operation.Extraction.PublisherContainerExtractor
     - Zinnia.Tracking.Collision.Active.Operation.NearestSorter
     - Zinnia.Tracking.Collision.Active.Operation.Slicer
-    - Zinnia.Tracking.Collision.CollisionNotifier
     - Zinnia.Tracking.Collision.CollisionTracker
     - Zinnia.Tracking.Follow.Modifier.FollowModifier
-    - Zinnia.Tracking.Follow.Modifier.Property.Position.RigidbodyVelocity
     - Zinnia.Tracking.Follow.Modifier.Property.Position.TransformPosition
-    - Zinnia.Tracking.Follow.Modifier.Property.Rotation.RigidbodyAngularVelocity
-    - Zinnia.Tracking.Follow.Modifier.Property.Rotation.RigidbodyForceAtPosition
-    - Zinnia.Tracking.Follow.Modifier.Property.Rotation.RotateAroundAngularVelocity
-    - Zinnia.Tracking.Follow.Modifier.Property.Rotation.TransformPositionDifferenceRotation
     - Zinnia.Tracking.Follow.Modifier.Property.Rotation.TransformRotation
     - Zinnia.Tracking.Follow.Modifier.Property.Scale.TransformScale
     - Zinnia.Tracking.Follow.ObjectFollower
-    - Zinnia.Tracking.Modification.DirectionModifier
-    - Zinnia.Tracking.Modification.PinchScaler
-    - Zinnia.Tracking.Velocity.ArtificialVelocityApplier
     - Zinnia.Tracking.Velocity.Collection.VelocityTrackerObservableList
-    - Zinnia.Tracking.Velocity.ComponentTrackerProxy
-    - Zinnia.Tracking.Velocity.VelocityApplier
     - Zinnia.Tracking.Velocity.VelocityMultiplier
     - Zinnia.Tracking.Velocity.VelocityTrackerProcessor
     - Zinnia.Utility.BaseGameObjectSelector
     - Zinnia.Utility.CountdownTimer
+    - Zinnia.Visual.PointsRenderer
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Samples/WebXR Interactions/0.16.3-preview/Sample Scene/Scenes/Desert.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -141,6 +137,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
     - Class: 64
@@ -151,7 +149,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 84
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
@@ -161,26 +161,22 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
+    - Class: 109
+      Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11214}
     - Class: 114
-      Script: {instanceID: 11228}
-    - Class: 114
       Script: {instanceID: 11234}
-    - Class: 114
-      Script: {instanceID: 11308}
     - Class: 114
       Script: {instanceID: 11330}
     - Class: 114
-      Script: {instanceID: 11334}
-    - Class: 114
-      Script: {instanceID: 11396}
-    - Class: 114
-      Script: {instanceID: 11398}
+      Script: {instanceID: 11332}
     - Class: 114
       Script: {instanceID: 11424}
     - Class: 114
@@ -188,51 +184,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11512}
     - Class: 114
-      Script: {instanceID: 11566}
-    - Class: 114
-      Script: {instanceID: 11570}
-    - Class: 114
       Script: {instanceID: 11578}
     - Class: 114
       Script: {instanceID: 11718}
     - Class: 114
       Script: {instanceID: 11728}
     - Class: 114
-      Script: {instanceID: 11734}
-    - Class: 114
       Script: {instanceID: 11768}
     - Class: 114
       Script: {instanceID: 11786}
     - Class: 114
-      Script: {instanceID: 11790}
-    - Class: 114
-      Script: {instanceID: 11862}
+      Script: {instanceID: 11836}
     - Class: 114
       Script: {instanceID: 11878}
     - Class: 114
-      Script: {instanceID: 11880}
-    - Class: 114
       Script: {instanceID: 11936}
-    - Class: 114
-      Script: {instanceID: 11938}
     - Class: 114
       Script: {instanceID: 11994}
     - Class: 114
-      Script: {instanceID: 11998}
-    - Class: 114
       Script: {instanceID: 12016}
     - Class: 114
-      Script: {instanceID: 12116}
+      Script: {instanceID: 12128}
     - Class: 114
       Script: {instanceID: 12142}
     - Class: 114
-      Script: {instanceID: 12180}
+      Script: {instanceID: 12230}
     - Class: 114
-      Script: {instanceID: 12266}
-    - Class: 114
-      Script: {instanceID: 12324}
+      Script: {instanceID: 12282}
     - Class: 114
       Script: {instanceID: 12330}
+    - Class: 114
+      Script: {instanceID: 12336}
     - Class: 114
       Script: {instanceID: 12354}
     - Class: 114
@@ -242,13 +224,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12416}
     - Class: 114
-      Script: {instanceID: 12526}
+      Script: {instanceID: 12486}
     - Class: 114
-      Script: {instanceID: 12564}
-    - Class: 114
-      Script: {instanceID: 12566}
-    - Class: 114
-      Script: {instanceID: 12626}
+      Script: {instanceID: 12508}
     - Class: 114
       Script: {instanceID: 12638}
     - Class: 114
@@ -256,49 +234,41 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12706}
     - Class: 114
+      Script: {instanceID: 12712}
+    - Class: 114
       Script: {instanceID: 12714}
     - Class: 114
       Script: {instanceID: 12738}
     - Class: 114
-      Script: {instanceID: 12772}
-    - Class: 114
       Script: {instanceID: 12788}
     - Class: 114
-      Script: {instanceID: 12834}
+      Script: {instanceID: 12820}
     - Class: 114
-      Script: {instanceID: 12860}
-    - Class: 114
-      Script: {instanceID: 12876}
+      Script: {instanceID: 12858}
     - Class: 114
       Script: {instanceID: 12880}
     - Class: 114
-      Script: {instanceID: 12948}
+      Script: {instanceID: 12890}
     - Class: 114
-      Script: {instanceID: 12962}
+      Script: {instanceID: 12948}
     - Class: 114
       Script: {instanceID: 12986}
     - Class: 114
       Script: {instanceID: 13088}
     - Class: 114
-      Script: {instanceID: 13112}
-    - Class: 114
-      Script: {instanceID: 13114}
-    - Class: 114
-      Script: {instanceID: 13118}
-    - Class: 114
       Script: {instanceID: 13174}
-    - Class: 114
-      Script: {instanceID: 13188}
     - Class: 114
       Script: {instanceID: 13238}
     - Class: 114
-      Script: {instanceID: 13314}
-    - Class: 114
       Script: {instanceID: 13348}
     - Class: 114
-      Script: {instanceID: 13478}
+      Script: {instanceID: 13376}
     - Class: 114
-      Script: {instanceID: 13508}
+      Script: {instanceID: 13432}
+    - Class: 114
+      Script: {instanceID: 13450}
+    - Class: 114
+      Script: {instanceID: 13478}
     - Class: 114
       Script: {instanceID: 13648}
     - Class: 114
@@ -308,55 +278,73 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13712}
     - Class: 114
-      Script: {instanceID: 13750}
-    - Class: 114
       Script: {instanceID: 13766}
-    - Class: 114
-      Script: {instanceID: 13774}
     - Class: 114
       Script: {instanceID: 13796}
     - Class: 114
+      Script: {instanceID: 13866}
+    - Class: 114
       Script: {instanceID: 13872}
     - Class: 114
-      Script: {instanceID: 13928}
-    - Class: 114
-      Script: {instanceID: 13962}
-    - Class: 114
-      Script: {instanceID: 14020}
+      Script: {instanceID: 13992}
     - Class: 114
       Script: {instanceID: 14046}
     - Class: 114
-      Script: {instanceID: 14058}
+      Script: {instanceID: 14060}
     - Class: 114
       Script: {instanceID: 14070}
     - Class: 114
-      Script: {instanceID: 14080}
+      Script: {instanceID: 14074}
     - Class: 114
       Script: {instanceID: 14082}
     - Class: 114
-      Script: {instanceID: 14130}
+      Script: {instanceID: 14156}
     - Class: 114
-      Script: {instanceID: 14168}
+      Script: {instanceID: 14324}
+    - Class: 114
+      Script: {instanceID: 14350}
     - Class: 114
       Script: {instanceID: 14400}
     - Class: 114
-      Script: {instanceID: 14402}
-    - Class: 114
       Script: {instanceID: 14454}
-    - Class: 114
-      Script: {instanceID: 14464}
-    - Class: 114
-      Script: {instanceID: 14476}
     - Class: 114
       Script: {instanceID: 14508}
     - Class: 114
-      Script: {instanceID: 14572}
+      Script: {instanceID: 14524}
     - Class: 114
-      Script: {instanceID: 14594}
+      Script: {instanceID: 14552}
+    - Class: 114
+      Script: {instanceID: 14572}
     - Class: 114
       Script: {instanceID: 14604}
     - Class: 114
-      Script: {instanceID: 14612}
+      Script: {instanceID: 23948}
+    - Class: 114
+      Script: {instanceID: 23950}
+    - Class: 114
+      Script: {instanceID: 23954}
+    - Class: 114
+      Script: {instanceID: 23958}
+    - Class: 114
+      Script: {instanceID: 23962}
+    - Class: 114
+      Script: {instanceID: 23964}
+    - Class: 114
+      Script: {instanceID: 23966}
+    - Class: 114
+      Script: {instanceID: 23972}
+    - Class: 114
+      Script: {instanceID: 23974}
+    - Class: 114
+      Script: {instanceID: 23978}
+    - Class: 114
+      Script: {instanceID: 23982}
+    - Class: 114
+      Script: {instanceID: 29354}
+    - Class: 114
+      Script: {instanceID: 31324}
+    - Class: 114
+      Script: {instanceID: 51008}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -367,11 +355,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 138
       Script: {instanceID: 0}
-    - Class: 146
-      Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 215
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -813,7 +803,7 @@ ScriptsOnlyBuild:
       Hash: 8651baeb8a9837d8dcc7ae62416d47cd
     assemblyName: Definitions.dll
     namespaceName: 
-    className: Controller
+    className: WebXRGrip
   - hash:
       serializedVersion: 2
       Hash: 7e394d578dea8ffa781cf49e6f9214b9
@@ -2758,7 +2748,121 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: a9ea4e963d8cdc9727b5fe5ce870ecbe
+    assemblyName: Tilia.Indicators.SpatialTargets.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.SpatialTargets.Collection
+    className: DispatcherObservableList
+  - hash:
+      serializedVersion: 2
+      Hash: 5d53596e701d03fd4f4534cb2c347751
+    assemblyName: Tilia.Indicators.SpatialTargets.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.SpatialTargets
+    className: SpatialTargetDispatcher
+  - hash:
+      serializedVersion: 2
+      Hash: 3417a96be8ec051fe12eebb392711fec
+    assemblyName: Tilia.Indicators.ObjectPointers.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.ObjectPointers.Operation.Extraction
+    className: PointerFacadeGameObjectExtractor
+  - hash:
+      serializedVersion: 2
+      Hash: a6fd1bdfdb05ff63d3208e5e64edf8d1
+    assemblyName: Tilia.Interactions.SpatialButtons.Runtime.dll
+    namespaceName: Tilia.Interactions.SpatialButtons
+    className: SpatialButtonFacade
+  - hash:
+      serializedVersion: 2
+      Hash: b739b662321031daf03b63725626d22c
+    assemblyName: Tilia.Indicators.ObjectPointers.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.ObjectPointers
+    className: PointerFacade
+  - hash:
+      serializedVersion: 2
+      Hash: 8e97d3d185c0043b68304ca4660506f4
+    assemblyName: Tilia.Interactions.SpatialButtons.Runtime.dll
+    namespaceName: Tilia.Interactions.SpatialButtons
+    className: SpatialButtonConfigurator
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Tilia.Indicators.SpatialTargets.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.SpatialTargets.ComponentTags
+    className: SpatialTargetDisabledTag
+  - hash:
+      serializedVersion: 2
+      Hash: 761fb64053866e0e4f8af1332a5847a6
+    assemblyName: Tilia.Indicators.SpatialTargets.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.SpatialTargets
+    className: SpatialTarget
+  - hash:
+      serializedVersion: 2
+      Hash: 3631ec0d4c56f7b9e4946b5c9ffb07e3
+    assemblyName: Tilia.Indicators.SpatialTargets.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.SpatialTargets
+    className: SpatialTargetDispatcherProcessor
+  - hash:
+      serializedVersion: 2
+      Hash: 6b5e8d6594abc3120c738f083725a1d6
+    assemblyName: Tilia.Indicators.SpatialTargets.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.SpatialTargets
+    className: SpatialTargetFacade
+  - hash:
+      serializedVersion: 2
+      Hash: ed7530b2adbb09cd1b4717d8d2e3d13f
+    assemblyName: Tilia.Indicators.ObjectPointers.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.ObjectPointers.Operation.Extraction
+    className: PointerFacadeComponentGameObjectExtractor
+  - hash:
+      serializedVersion: 2
+      Hash: 25d06a1267c2cd9d5eb4d34b597d94a0
+    assemblyName: Tilia.Indicators.ObjectPointers.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.ObjectPointers
+    className: PointerConfigurator
+  - hash:
+      serializedVersion: 2
+      Hash: bbb7242f3bd3c8c3f254bdfa34744415
+    assemblyName: Tilia.Interactions.SpatialButtons.Runtime.dll
+    namespaceName: Tilia.Interactions.SpatialButtons
+    className: SpatialButtonGroupManager
+  - hash:
+      serializedVersion: 2
+      Hash: b4834f63f211bee6be7c1df3a18ace6d
+    assemblyName: Tilia.Indicators.SpatialTargets.Unity.Runtime.dll
+    namespaceName: Tilia.Indicators.SpatialTargets
+    className: SpatialTargetConfigurator
+  - hash:
+      serializedVersion: 2
+      Hash: 1e9d6cdbe3fb82b2f80b6a34d22819ff
+    assemblyName: Tilia.Input.UnityInputManager.Runtime.dll
+    namespaceName: Tilia.Input.UnityInputManager
+    className: UnityInputManagerAxis2DAction
+  - hash:
+      serializedVersion: 2
+      Hash: 88f051c36917560f3b50ece0ba2a12a0
+    assemblyName: Tilia.Input.UnityInputManager.Runtime.dll
+    namespaceName: Tilia.Input.UnityInputManager
+    className: UnityInputManagerAxis1DAction
+  - hash:
+      serializedVersion: 2
+      Hash: 1a148431c1720644fdaa38878a859987
+    assemblyName: Tilia.Input.UnityInputManager.Runtime.dll
+    namespaceName: Tilia.Input.UnityInputManager
+    className: UnityInputManagerButtonAction
+  - hash:
+      serializedVersion: 2
+      Hash: 8651baeb8a9837d8dcc7ae62416d47cd
+    assemblyName: Definitions.dll
+    namespaceName: 
+    className: WebXRTrigger
+  - hash:
+      serializedVersion: 2
+      Hash: 8651baeb8a9837d8dcc7ae62416d47cd
+    assemblyName: Definitions.dll
+    namespaceName: 
+    className: WebXRTouchpad
   platform: 20
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
+  - Assets/Samples/WebXR Interactions/0.16.3-preview/Sample Scene/Scenes/Desert.unity
   playerPath: E:/dev/GitHub/ict367group2/My project/Builds
