@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 868f1a2b51250414db0c4f53765376ad,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -2120,6 +2121,31 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4395034008640600673, guid: d131945ccc3f0564c9c4f20f448c12fa,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272768077848707340, guid: d131945ccc3f0564c9c4f20f448c12fa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272768077848707340, guid: d131945ccc3f0564c9c4f20f448c12fa,
+        type: 3}
+      propertyPath: m_HDR
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272768077848707340, guid: d131945ccc3f0564c9c4f20f448c12fa,
+        type: 3}
+      propertyPath: m_UseOcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272768077848707340, guid: d131945ccc3f0564c9c4f20f448c12fa,
+        type: 3}
+      propertyPath: m_BoxProjection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7559937411930267036, guid: d131945ccc3f0564c9c4f20f448c12fa,
         type: 3}
       propertyPath: ancestor
@@ -2134,6 +2160,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234234120392254400, guid: d131945ccc3f0564c9c4f20f448c12fa,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d131945ccc3f0564c9c4f20f448c12fa, type: 3}

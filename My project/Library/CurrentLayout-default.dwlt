@@ -202,7 +202,7 @@ MonoBehaviour:
     y: 0
     width: 2560
     height: 1357
-  m_MinSize: {x: 875, y: 521}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &9
 MonoBehaviour:
@@ -308,9 +308,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.408, y: 1.132, z: -0.157}
+    m_Target: {x: 1.0629517, y: 1.6235746, z: -3.8475184}
     speed: 2
-    m_Value: {x: 0.408, y: 1.132, z: -0.157}
+    m_Value: {x: 1.0629517, y: 1.6235746, z: -3.8475184}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -356,20 +356,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.10266607, y: -0.031327482, z: 0.0032392023, w: 0.9942245}
+    m_Target: {x: 0.07102938, y: -0.09263001, z: 0.006626501, w: 0.993153}
     speed: 2
-    m_Value: {x: 0.101173885, y: -0.03133208, z: 0.0031921829, w: 0.99437016}
+    m_Value: {x: 0.07251822, y: -0.092618935, z: 0.00676537, w: 0.9930343}
   m_Size:
-    m_Target: 0.4918936
+    m_Target: 0.30975944
     speed: 2
-    m_Value: 0.5150718
+    m_Value: 0.2964205
   m_Ortho:
-    m_Target: 1
+    m_Target: 0
     speed: 2
-    m_Value: 1
+    m_Value: 0
   m_CameraSettings:
-    m_Speed: 1.9
-    m_SpeedNormalized: 0.94974875
+    m_Speed: 1.8
+    m_SpeedNormalized: 0.9197488
     m_SpeedMin: 0.01
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -518,19 +518,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/SampleScene
+    - Assets/Import
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes/SampleScene
+  - Assets/Import
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\dev\GitHub\ict367group2\My project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e85a0000
-    m_LastClickedID: 23272
+    m_SelectedIDs: da5a0000
+    m_LastClickedID: 23258
     m_ExpandedIDs: 00000000c25a0000c45a0000c65a0000c85a0000ca5a0000cc5a0000ce5a0000d05a0000de5a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -684,7 +684,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 146cfdff326cfdffaa6efdff60f7ffff7cf7ffff96f7ffffd4f7ffff3ef8ffff48f8ffff68fbffff4e3c0000603c0000b23c0000
+      m_ExpandedIDs: 0acbffff28cbffffa0cdffff60f7ffffd4f7ffff3ef8ffff48f8ffff68fbffffb23c0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
