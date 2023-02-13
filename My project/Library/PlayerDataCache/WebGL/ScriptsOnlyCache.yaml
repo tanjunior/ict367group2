@@ -2,17 +2,24 @@ ScriptsOnlyBuild:
   usedScripts:
     Definitions.dll:
     - CarController
+    - ResetCamera
     - WebXRGrip
-    - WebXRTouchpad
+    - WebXRThumstick
     - WebXRTrigger
     Tilia.CameraRigs.TrackedAlias.Unity.Runtime.dll:
     - Tilia.CameraRigs.TrackedAlias.TrackedAliasConfigurator
     - Tilia.CameraRigs.TrackedAlias.TrackedAliasFacade
     Tilia.Indicators.ObjectPointers.Unity.Runtime.dll:
+    - Tilia.Indicators.ObjectPointers.Operation.Extraction.PointerFacadeComponentGameObjectExtractor
+    - Tilia.Indicators.ObjectPointers.Operation.Extraction.PointerFacadeGameObjectExtractor
     - Tilia.Indicators.ObjectPointers.PointerConfigurator
     - Tilia.Indicators.ObjectPointers.PointerFacade
     Tilia.Indicators.SpatialTargets.Unity.Runtime.dll:
+    - Tilia.Indicators.SpatialTargets.ComponentTags.SpatialTargetDisabledTag
+    - Tilia.Indicators.SpatialTargets.SpatialTarget
+    - Tilia.Indicators.SpatialTargets.SpatialTargetConfigurator
     - Tilia.Indicators.SpatialTargets.SpatialTargetDispatcher
+    - Tilia.Indicators.SpatialTargets.SpatialTargetFacade
     Tilia.Interactions.Controllables.Unity.Runtime.dll:
     - Tilia.Interactions.Controllables.AngularDriver.AngularDriveFacade
     - Tilia.Interactions.Controllables.AngularDriver.AngularDriveTag
@@ -37,6 +44,9 @@ ScriptsOnlyBuild:
     - Tilia.Interactions.Interactables.Interactors.Operation.Extraction.InteractorExtractor
     - Tilia.Interactions.Interactables.Interactors.Operation.Extraction.InteractorPrecisionPointExtractor
     - Tilia.Interactions.Interactables.Interactors.TouchInteractorConfigurator
+    Tilia.Interactions.SpatialButtons.Runtime.dll:
+    - Tilia.Interactions.SpatialButtons.SpatialButtonConfigurator
+    - Tilia.Interactions.SpatialButtons.SpatialButtonFacade
     Tilia.Visuals.Basichands.Unity.Runtime.dll:
     - Tilia.Visuals.BasicHand.FingerController
     - Tilia.Visuals.BasicHand.HandFacade
@@ -51,6 +61,7 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshPro
     Unity.XR.Management.Editor.dll:
     - UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget
     Unity.XR.Management.dll:
@@ -72,7 +83,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
     WebXR.Samples.Scripts.dll:
     - WebXR.Interactions.ControllerInteraction
-    - WebXR.Interactions.SceneHitTest
     WebXR.dll:
     - WebXR.WebXRCamera
     - WebXR.WebXRController
@@ -81,6 +91,7 @@ ScriptsOnlyBuild:
     - WebXR.WebXRSettings
     Zinnia.Runtime.dll:
     - Zinnia.Action.BooleanAction
+    - Zinnia.Cast.Operation.Mutation.PointsCastPropertyMutator
     - Zinnia.Cast.StraightLineCast
     - Zinnia.Data.Collection.Counter.GameObjectObservableCounter
     - Zinnia.Data.Collection.GameObjectRelations
@@ -91,13 +102,17 @@ ScriptsOnlyBuild:
     - Zinnia.Data.Collection.List.StringObservableList
     - Zinnia.Data.Collection.List.UnityObjectObservableList
     - Zinnia.Data.Collection.Stack.GameObjectObservableStack
+    - Zinnia.Data.Operation.Extraction.RaycastHitPointExtractor
+    - Zinnia.Data.Operation.Extraction.SurfaceDataCollisionDataExtractor
     - Zinnia.Data.Type.Transformation.Conversion.FloatToBoolean
     - Zinnia.Event.BehaviourEnabledObserver
     - Zinnia.Event.Proxy.EmptyEventProxyEmitter
     - Zinnia.Event.Proxy.FloatEventProxyEmitter
     - Zinnia.Event.Proxy.GameObjectEventProxyEmitter
+    - Zinnia.Event.Proxy.SurfaceDataProxyEmitter
     - Zinnia.Event.Yield.WaitForEndOfFrameYieldEmitter
     - Zinnia.Pointer.ObjectPointer
+    - Zinnia.Pointer.Operation.Mutation.PointerElementPropertyMutator
     - Zinnia.Pointer.PointerElement
     - Zinnia.Process.Moment.Collection.MomentProcessObservableList
     - Zinnia.Process.Moment.MomentProcess
@@ -206,8 +221,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11376}
     - Class: 114
-      Script: {instanceID: 11378}
-    - Class: 114
       Script: {instanceID: 11380}
     - Class: 114
       Script: {instanceID: 11444}
@@ -219,6 +232,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11472}
     - Class: 114
       Script: {instanceID: 11476}
+    - Class: 114
+      Script: {instanceID: 11512}
     - Class: 114
       Script: {instanceID: 11530}
     - Class: 114
@@ -247,6 +262,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11846}
     - Class: 114
       Script: {instanceID: 11850}
+    - Class: 114
+      Script: {instanceID: 11896}
     - Class: 114
       Script: {instanceID: 11922}
     - Class: 114
@@ -302,6 +319,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12710}
     - Class: 114
+      Script: {instanceID: 12762}
+    - Class: 114
       Script: {instanceID: 12774}
     - Class: 114
       Script: {instanceID: 12780}
@@ -319,6 +338,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12896}
     - Class: 114
       Script: {instanceID: 12910}
+    - Class: 114
+      Script: {instanceID: 12934}
     - Class: 114
       Script: {instanceID: 12936}
     - Class: 114
@@ -350,6 +371,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13274}
     - Class: 114
+      Script: {instanceID: 13318}
+    - Class: 114
       Script: {instanceID: 13326}
     - Class: 114
       Script: {instanceID: 13402}
@@ -360,9 +383,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13542}
     - Class: 114
+      Script: {instanceID: 13548}
+    - Class: 114
       Script: {instanceID: 13572}
     - Class: 114
       Script: {instanceID: 13602}
+    - Class: 114
+      Script: {instanceID: 13704}
     - Class: 114
       Script: {instanceID: 13746}
     - Class: 114
@@ -380,9 +407,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13894}
     - Class: 114
+      Script: {instanceID: 13966}
+    - Class: 114
       Script: {instanceID: 13972}
     - Class: 114
+      Script: {instanceID: 14012}
+    - Class: 114
       Script: {instanceID: 14030}
+    - Class: 114
+      Script: {instanceID: 14044}
     - Class: 114
       Script: {instanceID: 14066}
     - Class: 114
@@ -391,6 +424,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14150}
     - Class: 114
       Script: {instanceID: 14162}
+    - Class: 114
+      Script: {instanceID: 14164}
     - Class: 114
       Script: {instanceID: 14174}
     - Class: 114
@@ -403,6 +438,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14260}
     - Class: 114
       Script: {instanceID: 14272}
+    - Class: 114
+      Script: {instanceID: 14428}
+    - Class: 114
+      Script: {instanceID: 14454}
     - Class: 114
       Script: {instanceID: 14506}
     - Class: 114
@@ -425,6 +464,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14714}
     - Class: 114
       Script: {instanceID: 14722}
+    - Class: 114
+      Script: {instanceID: 14744}
+    - Class: 114
+      Script: {instanceID: 707758}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1477,7 +1520,7 @@ ScriptsOnlyBuild:
       Hash: 8651baeb8a9837d8dcc7ae62416d47cd
     assemblyName: Definitions.dll
     namespaceName: 
-    className: WebXRTouchpad
+    className: WebXRThumstick
   - hash:
       serializedVersion: 2
       Hash: 79c8bb3c61b32415a2dcd6f76562a14b
@@ -2984,6 +3027,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Definitions.dll
+    namespaceName: 
+    className: ResetCamera
   platform: 20
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
