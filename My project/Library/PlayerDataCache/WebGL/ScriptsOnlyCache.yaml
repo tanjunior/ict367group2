@@ -18,8 +18,6 @@ ScriptsOnlyBuild:
     - Tilia.Indicators.SpatialTargets.SpatialTargetConfigurator
     - Tilia.Indicators.SpatialTargets.SpatialTargetDispatcher
     - Tilia.Indicators.SpatialTargets.SpatialTargetFacade
-    Tilia.Input.UnityInputManager.Runtime.dll:
-    - Tilia.Input.UnityInputManager.UnityInputManagerButtonAction
     Tilia.Interactions.Interactables.Unity.Runtime.dll:
     - Tilia.Interactions.Interactables.Interactors.GrabInteractorConfigurator
     - Tilia.Interactions.Interactables.Interactors.InteractorFacade
@@ -27,6 +25,13 @@ ScriptsOnlyBuild:
     Tilia.Interactions.SpatialButtons.Runtime.dll:
     - Tilia.Interactions.SpatialButtons.SpatialButtonConfigurator
     - Tilia.Interactions.SpatialButtons.SpatialButtonFacade
+    Tilia.Visuals.Basichands.Unity.Runtime.dll:
+    - Tilia.Visuals.BasicHand.FingerController
+    - Tilia.Visuals.BasicHand.HandFacade
+    - Tilia.Visuals.BasicHand.HandPoserFacade
+    - Tilia.Visuals.BasicHand.HandsPoserConfigurator
+    - Tilia.Visuals.BasicHand.HandsPoserFacade
+    - Tilia.Visuals.BasicHand.LinkedFingerPoser
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -94,8 +99,10 @@ ScriptsOnlyBuild:
     - Zinnia.Process.Moment.MomentProcessor
     - Zinnia.Rule.ActiveInHierarchyRule
     - Zinnia.Rule.AnyComponentTypeRule
+    - Zinnia.Rule.Collection.RulesMatcherElementObservableList
     - Zinnia.Rule.ListContainsRule
     - Zinnia.Rule.NegationRule
+    - Zinnia.Rule.RulesMatcher
     - Zinnia.Tracking.CameraRig.Collection.LinkedAliasAssociationCollectionObservableList
     - Zinnia.Tracking.CameraRig.LinkedAliasAssociationCollection
     - Zinnia.Tracking.Collision.Active.ActiveCollisionPublisher
@@ -256,7 +263,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13088}
     - Class: 114
+      Script: {instanceID: 13118}
+    - Class: 114
       Script: {instanceID: 13174}
+    - Class: 114
+      Script: {instanceID: 13188}
     - Class: 114
       Script: {instanceID: 13238}
     - Class: 114
@@ -340,16 +351,28 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 23982}
     - Class: 114
-      Script: {instanceID: 29354}
-    - Class: 114
       Script: {instanceID: 31324}
     - Class: 114
       Script: {instanceID: 51008}
+    - Class: 114
+      Script: {instanceID: 99326}
+    - Class: 114
+      Script: {instanceID: 99328}
+    - Class: 114
+      Script: {instanceID: 99330}
+    - Class: 114
+      Script: {instanceID: 99332}
+    - Class: 114
+      Script: {instanceID: 99336}
+    - Class: 114
+      Script: {instanceID: 99338}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
       Script: {instanceID: 0}
     - Class: 137
       Script: {instanceID: 0}
@@ -2862,6 +2885,48 @@ ScriptsOnlyBuild:
     assemblyName: Definitions.dll
     namespaceName: 
     className: WebXRTouchpad
+  - hash:
+      serializedVersion: 2
+      Hash: 1c7b1f5eb632699fe9ab1b9c57fb206a
+    assemblyName: Tilia.Visuals.Basichands.Unity.Runtime.dll
+    namespaceName: Tilia.Visuals.BasicHand
+    className: HandPoserFacade
+  - hash:
+      serializedVersion: 2
+      Hash: 4ad2a14dc6f364710662c5aab7584cf3
+    assemblyName: Tilia.Visuals.Basichands.Unity.Runtime.dll
+    namespaceName: Tilia.Visuals.BasicHand
+    className: HandsPoserFacade
+  - hash:
+      serializedVersion: 2
+      Hash: 6c866bd80d1dff1a3c57da2ad3b781ad
+    assemblyName: Tilia.Visuals.Basichands.Unity.Runtime.dll
+    namespaceName: Tilia.Visuals.BasicHand
+    className: HandFacade
+  - hash:
+      serializedVersion: 2
+      Hash: a0cd0489f1807f589c8f6a822cbd26c1
+    assemblyName: Tilia.Visuals.Basichands.Unity.Runtime.dll
+    namespaceName: Tilia.Visuals.BasicHand
+    className: HandsPoserConfigurator
+  - hash:
+      serializedVersion: 2
+      Hash: 9c412b650c26392130a8c18fa47f6e83
+    assemblyName: Tilia.Visuals.Basichands.Unity.Runtime.dll
+    namespaceName: Tilia.Visuals.BasicHand
+    className: FingerController
+  - hash:
+      serializedVersion: 2
+      Hash: 1b640b48478f2d60cefc5a9b805b26d0
+    assemblyName: Tilia.Visuals.Basichands.Unity.Runtime.dll
+    namespaceName: Tilia.Visuals.BasicHand
+    className: LinkedFingerPoser
+  - hash:
+      serializedVersion: 2
+      Hash: 05bfacc73d44f6d5ee232368c37a06d5
+    assemblyName: Tilia.Visuals.Basichands.Unity.Runtime.dll
+    namespaceName: Tilia.Visuals.BasicHand
+    className: HandPoser
   platform: 20
   scenePathNames:
   - Assets/Samples/WebXR Interactions/0.16.3-preview/Sample Scene/Scenes/Desert.unity

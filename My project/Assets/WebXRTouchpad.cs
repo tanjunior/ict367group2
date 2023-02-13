@@ -9,6 +9,6 @@ public class WebXRTouchpad : BooleanAction
     // Update is called once per frame
     void Update()
     {
-        Receive(controller.GetButton(WebXRController.ButtonTypes.Touchpad));
+        Receive(controller.GetButton(WebXRController.ButtonTypes.Thumbstick));
     }
 }

@@ -33,6 +33,7 @@
     "io.extendreality.tilia.interactions.controllables.unity": "2.5.8",
     "io.extendreality.tilia.interactions.interactables.unity": "2.7.1",
     "io.extendreality.tilia.interactions.spatialbuttons.unity": "2.2.1",
+    "io.extendreality.tilia.visuals.basichand.unity": "2.3.8",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
