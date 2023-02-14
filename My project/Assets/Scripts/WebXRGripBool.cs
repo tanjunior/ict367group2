@@ -1,7 +1,7 @@
 ﻿using WebXR;
 using Zinnia.Action;
 
-public class WebXRTrigger : BooleanAction
+public class WebXRGripBool : BooleanAction
 {
 
     public WebXRController controller;
@@ -9,6 +9,6 @@ public class WebXRTrigger : BooleanAction
     // Update is called once per frame
     void Update()
     {
-        Receive(controller.GetButton(WebXRController.ButtonTypes.Trigger));
+        Receive(controller.GetButton(WebXRController.ButtonTypes.Grip));
     }
 }
