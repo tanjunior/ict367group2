@@ -1,23 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+//using UnityEngine.UI;
 using WebXR;
 
 public class CarController : MonoBehaviour
 {
-    private float horizontalInput, verticalInput;
+    private float horizontalInput, verticalInput, accelInput, brakeInput;
     private float currentTorque, currentSteerAngle, currentbreakForce;
-    private bool isBrake, isAccel, isShiftUp, isShiftDown, isHandBrake;
+    private bool isHandBrake = true;
     private float steeringWheelRotation;
+    private int gearIndex = 0;
     private Rigidbody rb;
-    public float finalDriveRatio = 1;
-    public int gearIndex = 1;
+    public float finalDriveRatio = 3;
     public WebXRController leftController, rightController;
+    public int gearHapticDuration = 100;
+    public float gearHapticStrength = 0.08f;
 
     // UI
-    [SerializeField] private Text speedometer;
-    [SerializeField] private Text debug;
+    [SerializeField] private TextMeshProUGUI speedometer;
+    [SerializeField] private TextMeshProUGUI debug;
 
     // Settings
     [SerializeField] private float motorTorque, breakForce, maxSteeringAngle;
@@ -41,12 +44,6 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetInput();
-        if (isShiftUp && gearIndex < 5) {
-            gearIndex++;
-        } else if (isShiftDown && gearIndex > -1) {
-            gearIndex--;
-        }
         UpdateUI();
     }
 
@@ -61,18 +58,45 @@ public class CarController : MonoBehaviour
         }
     }
 
-    public void OnHandBrakeValueChanged(float HandBrakeValue) {
-        Debug.Log("HandBrakeValue: " + HandBrakeValue);
-        if (HandBrakeValue <= -70) {
-            isHandBrake = true;
-            Debug.Log("isHandBrake: " + isHandBrake);
-        }
+    public void OnHandBrakeStepValueChanged(float value) {
+        Debug.Log("HandBrakeStepValue: " + value);        
+        leftController.Pulse(gearHapticStrength, gearHapticDuration);
+        isHandBrake = ((int)value == 1 ? true : false);
     }
+
+    // public void OnHandBrakeTargetValueReached(float value) {
+    //     //Debug.Log("HandBrakeValue: " + value);
+    //     if (value >= 0.55 && value <= 1) {
+    //         isHandBrake = false;
+    //     } else if (value >= 0 && value <= 0.45) {
+    //         isHandBrake = true;
+    //     }
+    // }
+
+    public void OnGearShifterStepValueChanged(float value) {
+        Debug.Log("GearShifterStepValue: " + value);
+        if ((int)value == gearIndex) return;
+        
+        leftController.Pulse(gearHapticStrength, gearHapticDuration);
+        gearIndex = (int)value;
+    }
+
+    // public void OnGearShifterTargetValueReached(float value) {
+    //     //Debug.Log("GearShifter: " + value);
+    //     if (value >= 0.7 && value <= 1) {
+    //         gearIndex = -1;
+    //     } else if (value >= 0.35 && value <= 0.65) {
+    //         gearIndex = 0;
+    //     } else if (value >= 0 && value <= 0.3) {
+    //         gearIndex = 1;
+    //     }
+    // }
 
     private void FixedUpdate() {
         HandleMotor();
         HandleSteering();
         if (animateWheels) UpdateWheels();
+        GetInput();
     }
 
     private void GetInput() {
@@ -83,7 +107,7 @@ public class CarController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         // Breaking Input
-        isBrake = Input.GetKey(KeyCode.Space);
+        //isBrake = Input.GetKey(KeyCode.Space);
 
         // public enum ButtonTypes {
         //     Trigger = 0,
@@ -93,22 +117,22 @@ public class CarController : MonoBehaviour
         //     ButtonA = 4,
         //     ButtonB = 5
         // }
-        isAccel = rightController.GetButton(WebXRController.ButtonTypes.ButtonB);
-        isBrake = rightController.GetButton(WebXRController.ButtonTypes.ButtonA);
 
-        isShiftUp = leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB);
-        isShiftDown = leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonA);
+        accelInput = rightController.GetAxis(WebXRController.AxisTypes.Trigger);
+        brakeInput = leftController.GetAxis(WebXRController.AxisTypes.Trigger);
     }
 
     private void HandleMotor() {
         float wheelRpm = (frontLeftWheelCollider.rpm + frontRightWheelCollider.rpm) / 2;
         float motorRpm = motorTorque + (wheelRpm * finalDriveRatio * gearCurve.Evaluate(gearIndex));
-        currentTorque = torqueCurve.Evaluate(motorRpm) * gearCurve.Evaluate(gearIndex) * (isAccel? 1 : 0);
+        currentTorque = torqueCurve.Evaluate(motorRpm) * gearCurve.Evaluate(gearIndex) * finalDriveRatio * accelInput;
         
-        frontLeftWheelCollider.motorTorque = currentTorque/2;
-        frontRightWheelCollider.motorTorque = currentTorque/2;
+        if (!isHandBrake) {
+            frontLeftWheelCollider.motorTorque = currentTorque/2;
+            frontRightWheelCollider.motorTorque = currentTorque/2;
+        }
 
-        currentbreakForce = isBrake ? breakForce : 0f;
+        currentbreakForce = brakeInput * breakForce;
         ApplyBreaking();
     }
 
@@ -135,7 +159,7 @@ public class CarController : MonoBehaviour
     private void UpdateUI() {
         speedometer.text = string.Format("torque {0:N0}\nspeed {1:N0}", currentTorque, rb.velocity.magnitude);
         //debug.text = string.Format("steering wheel {0:N0}\nwheel angle {1:N0}", steeringWheelRotation, currentSteerAngle);
-        debug.text = string.Format("gear {0:N0}\naccel {1:N0}\nbrake {2:N0}", gearIndex, isAccel, isBrake);
+        debug.text = string.Format("gear {0:N0}\naccel {1:N0}\nbrake {2:N0}", gearIndex, accelInput, brakeInput);
     }
 
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform) {

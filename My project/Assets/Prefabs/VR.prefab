@@ -1,46 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3236565851945747434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3237858303991139155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34c0cb8bdc24787439e43b7f145ac31c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playArea: {fileID: 3237858303991139155}
-  headset: {fileID: 3237596463525190031}
-  headsetCamera: {fileID: 3219498971913257377}
-  headsetVelocityTracker: {fileID: 0}
-  supplementHeadsetCameras: {fileID: 0}
-  headsetDeviceDetails: {fileID: 0}
-  dominantController: {fileID: 0}
-  leftController: {fileID: 3237229731630042015}
-  leftControllerVelocityTracker: {fileID: 0}
-  leftControllerHapticProcess: {fileID: 0}
-  leftControllerHapticProfiles: {fileID: 0}
-  leftControllerDeviceDetails: {fileID: 0}
-  rightController: {fileID: 3237412563575528389}
-  rightControllerVelocityTracker: {fileID: 0}
-  rightControllerHapticProcess: {fileID: 0}
-  rightControllerHapticProfiles: {fileID: 0}
-  rightControllerDeviceDetails: {fileID: 0}
---- !u!114 &3236565853060551029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3237562893411657513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cdb0580033b8504c9452b6db62949fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3236565853288905173
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,6 +33,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3236565853060551029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237562893411657513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdb0580033b8504c9452b6db62949fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3236565853759797661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,6 +57,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cdb0580033b8504c9452b6db62949fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3236565851945747434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237858303991139155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c0cb8bdc24787439e43b7f145ac31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playArea: {fileID: 3237858303991139155}
+  headset: {fileID: 3237596463525190031}
+  headsetCamera: {fileID: 3219498971913257377}
+  headsetVelocityTracker: {fileID: 0}
+  supplementHeadsetCameras: {fileID: 0}
+  headsetDeviceDetails: {fileID: 0}
+  dominantController: {fileID: 0}
+  leftController: {fileID: 3237229731630042015}
+  leftControllerVelocityTracker: {fileID: 0}
+  leftControllerHapticProcess: {fileID: 0}
+  leftControllerHapticProfiles: {fileID: 0}
+  leftControllerDeviceDetails: {fileID: 0}
+  rightController: {fileID: 3237412563575528389}
+  rightControllerVelocityTracker: {fileID: 0}
+  rightControllerHapticProcess: {fileID: 0}
+  rightControllerHapticProfiles: {fileID: 0}
+  rightControllerDeviceDetails: {fileID: 0}
 --- !u!1001 &1435081359176745911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -846,6 +846,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 137710368452278466, guid: 68befd6925cca854aa992c7abdd9e093,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6711f3a71762d7742872e2272bec91d9, type: 2}
     - target: {fileID: 4673057606414373037, guid: 68befd6925cca854aa992c7abdd9e093,
         type: 3}
       propertyPath: boolData
@@ -980,6 +985,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -85
       objectReference: {fileID: 0}
+    - target: {fileID: 137710368452278466, guid: 68befd6925cca854aa992c7abdd9e093,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6711f3a71762d7742872e2272bec91d9, type: 2}
     - target: {fileID: 4673057606414373037, guid: 68befd6925cca854aa992c7abdd9e093,
         type: 3}
       propertyPath: boolData
