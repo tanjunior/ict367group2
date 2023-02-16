@@ -14,7 +14,7 @@ public class ParkingController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         last = other.transform.gameObject.name;
-        Debug.Log("from: " + transform.gameObject.name + " OnTriggerEnter: "+other.transform.gameObject.name);
+        //Debug.Log("from: " + transform.gameObject.name + " OnTriggerEnter: "+other.transform.gameObject.name);
     }
 
     public bool GetValidation() {
@@ -31,7 +31,7 @@ public class ParkingController : MonoBehaviour
                 return false;
         }
         bool isValid = last == positionString;
-        Debug.Log(positionString + " " + isValid);
+        //Debug.Log(positionString + " " + isValid);
         return isValid;
     }
 }

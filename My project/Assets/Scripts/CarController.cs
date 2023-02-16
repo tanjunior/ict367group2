@@ -13,13 +13,13 @@ public class CarController : MonoBehaviour
     private float steeringWheelRotation;
     private int gearIndex = 0;
     private Rigidbody rb;
-    private Camera camera;
+    private Vector2 headRotation = Vector2.zero;
     [SerializeField] private float finalDriveRatio = 3;
     [SerializeField] private WebXRController leftController, rightController;
     [SerializeField] private int gearHapticDuration = 100;
     [SerializeField] private float gearHapticStrength = 0.08f;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private GameObject mainCamera;
+    [SerializeField] private GameObject cameras;
 
     // UI
     [SerializeField] private TextMeshProUGUI speedometer;
@@ -37,12 +37,11 @@ public class CarController : MonoBehaviour
     // Wheels
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
+
     // Start is called before the first frame update
-    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        camera = mainCamera.GetComponent<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -51,7 +50,12 @@ public class CarController : MonoBehaviour
     {
         UpdateUI();
         Park();
-    }
+
+        
+		headRotation.y += Input.GetAxis ("Mouse X");
+		headRotation.x += -Input.GetAxis ("Mouse Y");
+		cameras.transform.eulerAngles = headRotation * 3;
+	}
 
     public void OnSteeringWheelValueChanged(float steeringWheelValue) {
         steeringWheelRotation = steeringWheelValue;
@@ -129,8 +133,6 @@ public class CarController : MonoBehaviour
         
         if (leftController.GetButton(WebXRController.ButtonTypes.Trigger)) brakeInput = leftController.GetAxis(WebXRController.AxisTypes.Trigger);
         else brakeInput = Input.GetKey(KeyCode.Space) ? 1 : 0;
-
-        camera.transform.Rotate(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
     }
 
     private void HandleMotor() {
