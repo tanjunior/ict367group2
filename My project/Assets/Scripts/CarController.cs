@@ -13,10 +13,11 @@ public class CarController : MonoBehaviour
     private float steeringWheelRotation;
     private int gearIndex = 0;
     private Rigidbody rb;
-    public float finalDriveRatio = 3;
-    public WebXRController leftController, rightController;
-    public int gearHapticDuration = 100;
-    public float gearHapticStrength = 0.08f;
+    [SerializeField] float finalDriveRatio = 3;
+    [SerializeField] WebXRController leftController, rightController;
+    [SerializeField] int gearHapticDuration = 100;
+    [SerializeField] float gearHapticStrength = 0.08f;
+    [SerializeField] GameManager gameManager;
 
     // UI
     [SerializeField] private TextMeshProUGUI speedometer;
@@ -59,7 +60,7 @@ public class CarController : MonoBehaviour
     }
 
     public void OnHandBrakeStepValueChanged(float value) {
-        Debug.Log("HandBrakeStepValue: " + value);        
+        //Debug.Log("HandBrakeStepValue: " + value);        
         leftController.Pulse(gearHapticStrength, gearHapticDuration);
         isHandBrake = ((int)value == 1 ? true : false);
     }
@@ -74,11 +75,11 @@ public class CarController : MonoBehaviour
     // }
 
     public void OnGearShifterStepValueChanged(float value) {
-        Debug.Log("GearShifterStepValue: " + value);
-        if ((int)value == gearIndex) return;
+        //Debug.Log("GearShifterStepValue: " + value);
+        if ((int)value-1 == gearIndex) return;
         
         leftController.Pulse(gearHapticStrength, gearHapticDuration);
-        gearIndex = (int)value;
+        gearIndex = (int)value-1;
     }
 
     // public void OnGearShifterTargetValueReached(float value) {
@@ -100,14 +101,14 @@ public class CarController : MonoBehaviour
     }
 
     private void GetInput() {
+        // Acceleration Input
+        if (rightController.GetButton(WebXRController.ButtonTypes.Trigger)) accelInput = rightController.GetAxis(WebXRController.AxisTypes.Trigger);
+        else accelInput = Input.GetKey(KeyCode.W)? 1: 0;
+
+        
         // Steering Input
         horizontalInput = Input.GetAxis("Horizontal");
 
-        // Acceleration Input
-        verticalInput = Input.GetAxis("Vertical");
-
-        // Breaking Input
-        //isBrake = Input.GetKey(KeyCode.Space);
 
         // public enum ButtonTypes {
         //     Trigger = 0,
@@ -117,9 +118,12 @@ public class CarController : MonoBehaviour
         //     ButtonA = 4,
         //     ButtonB = 5
         // }
-
-        accelInput = rightController.GetAxis(WebXRController.AxisTypes.Trigger);
-        brakeInput = leftController.GetAxis(WebXRController.AxisTypes.Trigger);
+        if (Input.GetKeyDown(KeyCode.UpArrow)) gearIndex++;
+        if (Input.GetKeyDown(KeyCode.DownArrow)) gearIndex--;
+        if (Input.GetKeyDown(KeyCode.H)) isHandBrake = !isHandBrake;
+        
+        if (leftController.GetButton(WebXRController.ButtonTypes.Trigger)) brakeInput = leftController.GetAxis(WebXRController.AxisTypes.Trigger);
+        else brakeInput = Input.GetKey(KeyCode.Space) ? 1 : 0;
     }
 
     private void HandleMotor() {
@@ -144,7 +148,7 @@ public class CarController : MonoBehaviour
     }
 
     private void HandleSteering() {
-        //currentSteerAngle = maxSteeringAngle * horizontalInput;
+        if (horizontalInput != 0) currentSteerAngle = maxSteeringAngle * horizontalInput;
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
@@ -168,5 +172,9 @@ public class CarController : MonoBehaviour
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
+    }
+
+    private void Park() {
+        if (gearIndex == -1 && isHandBrake) gameManager.Park();
     }
 }
