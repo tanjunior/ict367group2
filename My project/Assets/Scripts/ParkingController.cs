@@ -13,24 +13,9 @@ public class ParkingController : MonoBehaviour
     private string last;
 
     private void OnTriggerEnter(Collider other) {
-        //last = other.transform.gameObject.name;
-        Debug.Log("OnTriggerEnter: "+other.transform.gameObject.name);
+        last = other.transform.gameObject.name;
+        Debug.Log("from: " + transform.gameObject.name + " OnTriggerEnter: "+other.transform.gameObject.name);
     }
-
-    private void OnCollisionEnter(Collision other) {
-        //last = other.transform.gameObject.name;
-        Debug.Log("OnCollisionEnter: "+other.transform.gameObject.name);
-    }
-
-    // private void OnCollisionStay(Collision other) {
-    //     last = other.transform.gameObject.name;
-    //     Debug.Log("OnCollisionStay: "+other);
-    // }
-
-    // private void OnTriggerStay(Collider other) {
-    //     last = other.transform.gameObject.name;
-    //     Debug.Log("OnTriggerStay: "+other);
-    // }
 
     public bool GetValidation() {
         string positionString;
@@ -45,6 +30,8 @@ public class ParkingController : MonoBehaviour
             default:
                 return false;
         }
-        return (last == positionString);
+        bool isValid = last == positionString;
+        Debug.Log(positionString + " " + isValid);
+        return isValid;
     }
 }

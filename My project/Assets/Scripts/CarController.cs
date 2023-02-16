@@ -13,11 +13,13 @@ public class CarController : MonoBehaviour
     private float steeringWheelRotation;
     private int gearIndex = 0;
     private Rigidbody rb;
-    [SerializeField] float finalDriveRatio = 3;
-    [SerializeField] WebXRController leftController, rightController;
-    [SerializeField] int gearHapticDuration = 100;
-    [SerializeField] float gearHapticStrength = 0.08f;
-    [SerializeField] GameManager gameManager;
+    private Camera camera;
+    [SerializeField] private float finalDriveRatio = 3;
+    [SerializeField] private WebXRController leftController, rightController;
+    [SerializeField] private int gearHapticDuration = 100;
+    [SerializeField] private float gearHapticStrength = 0.08f;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameObject mainCamera;
 
     // UI
     [SerializeField] private TextMeshProUGUI speedometer;
@@ -40,12 +42,15 @@ public class CarController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        camera = mainCamera.GetComponent<Camera>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateUI();
+        Park();
     }
 
     public void OnSteeringWheelValueChanged(float steeringWheelValue) {
@@ -124,6 +129,8 @@ public class CarController : MonoBehaviour
         
         if (leftController.GetButton(WebXRController.ButtonTypes.Trigger)) brakeInput = leftController.GetAxis(WebXRController.AxisTypes.Trigger);
         else brakeInput = Input.GetKey(KeyCode.Space) ? 1 : 0;
+
+        camera.transform.Rotate(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
     }
 
     private void HandleMotor() {
@@ -175,6 +182,6 @@ public class CarController : MonoBehaviour
     }
 
     private void Park() {
-        if (gearIndex == -1 && isHandBrake) gameManager.Park();
+        if (gearIndex == 0 && isHandBrake) gameManager.Park();
     }
 }

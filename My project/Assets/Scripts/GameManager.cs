@@ -8,9 +8,16 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    float elapsedTime = 0.0f;
+    
     [SerializeField]TextMeshProUGUI timer;
     [SerializeField]ParkingController frontLeft, frontRight, rearLeft, rearRight;
+    [SerializeField]TextMesh text;
+    float elapsedTime = 0.0f;
+    bool isParked;
+    private float fps = 0;
+    private float framesCount = 0;
+    private float lastCheck = 0;
+    private float rate = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +32,7 @@ public class GameManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
         timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-        //Park();
+        FpsCounter();
     }
 
     public void Reset()
@@ -36,6 +43,18 @@ public class GameManager : MonoBehaviour
 
     public void Park()
     {
-        if (frontLeft.GetValidation() && frontRight.GetValidation() && rearLeft.GetValidation() && rearRight.GetValidation()) Debug.Log("parked");
+        isParked = (frontLeft.GetValidation() && frontRight.GetValidation() && rearLeft.GetValidation() && rearRight.GetValidation());
+        if (isParked) Debug.Log("isParked:"+isParked);
+    }
+
+    private void FpsCounter() {
+        framesCount++;
+      if (Time.time >= lastCheck + rate)
+      {
+        fps = framesCount / (Time.time - lastCheck);
+        lastCheck = Time.time;
+        framesCount = 0;
+        text.text = string.Format("FPS: {0:N0}\nisParked: {1:N0}", fps.ToString("F0"), isParked);
+      }
     }
 }
