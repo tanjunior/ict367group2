@@ -26,8 +26,7 @@ public class LevelManager : MonoBehaviour
         level = SceneManager.GetActiveScene().name;
         if (level == "Highscore") {
             DisplayHighScore();
-            showPointer = true;
-        } else if (level == "Main") showPointer = true;
+        }
     }
 
     // Update is called once per frame
@@ -51,7 +50,6 @@ public class LevelManager : MonoBehaviour
                 menu.SetActive(false);
             } 
         } else {
-            showPointer = true;
             MouseLook();
         }
     }
@@ -82,7 +80,7 @@ public class LevelManager : MonoBehaviour
             height -= 0.2f;
         }        
     }
-    
+
     private void MouseLook() {
         headRotation.y += Input.GetAxis ("Mouse X");
 		headRotation.x += -Input.GetAxis ("Mouse Y");

@@ -247,11 +247,11 @@ MonoBehaviour:
   parallelLotWidth: 6
   parallelLotDepth: 3
   lineThickness: 0.2
-  numberOfLots: 3
-  parkingSpotIndex: 2
+  numberOfLots: 5
+  parkingSpotIndex: 0
   parkingSpotPefab: {fileID: 2733930291477462694, guid: 235174e25bee66e408abdcabc199fe5b,
     type: 3}
-  linePefab: {fileID: 6436785829796751617, guid: b5829ba23cd9a454cba22e39aa7c94e7,
+  linePefab: {fileID: 3671997906513518865, guid: b5829ba23cd9a454cba22e39aa7c94e7,
     type: 3}
 --- !u!4 &783757307
 Transform:

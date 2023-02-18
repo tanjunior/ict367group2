@@ -10,6 +10,7 @@ public class FullCarPark : MonoBehaviour
     private List<GameObject> parkingLots = new List<GameObject>();
     private float currentX = 0;
     private float currentY = 0;
+    private float currentZ = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -29,19 +30,16 @@ public class FullCarPark : MonoBehaviour
             GameObject lot = new GameObject();
             lot.name = "lot";
             lot.transform.parent = transform;
-            lot.transform.localRotation = Quaternion.Euler(90, 0, 0); //rotate the container first so don't have to rotate the children
 
             GameObject mainLine = Instantiate(linePefab, Vector3.zero, Quaternion.identity);
             mainLine.transform.parent = lot.transform; // have to parent it before changing the transform
-            mainLine.transform.localPosition = new Vector3(currentX, currentY, 0);
-            mainLine.transform.localScale = new Vector3(lineThickness, parallelLotWidth-lineThickness, 1);
-            mainLine.transform.localRotation = Quaternion.Euler(0, 0, 0); // reset the rotation after parenting
+            mainLine.transform.localPosition = new Vector3(currentX, 0, currentZ);
+            mainLine.transform.localScale = new Vector3(lineThickness, 1, parallelLotWidth-lineThickness);
 
             GameObject sideLine = Instantiate(linePefab, Vector3.zero, Quaternion.identity);
             sideLine.transform.parent = lot.transform; // have to parent it before changing the transform
-            sideLine.transform.localPosition = new Vector3(parallelLotDepth/2-lineThickness/2, currentY+parallelLotWidth/2, 0);
-            sideLine.transform.localScale = new Vector3(parallelLotDepth, lineThickness, 1); // scale in different direction so we don't have to rotate
-            sideLine.transform.localRotation = Quaternion.Euler(0, 0, 0); // reset the rotation after parenting
+            sideLine.transform.localPosition = new Vector3(parallelLotDepth/2-lineThickness/2, 0, currentZ+parallelLotWidth/2);
+            sideLine.transform.localScale = new Vector3(parallelLotDepth, 1, lineThickness); // scale in different direction so we don't have to rotate
             
 
             // GameObject sideLine2 = Instantiate(linePefab, new Vector3(lotDepth/2, 0, -lotWidth/2), Quaternion.identity);
@@ -50,9 +48,9 @@ public class FullCarPark : MonoBehaviour
             // sideLine2.transform.localRotation = Quaternion.Euler(0, 0, 0); // reset the rotation after parenting
             
             if (i == parkingSpotIndex) {
-                GameObject spot = Instantiate(parkingSpotPefab, new Vector3(1.48f, 0, currentY+0.13f), Quaternion.identity);
+                GameObject spot = Instantiate(parkingSpotPefab, new Vector3(1.48f, 0, currentZ+0.13f), Quaternion.identity);
             }
-            currentY += parallelLotWidth;
+            currentZ += parallelLotWidth;
             //currentY += lotDepth;
         }
     }
