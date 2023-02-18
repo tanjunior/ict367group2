@@ -12,14 +12,12 @@ public class CarController : MonoBehaviour
     private int gearIndex = 0;
     private WebXRState state = WebXRState.NORMAL;
     private Rigidbody rb;
-    private Vector2 headRotation = Vector2.zero;
 
     // devmode
     [SerializeField] private bool enableVRControlsInEditor = false;
     [SerializeField] private TextMeshProUGUI debug;
 
     // others
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private LevelManager levelManager;
 
     // WebXR
@@ -66,11 +64,9 @@ public class CarController : MonoBehaviour
             }
             else {
                 GetPcInput();
-                if (mouseLook) MouseLook();
             }
         } else if (state == WebXRState.NORMAL) {
             GetPcInput();
-            if (mouseLook) MouseLook();
         } else if (state == WebXRState.VR) {
             GetVrInput();
         }
@@ -113,12 +109,6 @@ public class CarController : MonoBehaviour
         }        
     }
 
-    private void MouseLook() {
-        headRotation.y += Input.GetAxis ("Mouse X");
-		headRotation.x += -Input.GetAxis ("Mouse Y");
-		mainCamera.transform.eulerAngles = headRotation * 3;
-    }
-
     private void GetPcInput() {
         accelInput = Input.GetButton("Accelerate")? 1: 0;
         brakeInput = Input.GetKey(KeyCode.Space) ? 1 : 0;
@@ -126,14 +116,6 @@ public class CarController : MonoBehaviour
         if (Input.GetButtonDown("Shift Up")) gearIndex++;
         if (Input.GetButtonDown("Shift Down")) gearIndex--;
         if (Input.GetButtonDown("Hand Brake")) isHandBrake = !isHandBrake;
-        if (Input.GetKeyDown(KeyCode.Tab)) {
-            mouseLook = !mouseLook;
-            if (mouseLook) {
-                Cursor.lockState = CursorLockMode.Locked;
-            } else {
-                Cursor.lockState = CursorLockMode.None;
-            }
-        }
     }
 
     private void GetVrInput() {

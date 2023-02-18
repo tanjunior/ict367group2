@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: ff3d4aad79fcfb0418110a522bf1f2b0
   - enabled: 1
+    path: Assets/Scenes/Highscore.unity
+    guid: 4f291a9a5aac87540b9d8f89e59420a3
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
