@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private WebXRController leftController;
     [SerializeField] private Camera mainCamera;
     [System.NonSerialized] public bool isPaused = false;
-    [System.NonSerialized] public bool showPointer = false;
+    public bool showPointer = true;
     private float elapsedTime = 0.0f;
     private string level;
     private Vector2 headRotation = Vector2.zero;
@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
         if (level == "Highscore") {
             DisplayHighScore();
             showPointer = true;
-        } if (level == "Main") showPointer = true;
+        } else if (level == "Main") showPointer = true;
     }
 
     // Update is called once per frame
@@ -50,7 +50,10 @@ public class LevelManager : MonoBehaviour
                 MouseLook();
                 menu.SetActive(false);
             } 
-        }    
+        } else {
+            showPointer = true;
+            MouseLook();
+        }
     }
         
     private void TimeCounter() {
@@ -79,6 +82,7 @@ public class LevelManager : MonoBehaviour
             height -= 0.2f;
         }        
     }
+    
     private void MouseLook() {
         headRotation.y += Input.GetAxis ("Mouse X");
 		headRotation.x += -Input.GetAxis ("Mouse Y");
@@ -115,5 +119,17 @@ public class LevelManager : MonoBehaviour
         // serialize the dictionary and save it back to playerprefs.
         PlayerPrefs.SetString(level, newSerializedString);
         SceneManager.LoadScene("Highscore", LoadSceneMode.Single);
+    }
+
+    public void LoadScene(string name) {
+        SceneManager.LoadScene(name, LoadSceneMode.Single);
+    }
+
+    public void RestartLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
+
+    public void QuitGame() {
+        Application.Quit();
     }
 }

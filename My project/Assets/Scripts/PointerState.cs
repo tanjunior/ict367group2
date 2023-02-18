@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zinnia.Action;
 
 public class PointerState : BooleanAction
 {
-    [SerializeField] LevelManager levelManager;
+    [SerializeField] private LevelManager levelManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +13,8 @@ public class PointerState : BooleanAction
     // Update is called once per frame
     void Update()
     {
-        Receive(levelManager.showPointer);
+        bool showPointer = levelManager.showPointer;
+        Debug.Log(showPointer);
+        Receive(showPointer);
     }
 }
