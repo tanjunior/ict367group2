@@ -10,7 +10,7 @@ public class Fps : MonoBehaviour
     private float framesCount = 0;
     private float lastCheck = 0;
     private float rate = 0.5f;
-    [SerializeField] private TextMeshPro fpsText;
+    [SerializeField] private TextMeshProUGUI fpsText;
     // Start is called before the first frame update
     void Start()
     {

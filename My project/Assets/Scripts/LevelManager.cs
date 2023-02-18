@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 using WebXR;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private WebXRController leftController;
     [SerializeField] private bool isMainMenu = false;
     [SerializeField] private string level = "1";
+    [SerializeField] private GameObject highscoreRowPrefab;
     [System.NonSerialized] public bool isPaused = false;
     private float elapsedTime = 0.0f;
 
@@ -56,7 +58,8 @@ public class LevelManager : MonoBehaviour
     }
 
     private void DisplayHighScore(Dictionary<string, float> highscore) {
-        Debug.Log(highscore["Player"]);
+        HighscoreRow row = Instantiate(highscoreRowPrefab, Vector3.zero, Quaternion.identity).GetComponent<HighscoreRow>();
+        row.setRowValues("Player", highscore["Player"].ToString());
     }
 
     private void SaveHighScore(float time) {
@@ -81,11 +84,15 @@ public class LevelManager : MonoBehaviour
             sorted.Add(pair.Key, pair.Value);
         }
 
-        // display the highscores on screen
-        DisplayHighScore(sorted);
+        
+        
         string newSerializedString = JsonUtility.ToJson(sorted);
         Debug.Log(newSerializedString);
         // serialize the dictionary and save it back to playerprefs.
         PlayerPrefs.SetString(level, newSerializedString);
+        SceneManager.LoadScene("Highscore", LoadSceneMode.Single);
+        // display the highscores on screen
+        DisplayHighScore(sorted);
+
     }
 }

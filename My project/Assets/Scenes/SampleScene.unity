@@ -832,6 +832,12 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 1910395884}
+    - target: {fileID: 5160532492398398634, guid: 9b5ba3ad6c4fdac4eb4cf19082c17e16,
+        type: 3}
+      propertyPath: highscoreRowPrefab
+      value: 
+      objectReference: {fileID: 102071417489377901, guid: 7eb7cc985eca3ac46b13de9ecbb47d43,
+        type: 3}
     - target: {fileID: 5160532492398398635, guid: 9b5ba3ad6c4fdac4eb4cf19082c17e16,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1626,7 +1632,7 @@ PrefabInstance:
     - target: {fileID: 4322435523928450759, guid: bc79ce7fe85300744b16f01059162407,
         type: 3}
       propertyPath: enableVRControlsInEditor
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5009558931286706932, guid: bc79ce7fe85300744b16f01059162407,
         type: 3}
