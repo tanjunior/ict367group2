@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using WebXR;
+using UnityEngine.XR.Management;
 
 public class CarController : MonoBehaviour
 {
@@ -12,9 +13,10 @@ public class CarController : MonoBehaviour
     private int gearIndex = 0;
     private WebXRState state = WebXRState.NORMAL;
     private Rigidbody rb;
+    private WebXRManager xrManager;
 
     // devmode
-    [SerializeField] private bool enableVRControlsInEditor = false;
+    [SerializeField] private bool enableVRControlsInEditor = true;
     [SerializeField] private TextMeshProUGUI debug;
 
     // others
@@ -47,16 +49,21 @@ public class CarController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        isVR = WebXRManager.Instance.isSupportedVR;
+        xrManager = WebXRManager.Instance;
+        isVR = xrManager.isSupportedVR;
+
+        XRGeneralSettings instance = XRGeneralSettings.Instance;
+        if (instance.Manager.activeLoader == null) enableVRControlsInEditor = false;
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        //xrManager.OnXRCapabilitiesUpdate
         if (levelManager.isPaused) return;
         // public enum WebXRState { VR, AR, NORMAL }
-        if (isVR) state = WebXRManager.Instance.XRState;
+        if (isVR) state = xrManager.XRState;
         if (Application.isEditor) {
             if (enableVRControlsInEditor) {
                 Cursor.lockState = CursorLockMode.None;

@@ -11458,7 +11458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7baedf8a5318aa64abfc6361460d05d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableVRControlsInEditor: 0
+  enableVRControlsInEditor: 1
   debug: {fileID: 1525362651340889239}
   levelManager: {fileID: 5091593457184238277}
   leftController: {fileID: 8674210965289837853}
@@ -53453,6 +53453,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 659644349787905432, guid: 596a2b142ddd5324a97da10a4ecca799,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 659644349787905432, guid: 596a2b142ddd5324a97da10a4ecca799,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1274511392355261658, guid: 596a2b142ddd5324a97da10a4ecca799,
         type: 3}

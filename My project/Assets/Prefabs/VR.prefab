@@ -1270,7 +1270,7 @@ MonoBehaviour:
     type: 3}
   leftController: {fileID: 643390625458049541}
   mainCamera: {fileID: 666494683661057075}
-  showPointer: 1
+  data: {fileID: 11400000, guid: 15ee1edd609f3694bb553c078b47a5ea, type: 2}
 --- !u!1 &682505750670475721
 GameObject:
   m_ObjectHideFlags: 0

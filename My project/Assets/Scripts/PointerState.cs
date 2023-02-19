@@ -14,7 +14,6 @@ public class PointerState : BooleanAction
     void Update()
     {
         bool showPointer = levelManager.showPointer;
-        Debug.Log(showPointer);
         Receive(showPointer);
     }
 }
