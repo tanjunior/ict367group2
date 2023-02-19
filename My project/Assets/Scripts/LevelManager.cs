@@ -55,22 +55,18 @@ public class LevelManager : MonoBehaviour
             if (isPaused) {
                 menu.SetActive(true);
                 showPointer = true;
+                Cursor.lockState = CursorLockMode.None;
             } else {
                 TimeCounter();
                 showPointer = false;
                 menu.SetActive(false);
+                if (state == WebXRState.NORMAL) {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    MouseLook();
+                } else if (state == WebXRState.VR) {
+                    Cursor.lockState = CursorLockMode.None;
+                }
             }
-        }
-
-        if (state == WebXRState.NORMAL) {
-            if (isPaused) {
-                Cursor.lockState = CursorLockMode.None;
-            } else {
-                Cursor.lockState = CursorLockMode.Locked;
-                MouseLook();
-            }
-        } else if (state == WebXRState.VR) {
-            Cursor.lockState = CursorLockMode.None;
         }
     }
 
