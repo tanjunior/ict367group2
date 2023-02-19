@@ -18,14 +18,17 @@ public class LevelManager : MonoBehaviour
     private float elapsedTime = 0.0f;
     private string level;
     private Vector2 headRotation = Vector2.zero;
+    private WebXRManager xrManager;
+    private bool isVR;
+    private WebXRState state = WebXRState.NORMAL;
 
     // Start is called before the first frame update
     void Start()
     {
+        xrManager = WebXRManager.Instance;
+        isVR = xrManager.isSupportedVR;
         level = SceneManager.GetActiveScene().name;
 
-        
-        
         switch (level)
         {
             case "Highscore":
@@ -43,28 +46,34 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // public enum WebXRState { VR, AR, NORMAL }
+        if (isVR) state = xrManager.XRState;
+        if (leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Escape)) {
+            isPaused = !isPaused;
+        }
         if (level != "Highscore" && level != "Main") {
-            if (leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Escape)) {
-                isPaused = !isPaused;
-                Debug.Log("paused: "+isPaused);
-            }
             if (isPaused) {
                 menu.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
                 showPointer = true;
-            }
-            else {
-                showPointer = false;
+            } else {
                 TimeCounter();
+                showPointer = false;
+                menu.SetActive(false);
+            }
+        }
+
+        if (state == WebXRState.NORMAL) {
+            if (isPaused) {
+                Cursor.lockState = CursorLockMode.None;
+            } else {
                 Cursor.lockState = CursorLockMode.Locked;
                 MouseLook();
-                menu.SetActive(false);
-            } 
-        } else {
-            MouseLook();
+            }
+        } else if (state == WebXRState.VR) {
+            Cursor.lockState = CursorLockMode.None;
         }
     }
-        
+
     private void TimeCounter() {
         elapsedTime += Time.deltaTime;
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
