@@ -3611,7 +3611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playArea: {fileID: 683710256460428993}
   headset: {fileID: 683536655962301469}
-  headsetCamera: {fileID: 666494683661057075}
+  headsetCamera: {fileID: 0}
   headsetVelocityTracker: {fileID: 0}
   supplementHeadsetCameras: {fileID: 0}
   headsetDeviceDetails: {fileID: 0}

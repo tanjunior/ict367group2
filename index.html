@@ -42,11 +42,6 @@
       }, false);
       document.addEventListener('onVRSupportedCheck', function (event) {
         enterVRButton.disabled = !event.detail.supported;
-        if (event.detail.supported) {
-          if (confirm("Enter VR mode")) {
-            unityInstance.Module.WebXR.toggleVR();
-          }
-        }
       }, false);
       
       enterARButton.addEventListener('click', function (event) {
