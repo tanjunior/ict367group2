@@ -9,11 +9,10 @@ public class CarController : MonoBehaviour
 {
     private float horizontalInput, accelInput, brakeInput;
     private float currentTorque, currentSteerAngle, currentbreakForce;
-    private bool isVR, mouseLook = false, isHandBrake = true;
+    private bool isHandBrake = true;
     private int gearIndex = 0;
     private WebXRState state = WebXRState.NORMAL;
-    private Rigidbody rb;
-    private WebXRManager xrManager;
+    [SerializeField] private Rigidbody rb;
 
     // devmode
     [SerializeField] private bool enableVRControlsInEditor = true;
@@ -48,10 +47,6 @@ public class CarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        xrManager = WebXRManager.Instance;
-        isVR = xrManager.isSupportedVR;
-
         XRGeneralSettings instance = XRGeneralSettings.Instance;
         if (instance.Manager.activeLoader == null) enableVRControlsInEditor = false;
         
@@ -60,10 +55,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //xrManager.OnXRCapabilitiesUpdate
         if (levelManager.isPaused) return;
-        // public enum WebXRState { VR, AR, NORMAL }
-        if (isVR) state = xrManager.XRState;
         if (Application.isEditor) {
             if (enableVRControlsInEditor) {
                 Cursor.lockState = CursorLockMode.None;
@@ -72,9 +64,9 @@ public class CarController : MonoBehaviour
             else {
                 GetPcInput();
             }
-        } else if (state == WebXRState.NORMAL) {
+        } else if (levelManager.state == WebXRState.NORMAL) {
             GetPcInput();
-        } else if (state == WebXRState.VR) {
+        } else if (levelManager.state == WebXRState.VR) {
             GetVrInput();
         }
         UpdateUI();
@@ -90,7 +82,7 @@ public class CarController : MonoBehaviour
 
     public void OnSteeringWheelValueChanged(float steeringWheelValue) {
         if (levelManager.isPaused) return;
-        if (state == WebXRState.VR || enableVRControlsInEditor) {
+        if (levelManager.state == WebXRState.VR || enableVRControlsInEditor) {
             if (steeringWheelValue > 486) {
                 currentSteerAngle = maxSteeringAngle * (360 - steeringWheelValue) / 486;
             } else {
@@ -101,7 +93,7 @@ public class CarController : MonoBehaviour
 
     public void OnHandBrakeStepValueChanged(float value) {
         if (levelManager.isPaused) return;
-        if (state == WebXRState.VR || enableVRControlsInEditor) {       
+        if (levelManager.state == WebXRState.VR || enableVRControlsInEditor) {       
             leftController.Pulse(gearHapticStrength, gearHapticDuration);
             isHandBrake = ((int)value == 1 ? true : false);
         }
@@ -109,7 +101,7 @@ public class CarController : MonoBehaviour
 
     public void OnGearShifterStepValueChanged(float value) {
         if (levelManager.isPaused) return;
-        if (state == WebXRState.VR || enableVRControlsInEditor) {
+        if (levelManager.state == WebXRState.VR || enableVRControlsInEditor) {
             if ((int)value-1 == gearIndex) return;
             leftController.Pulse(gearHapticStrength, gearHapticDuration);
             gearIndex = (int)value-1;
@@ -152,7 +144,7 @@ public class CarController : MonoBehaviour
     }
 
     private void HandleSteering() {
-        if (state == WebXRState.NORMAL && !enableVRControlsInEditor) currentSteerAngle = maxSteeringAngle * horizontalInput;
+        if (levelManager.state == WebXRState.NORMAL && !enableVRControlsInEditor) currentSteerAngle = maxSteeringAngle * horizontalInput;
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
