@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using WebXR;
+using Newtonsoft.Json;
 
 public class LevelManager : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class LevelManager : MonoBehaviour
     private bool isVR;
     public int currentLevelIndex;
     private string newSerializedString;
-    private Dictionary<string, float> currentHighscores;
+    [SerializeField] private Dictionary<string, float> currentHighscores;
     public WebXRState state = WebXRState.NORMAL;
     public CursorLockMode lockmode;
 
@@ -109,14 +110,14 @@ public class LevelManager : MonoBehaviour
     }
 
     public void SaveHighScore(float time) {
-        string name = Environment.UserName; //temp player name var
+        string name = Environment.UserName; //get player name from PC name.
         Dictionary<string, float> highscore; // dictionary kv pair to store name and score
 
-        PlayerPrefs.DeleteAll();
         if (PlayerPrefs.HasKey(currentLevelIndex.ToString())) { // check if highscore for this level exists in the playerprefs
             string serializedString = PlayerPrefs.GetString(currentLevelIndex.ToString());
             Debug.Log(serializedString);
-            highscore = JsonUtility.FromJson<Dictionary<string, float>>(serializedString); // the dictionary was serialized before saving so we need to deserialize the string
+            highscore = JsonConvert.DeserializeObject<Dictionary<string, float>>(serializedString); // the dictionary was serialized before saving so we need to deserialize the string
+            Debug.Log(highscore.Count);
             if (highscore.ContainsKey(name)){ // check if player already have a highscore
                 if (time < highscore[name]) highscore[name] = time; // replace the score if the current score is higher
             }
@@ -132,10 +133,11 @@ public class LevelManager : MonoBehaviour
         }
 
         currentHighscores = sorted;
-        newSerializedString = JsonUtility.ToJson(sorted);
 
         // serialize the dictionary and save it back to playerprefs.
-        PlayerPrefs.SetString(currentLevelIndex.ToString(), newSerializedString);        
+        newSerializedString = JsonConvert.SerializeObject(sorted);
+        PlayerPrefs.SetString(currentLevelIndex.ToString(), newSerializedString);
+             
         LoadSceneHighscore();
     }
 
@@ -178,16 +180,16 @@ public class LevelManager : MonoBehaviour
         highscoreDisplayed = false;
         isPaused = false;
         civic.SetActive(false);
-        SceneManager.LoadScene("Highscore", LoadSceneMode.Single);
         StartCoroutine(Delay(1));
+        SceneManager.LoadScene("Highscore", LoadSceneMode.Single);
         highscoreMenu.SetActive(true);
     }
 
     public void LoadSceneMain() {
         isPaused = false;
         civic.SetActive(false);
-        SceneManager.LoadScene("Main", LoadSceneMode.Single);
         StartCoroutine(Delay(1));
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
         mainMenu.SetActive(true);
         highscoreMenu.SetActive(false);
     }
@@ -208,6 +210,8 @@ public class LevelManager : MonoBehaviour
     public void QuitGame() {
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
+        #elif UNITY_WEBGL
+            xrManager.ToggleVR();
         #else
             Application.Quit();
         #endif
