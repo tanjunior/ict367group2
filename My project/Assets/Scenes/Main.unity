@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: bd29a8f7d9937d249aa3780ed2aa7606,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -415,6 +415,66 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[0].time
+      value: -10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[1].inSlope
+      value: 0.0010093433
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[1].outSlope
+      value: 0.0010093433
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[1].inWeight
+      value: 0.055727314
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[0].inSlope
+      value: -0.000012656373
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[0].outSlope
+      value: -0.000012656373
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[0].outWeight
+      value: 0.13318704
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[2].inSlope
+      value: 0.000032152755
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[2].outSlope
+      value: 0.000032152755
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[2].inWeight
+      value: 0.2542926
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[2].time
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: engineSoundCurve.m_Curve.Array.data[1].outWeight
+      value: 0.14940524
+      objectReference: {fileID: 0}
     - target: {fileID: 3493684240321818285, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -490,6 +550,12 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6983774413420089431, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4221278916735710065, guid: e787690ba972ba544bf3b74599b925f5,
+        type: 2}
     - target: {fileID: 7676247452905594873, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
       propertyPath: m_textInfo.characterCount

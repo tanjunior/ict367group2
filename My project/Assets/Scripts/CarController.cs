@@ -20,6 +20,7 @@ public class CarController : MonoBehaviour
 
     // others
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private AudioSource engineSound;
 
     // WebXR
     [SerializeField] private WebXRController leftController, rightController;
@@ -30,7 +31,7 @@ public class CarController : MonoBehaviour
     // Settings
     [SerializeField] private float motorTorque, breakForce, maxSteeringAngle;
     [SerializeField] private bool animateWheels;
-    [SerializeField] private AnimationCurve torqueCurve, gearCurve;
+    [SerializeField] private AnimationCurve torqueCurve, gearCurve, engineSoundCurve;
     [SerializeField] private float finalDriveRatio = 3;
     [SerializeField] private int gearHapticDuration = 100;
     [SerializeField] private float gearHapticStrength = 0.08f;
@@ -125,8 +126,21 @@ public class CarController : MonoBehaviour
     private void HandleMotor() {
         float wheelRpm = (frontLeftWheelCollider.rpm + frontRightWheelCollider.rpm) / 2;
         float motorRpm = motorTorque + (wheelRpm * finalDriveRatio * gearCurve.Evaluate(gearIndex));
-        currentTorque = torqueCurve.Evaluate(motorRpm) * gearCurve.Evaluate(gearIndex) * finalDriveRatio * accelInput;
         
+        currentTorque = torqueCurve.Evaluate(motorRpm) * gearCurve.Evaluate(gearIndex) * finalDriveRatio * accelInput;
+
+        
+        float pitch;
+        float rpmForAudio = Mathf.Clamp(motorRpm, -1000, 1000);
+        if (accelInput == 0) {
+            pitch = engineSoundCurve.Evaluate(rpmForAudio);
+        } else {
+            pitch = engineSoundCurve.Evaluate(rpmForAudio) * accelInput;
+        }
+        engineSound.pitch = pitch;
+        
+        
+        speedometer.text = string.Format("motorRpm {0} \npitch {1}", motorRpm, pitch);
         if (!isHandBrake) {
             frontLeftWheelCollider.motorTorque = currentTorque/2;
             frontRightWheelCollider.motorTorque = currentTorque/2;
@@ -157,7 +171,7 @@ public class CarController : MonoBehaviour
     }
 
     private void UpdateUI() {
-        speedometer.text = string.Format("torque {0:N0}\nspeed {1:N0}", currentTorque, rb.velocity.magnitude);
+        //speedometer.text = string.Format("torque {0:N0}\nspeed {1:N0}", currentTorque, rb.velocity.magnitude);
         //debug.text = string.Format("steering wheel {0:N0}\nwheel angle {1:N0}", steeringWheelRotation, currentSteerAngle);
         debug.text = string.Format("gear {0:N0}\naccel {1:N0}\nbrake {2:N0}", gearIndex, accelInput, brakeInput);
     }

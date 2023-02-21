@@ -177,18 +177,18 @@ public class LevelManager : MonoBehaviour
     }
 
     public void LoadSceneHighscore() {
-        highscoreDisplayed = false;
-        isPaused = false;
-        civic.SetActive(false);
         StartCoroutine(Delay(1));
+        isPaused = false;
+        highscoreDisplayed = false;
+        civic.SetActive(false);
         SceneManager.LoadScene("Highscore", LoadSceneMode.Single);
         highscoreMenu.SetActive(true);
     }
 
     public void LoadSceneMain() {
+        StartCoroutine(Delay(1));
         isPaused = false;
         civic.SetActive(false);
-        StartCoroutine(Delay(1));
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
         mainMenu.SetActive(true);
         highscoreMenu.SetActive(false);
