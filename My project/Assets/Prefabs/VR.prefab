@@ -3410,7 +3410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &686065134683528198
 Transform:
   m_ObjectHideFlags: 0
@@ -17563,14 +17563,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515764116545871980}
-  m_LocalRotation: {x: 0.25038, y: 0, z: 0, w: 0.9681477}
+  m_LocalRotation: {x: 0.9681477, y: -0, z: -0, w: -0.25038}
   m_LocalPosition: {x: 0.40822136, y: 0.75565875, z: 0.36770988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8730463029992649560}
   m_Father: {fileID: 686065134683528198}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 29, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 209, y: 0, z: 0}
 --- !u!1 &1516505458486514039
 GameObject:
   m_ObjectHideFlags: 0
@@ -26211,7 +26211,7 @@ MonoBehaviour:
   driveSpeed: 500
   ungrabbedDrag: 0
   grabbedDrag: 1
-  startAtInitialTargetValue: 0
+  startAtInitialTargetValue: 1
   initialTargetValue: 0.5
   moveToTargetValue: 0
   targetValue: 0.5
@@ -26223,7 +26223,7 @@ MonoBehaviour:
   driveLimit:
     minimum: -486
     maximum: 486
-  hingeLocation: {x: 0, y: 0.015, z: 0}
+  hingeLocation: {x: 0, y: -0.015, z: 0}
   gizmoLineDistance: 0.2
   gizmoSphereRadius: 0.015
 --- !u!114 &3536778108649732536
@@ -38729,13 +38729,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3514684542426604236}
-  m_LocalRotation: {x: -0.25038, y: 0, z: 0, w: 0.9681477}
+  m_LocalRotation: {x: 0.9681477, y: 0, z: 0, w: 0.25038}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5419178533698153461}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -29, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 151, y: 0, z: 0}
 --- !u!33 &8180325914907362779
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -55116,13 +55116,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5618906488839835694}
-  m_LocalRotation: {x: -0.25038, y: 0, z: 0, w: 0.9681477}
+  m_LocalRotation: {x: 0.9681477, y: 0, z: 0, w: 0.25038}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5419178533698153461}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -29, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 151, y: 0, z: 0}
 --- !u!33 &6114112132242573274
 MeshFilter:
   m_ObjectHideFlags: 0

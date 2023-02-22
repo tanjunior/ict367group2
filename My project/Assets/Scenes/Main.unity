@@ -308,7 +308,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &1604154962
+--- !u!1001 &914878490
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -324,31 +324,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 677568663563339679, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 677568663563339679, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 677568663563339679, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 677568663563339679, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 677568663563339679, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 682505750615688260, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
@@ -410,111 +385,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: VR
       objectReference: {fileID: 0}
-    - target: {fileID: 1065378132006408430, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: TargetValueReached.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1065378132006408430, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: TargetValueReached.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1065378132006408430, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: TargetValueReached.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1065378132006408430, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: driveSpeed
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 1065378132006408430, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: stepRange.maximum
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1065378132006408430, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: ungrabbedDrag
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1065378132006408430, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: startAtInitialTargetValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1065378132006408430, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: hingeLocation.y
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2004319746197510395, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[0].time
-      value: -10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[1].inSlope
-      value: 0.0010093433
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[1].outSlope
-      value: 0.0010093433
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[1].inWeight
-      value: 0.055727314
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[0].inSlope
-      value: -0.000012656373
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[0].outSlope
-      value: -0.000012656373
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[0].outWeight
-      value: 0.13318704
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[2].inSlope
-      value: 0.000032152755
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[2].outSlope
-      value: 0.000032152755
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[2].inWeight
-      value: 0.2542926
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[2].time
-      value: 2500
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: engineSoundCurve.m_Curve.Array.data[1].outWeight
-      value: 0.14940524
-      objectReference: {fileID: 0}
     - target: {fileID: 3493684240321818285, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -586,52 +456,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6818193087272279378, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983774413420089431, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 4221278916735710065, guid: e787690ba972ba544bf3b74599b925f5,
-        type: 2}
-    - target: {fileID: 7676247452905594873, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7676247452905594873, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7676247452905594873, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7676247452905594873, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193519037913708977, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193519037913708977, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193519037913708977, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193519037913708977, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0

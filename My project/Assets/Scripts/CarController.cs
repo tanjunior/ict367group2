@@ -5,7 +5,6 @@ using TMPro;
 using WebXR;
 using UnityEngine.XR.Management;
 using Tilia.Interactions.Controllables.AngularDriver;
-using Tilia.Interactions.Controllables.Driver;
 
 public class CarController : MonoBehaviour
 {
@@ -53,7 +52,6 @@ public class CarController : MonoBehaviour
     {
         XRGeneralSettings instance = XRGeneralSettings.Instance;
         if (instance.Manager.activeLoader == null) enableVRControlsInEditor = false;
-        
     }
 
     // Update is called once per frame
@@ -87,11 +85,7 @@ public class CarController : MonoBehaviour
     public void OnSteeringWheelValueChanged(float steeringWheelValue) {
         if (levelManager.isPaused) return;
         if (levelManager.state == WebXRState.VR || enableVRControlsInEditor) {
-            if (steeringWheelValue > 486) {
-                currentSteerAngle = maxSteeringAngle * (360 - steeringWheelValue) / 486;
-            } else {
-                currentSteerAngle = -maxSteeringAngle * steeringWheelValue / 486;
-            }
+            currentSteerAngle =  steeringWheelValue * maxSteeringAngle / 486;
         }
     }
 
@@ -113,15 +107,19 @@ public class CarController : MonoBehaviour
     }
 
     private void GetPcInput() {
-        accelInput = Input.GetButton("Accelerate")? 1: 0;
+        accelInput = Input.GetButton("Accelerate") ? 1: 0;
         brakeInput = Input.GetKey(KeyCode.Space) ? 1 : 0;
         horizontalInput = Input.GetAxis("Horizontal");
-        if (Input.GetButtonDown("Shift Up")) gearIndex++;
-        if (Input.GetButtonDown("Shift Down")) gearIndex--;
+        if (Input.GetButtonDown("Shift Up")) if (gearIndex != 1) gearIndex++;
+        if (Input.GetButtonDown("Shift Down")) if (gearIndex != -1) gearIndex--;
         if (Input.GetButtonDown("Hand Brake")) isHandBrake = !isHandBrake;
-        //steeringWheel.MoveToTargetValue = true;
-
-        //steeringWheel.TargetValue = (currentSteerAngle * (486 / maxSteeringAngle));
+        steeringWheel.MoveToTargetValue = true;
+        handbrake.MoveToTargetValue = true;
+        gearShifter.MoveToTargetValue = true;
+        float steeringWheelValue = ((486 / maxSteeringAngle) * currentSteerAngle) / 972;
+        steeringWheel.TargetValue = steeringWheelValue + 0.5f;
+        handbrake.TargetValue = isHandBrake ? 1 : 0;
+        gearShifter.TargetValue = gearIndex == 0 ? gearIndex + 0.5f : gearIndex;
     }
 
     private void GetVrInput() {
@@ -145,8 +143,6 @@ public class CarController : MonoBehaviour
         }
         engineSound.pitch = pitch;
         
-        
-        speedometer.text = string.Format("motorRpm {0} \npitch {1}", motorRpm, pitch);
         if (!isHandBrake) {
             frontLeftWheelCollider.motorTorque = currentTorque/2;
             frontRightWheelCollider.motorTorque = currentTorque/2;
