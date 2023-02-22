@@ -684,7 +684,18 @@ MonoBehaviour:
       m_Calls: []
   TargetValueReached:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2859917802825563599}
+        m_MethodName: OnHandbrakeTargetValueReached
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   StartedMoving:
     m_PersistentCalls:
       m_Calls: []
@@ -692,13 +703,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   driveAxis: 0
-  driveSpeed: 250
+  driveSpeed: 500
   ungrabbedDrag: 0.5
   grabbedDrag: 2
   startAtInitialTargetValue: 1
   initialTargetValue: 1
   moveToTargetValue: 0
-  targetValue: 0.913
+  targetValue: 0.5
   stepRange:
     minimum: 0
     maximum: 1
@@ -3399,7 +3410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &686065134683528198
 Transform:
   m_ObjectHideFlags: 0
@@ -3441,6 +3452,9 @@ MonoBehaviour:
   debug: {fileID: 677568663563339679}
   levelManager: {fileID: 3901751093917588957}
   engineSound: {fileID: 6983774413420089431}
+  handbrake: {fileID: 1259734218105020102}
+  gearShifter: {fileID: 397740851634435126}
+  steeringWheel: {fileID: 1065378132006408430}
   leftController: {fileID: 643390625458049541}
   rightController: {fileID: 643535819741432859}
   speedometer: {fileID: 9193519037913708977}
@@ -5055,6 +5069,20 @@ MonoBehaviour:
   civic: {fileID: 574872534131405762}
   leftController: {fileID: 643390625458049541}
   mainCamera: {fileID: 666494683661057075}
+  onRestart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2859917802825563599}
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   showPointer: 1
   highscoreDisplayed: 0
   levelName: 
@@ -17463,7 +17491,18 @@ MonoBehaviour:
       m_Calls: []
   TargetValueReached:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2859917802825563599}
+        m_MethodName: OnGearShifterTargetValueReached
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   StartedMoving:
     m_PersistentCalls:
       m_Calls: []
@@ -17471,7 +17510,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   driveAxis: 0
-  driveSpeed: 10
+  driveSpeed: 500
   ungrabbedDrag: 0.5
   grabbedDrag: 1
   startAtInitialTargetValue: 1
@@ -26150,7 +26189,18 @@ MonoBehaviour:
       m_Calls: []
   TargetValueReached:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2859917802825563599}
+        m_MethodName: OnSteeringWheelTargetValueReached
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   StartedMoving:
     m_PersistentCalls:
       m_Calls: []
@@ -26158,8 +26208,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   driveAxis: 2
-  driveSpeed: 10
-  ungrabbedDrag: 0.5
+  driveSpeed: 500
+  ungrabbedDrag: 0
   grabbedDrag: 1
   startAtInitialTargetValue: 0
   initialTargetValue: 0.5
@@ -26173,7 +26223,7 @@ MonoBehaviour:
   driveLimit:
     minimum: -486
     maximum: 486
-  hingeLocation: {x: 0, y: 0, z: 0}
+  hingeLocation: {x: 0, y: 0.015, z: 0}
   gizmoLineDistance: 0.2
   gizmoSphereRadius: 0.015
 --- !u!114 &3536778108649732536
@@ -86703,6 +86753,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
         type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
       propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3901751093917588957}
@@ -86730,6 +86785,71 @@ PrefabInstance:
         type: 3}
       propertyPath: disabledInactive.isApplied
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1259734218105020102}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_MoveToTargetValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1259734218105020102}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: set_MoveToTargetValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
+        type: 3}
+      propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3759631478753215089, guid: e3240c0657ddbb44cb94c841e36053d9,
         type: 3}

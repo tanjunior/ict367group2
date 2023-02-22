@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using WebXR;
 using UnityEngine.XR.Management;
+using Tilia.Interactions.Controllables.AngularDriver;
+using Tilia.Interactions.Controllables.Driver;
 
 public class CarController : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class CarController : MonoBehaviour
     // others
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private AudioSource engineSound;
+    [SerializeField] private AngularDriveFacade handbrake, gearShifter, steeringWheel;
 
     // WebXR
     [SerializeField] private WebXRController leftController, rightController;
@@ -116,6 +119,9 @@ public class CarController : MonoBehaviour
         if (Input.GetButtonDown("Shift Up")) gearIndex++;
         if (Input.GetButtonDown("Shift Down")) gearIndex--;
         if (Input.GetButtonDown("Hand Brake")) isHandBrake = !isHandBrake;
+        //steeringWheel.MoveToTargetValue = true;
+
+        //steeringWheel.TargetValue = (currentSteerAngle * (486 / maxSteeringAngle));
     }
 
     private void GetVrInput() {
@@ -186,5 +192,40 @@ public class CarController : MonoBehaviour
 
     private void Park() {
         if (gearIndex == 0 && isHandBrake) levelManager.Park(FL.GetValidation(), FR.GetValidation(), RL.GetValidation(), RR.GetValidation());
+    }
+
+    public void Reset() {
+        steeringWheel.TargetValue = 0.5f;
+        steeringWheel.MoveToTargetValue = true; 
+        gearShifter.TargetValue = 0.5f;
+        gearShifter.MoveToTargetValue = true;
+        handbrake.TargetValue = 1;       
+        handbrake.MoveToTargetValue = true;
+        StartCoroutine(Delay(0.5f));
+        gearIndex = 0;
+        isHandBrake = true;
+    }
+
+    IEnumerator Delay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        steeringWheel.MoveToTargetValue = false;
+    }
+
+    public void OnSteeringWheelTargetValueReached(float value) {
+        if (value != 0.5f) {
+            steeringWheel.TargetValue = 0.5f;
+            return;
+        }
+        steeringWheel.MoveToTargetValue = false;
+    }
+
+    public void OnGearShifterTargetValueReached() {
+        gearShifter.MoveToTargetValue = false;
+    }
+
+    public void OnHandbrakeTargetValueReached() {
+        handbrake.MoveToTargetValue = false;
+        
     }
 }

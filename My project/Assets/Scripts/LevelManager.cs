@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using TMPro;
 using WebXR;
@@ -15,6 +16,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject highscoreRowPrefab, civic;
     [SerializeField] private WebXRController leftController;
     [SerializeField] private Camera mainCamera;
+    public UnityEvent onRestart;
     public bool showPointer = true;
     public bool highscoreDisplayed = false;
     [System.NonSerialized] public bool isPaused = false;
@@ -169,6 +171,8 @@ public class LevelManager : MonoBehaviour
     }
 
     public void RestartLevel() {
+        onRestart.Invoke();
+        isPaused = false;
         LoadScene(currentLevelIndex);
     }
 
