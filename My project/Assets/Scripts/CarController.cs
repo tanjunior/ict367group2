@@ -133,15 +133,10 @@ public class CarController : MonoBehaviour
         
         currentTorque = torqueCurve.Evaluate(motorRpm) * gearCurve.Evaluate(gearIndex) * finalDriveRatio * accelInput;
 
-        
-        float pitch;
-        float rpmForAudio = Mathf.Clamp(motorRpm, -1000, 1000);
-        if (accelInput == 0) {
-            pitch = engineSoundCurve.Evaluate(rpmForAudio);
-        } else {
-            pitch = engineSoundCurve.Evaluate(rpmForAudio) * accelInput;
-        }
+        float rpmForAudio = Mathf.Clamp(motorRpm * accelInput, -1000, 1000);
+        float pitch = engineSoundCurve.Evaluate(rpmForAudio);
         engineSound.pitch = pitch;
+        speedometer.text = string.Format("rpmForAudio {0}\npitch {1}", rpmForAudio, pitch);
         
         if (!isHandBrake) {
             frontLeftWheelCollider.motorTorque = currentTorque/2;
