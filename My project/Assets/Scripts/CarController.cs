@@ -8,7 +8,7 @@ using Tilia.Interactions.Controllables.AngularDriver;
 
 public class CarController : MonoBehaviour
 {
-    private float horizontalInput, accelInput, brakeInput;
+    private float horizontalInput = 0, accelInput, brakeInput;
     private float currentTorque, currentSteerAngle, currentbreakForce;
     private bool isHandBrake = true;
     private int gearIndex = 0;
@@ -31,7 +31,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI speedometer;
 
     // Settings
-    [SerializeField] private float motorTorque, breakForce, maxSteeringAngle;
+    [SerializeField] private float motorTorque, breakForce, maxSteeringAngle, keyboardRotateRate = 0.005f;
     [SerializeField] private bool animateWheels;
     [SerializeField] private AnimationCurve torqueCurve, gearCurve, engineSoundCurve;
     [SerializeField] private float finalDriveRatio = 3;
@@ -72,11 +72,11 @@ public class CarController : MonoBehaviour
             GetVrInput();
         }
         UpdateUI();
-        Park();
 	}
 
     private void FixedUpdate() {
         if (levelManager.isPaused) return;
+        Park();
         HandleMotor();
         HandleSteering();
         if (animateWheels) UpdateWheels();
@@ -109,7 +109,10 @@ public class CarController : MonoBehaviour
     private void GetPcInput() {
         accelInput = Input.GetButton("Accelerate") ? 1: 0;
         brakeInput = Input.GetKey(KeyCode.Space) ? 1 : 0;
-        horizontalInput = Input.GetAxis("Horizontal");
+        //horizontalInput = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate;
+        if (Input.GetButton("Turn Right")) horizontalInput += keyboardRotateRate;
+        horizontalInput = Mathf.Clamp(horizontalInput, -1, 1);
         if (Input.GetButtonDown("Shift Up")) if (gearIndex != 1) gearIndex++;
         if (Input.GetButtonDown("Shift Down")) if (gearIndex != -1) gearIndex--;
         if (Input.GetButtonDown("Hand Brake")) isHandBrake = !isHandBrake;
@@ -136,7 +139,6 @@ public class CarController : MonoBehaviour
         float rpmForAudio = Mathf.Clamp(motorRpm * accelInput, -1000, 1000);
         float pitch = engineSoundCurve.Evaluate(rpmForAudio);
         engineSound.pitch = pitch;
-        speedometer.text = string.Format("rpmForAudio {0}\npitch {1}", rpmForAudio, pitch);
         
         if (!isHandBrake) {
             frontLeftWheelCollider.motorTorque = currentTorque/2;
@@ -155,7 +157,7 @@ public class CarController : MonoBehaviour
     }
 
     private void HandleSteering() {
-        if (levelManager.state == WebXRState.NORMAL && !enableVRControlsInEditor) currentSteerAngle = maxSteeringAngle * horizontalInput;
+        if (levelManager.state == WebXRState.NORMAL) currentSteerAngle = maxSteeringAngle * horizontalInput;
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
@@ -168,7 +170,7 @@ public class CarController : MonoBehaviour
     }
 
     private void UpdateUI() {
-        //speedometer.text = string.Format("torque {0:N0}\nspeed {1:N0}", currentTorque, rb.velocity.magnitude);
+        speedometer.text = string.Format("torque {0:N0}\nspeed {1:N0}", currentTorque, rb.velocity.magnitude);
         //debug.text = string.Format("steering wheel {0:N0}\nwheel angle {1:N0}", steeringWheelRotation, currentSteerAngle);
         debug.text = string.Format("gear {0:N0}\naccel {1:N0}\nbrake {2:N0}", gearIndex, accelInput, brakeInput);
     }
@@ -194,6 +196,7 @@ public class CarController : MonoBehaviour
         handbrake.MoveToTargetValue = true;
         StartCoroutine(Delay(0.5f));
         gearIndex = 0;
+        horizontalInput = 0;
         isHandBrake = true;
     }
 
@@ -204,6 +207,7 @@ public class CarController : MonoBehaviour
     }
 
     public void OnSteeringWheelTargetValueReached(float value) {
+        if (levelManager.state == WebXRState.NORMAL) return;
         if (value != 0.5f) {
             steeringWheel.TargetValue = 0.5f;
             return;
@@ -212,10 +216,12 @@ public class CarController : MonoBehaviour
     }
 
     public void OnGearShifterTargetValueReached() {
+        if (levelManager.state == WebXRState.NORMAL) return;
         gearShifter.MoveToTargetValue = false;
     }
 
     public void OnHandbrakeTargetValueReached() {
+        if (levelManager.state == WebXRState.NORMAL) return;
         handbrake.MoveToTargetValue = false;
         
     }
