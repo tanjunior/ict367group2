@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactable
+  - VR
+  - car
+  - CVIC
+  - collider
+  - ParkingSpot
   layers:
   - Default
   - TransparentFX
@@ -16,9 +21,9 @@ TagManager:
   - 
   - Ignore Car
   - Car
-  - 
-  - 
-  - 
+  - Mirror Ignore
+  - Highlight
+  - Parking
   - 
   - 
   - 
