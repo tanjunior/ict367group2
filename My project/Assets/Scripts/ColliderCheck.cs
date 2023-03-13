@@ -5,6 +5,7 @@ using UnityEngine;
 public class ColliderCheck : MonoBehaviour
 {
     public int numberOfCollisions = 0;
+    public AudioSource collisionSound;
     private float lastCollisionTime = 0f;
 
     void OnTriggerEnter(Collider c)
@@ -16,7 +17,13 @@ public class ColliderCheck : MonoBehaviour
             numberOfCollisions++;
             Debug.Log("Number of collisions:" + numberOfCollisions);
             lastCollisionTime = Time.time;
+            collisionSound.Play();
         }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        
+        Debug.Log("number of name=" + other.gameObject.tag);
     }
 
     public int getNumberOfCollisions()
