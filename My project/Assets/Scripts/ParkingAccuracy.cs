@@ -12,6 +12,7 @@ public class ParkingAccuracy : MonoBehaviour
 
     private void Start()
     {
+        if(parkingTrigger == null)
         parkingTrigger = GameObject.FindGameObjectWithTag("ParkingSpot").GetComponent<BoxCollider>();
     }
 

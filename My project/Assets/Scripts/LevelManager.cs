@@ -118,7 +118,7 @@ public class LevelManager : MonoBehaviour
         string name = Environment.UserName; //get player name from PC name.
         Dictionary<string, float> highscore; // dictionary kv pair to store name and score
 
-        int score,baseScore;
+        float score,timeScore,collisionScore,parkingScore;
 
         int numberOfCollisions = GetComponent<ColliderCheck>().getNumberOfCollisions();
         float parkingAccuracy = GetComponent<ParkingAccuracy>().getAccuracyPercentage();
@@ -129,7 +129,7 @@ public class LevelManager : MonoBehaviour
         //reset values
 
 
-        baseScore = 1500;
+        
 
         if(time<60)
         {
@@ -152,25 +152,25 @@ public class LevelManager : MonoBehaviour
             score = 0;
         }
 
-        if(numberOfCollisions<3)
+        if(numberOfCollisions<1)
         {
-            score -= 0;
+            score += 1500;
         }
-        else if(numberOfCollisions<5)
+        else if(numberOfCollisions<4)
         {
-            score -= 400;
+            score += 1100;
         }
-        else if(numberOfCollisions <10)
+        else if(numberOfCollisions <8)
         {
-            score -= 800;
+            score += 700;
         }
-        else
-        {
-            score -= 1500;
-        }
+      
         
+    
+       score +=  parkingAccuracy*20;
+        
+        //main focus on parking
 
-        
 
 
         if (PlayerPrefs.HasKey(currentLevelIndex.ToString())) { // check if highscore for this level exists in the playerprefs
