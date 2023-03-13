@@ -32,7 +32,7 @@ public class ParkingController : MonoBehaviour
         }
         bool isValid = last == positionString;
         last = null;
-        Debug.Log(positionString + " " + isValid);
+        //Debug.Log(positionString + " " + isValid);
         return isValid;
     }
 }
