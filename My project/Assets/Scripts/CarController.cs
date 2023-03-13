@@ -21,7 +21,7 @@ public class CarController : MonoBehaviour
 
     // others
     [SerializeField] private LevelManager levelManager;
-    [SerializeField] private AudioSource engineSound;
+    [SerializeField] private AudioSource engineSound, brakeSound;
     [SerializeField] private AngularDriveFacade handbrake, gearShifter, steeringWheel;
 
     // WebXR
@@ -108,7 +108,10 @@ public class CarController : MonoBehaviour
 
     private void GetPcInput() {
         accelInput = Input.GetButton("Accelerate") ? 1: 0;
-        brakeInput = Input.GetKey(KeyCode.Space) ? 1 : 0;
+        if (Input.GetKey(KeyCode.Space)) {
+            brakeSound.Play();
+            brakeInput = 1;
+        } else brakeInput = 0;
         //horizontalInput = Input.GetAxisRaw("Horizontal");
         if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate;
         if (Input.GetButton("Turn Right")) horizontalInput += keyboardRotateRate;
