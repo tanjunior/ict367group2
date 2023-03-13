@@ -3412,7 +3412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &686065134683528198
 Transform:
   m_ObjectHideFlags: 0
@@ -3622,7 +3622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c59fd1b4a37cd4d9c71f8fb11d9fb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carTrigger: {fileID: 0}
+  carTrigger: {fileID: 7828433340608406217}
 --- !u!1 &586102722994070518
 GameObject:
   m_ObjectHideFlags: 0
@@ -14797,7 +14797,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineOrigin: {fileID: 3931381313263036627}
   facingSource: {fileID: 684029876983247109}
-  tooltipText: Tooltip Text
+  tooltipText: 'Use this to change gear(Q/E for PC)
+
+    Starts off with neutral
+    gear'
   fontSize: 30
   fontColor: {r: 0, g: 0, b: 0, a: 1}
   outerBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -24740,7 +24743,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineOrigin: {fileID: 8496402215804043043}
   facingSource: {fileID: 684029876983247109}
-  tooltipText: Tooltip Text
+  tooltipText: 'Use this to engage parking brake(H for PC)
+
+    Disengage to drive'
   fontSize: 30
   fontColor: {r: 0, g: 0, b: 0, a: 1}
   outerBackgroundColor: {r: 0, g: 0, b: 0, a: 1}

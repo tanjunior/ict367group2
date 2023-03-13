@@ -112,7 +112,6 @@ public class LevelManager : MonoBehaviour
 
     public void Park(bool fl, bool fr, bool rl, bool rr) {
         if (!fl || !fr || !rl || !rr) return;
-        Debug.Log("parking");
         float completeTime = elapsedTime;
         SaveHighScore(completeTime);
     }
@@ -188,15 +187,16 @@ public class LevelManager : MonoBehaviour
             //Debug.Log(serializedString);
             highscore = JsonConvert.DeserializeObject<Dictionary<string, float>>(serializedString); // the dictionary was serialized before saving so we need to deserialize the string
             //Debug.Log(highscore.Count);
-            // check if player already have a highscore
-            // if (highscore.ContainsKey(name)){
-            //     if (time < highscore[name]) highscore[name] = time; // replace the score if the current score is higher
-            // }
+            //check if player already have a highscore
+            if (highscore.ContainsKey(name)){
+                if (time < highscore[name]) highscore[name] = score; // replace the score if the current score is higher
+            }
         } else {
             highscore = new Dictionary<string, float>(); // create a new dictionary if there is no record
+            highscore.Add(name, score); 
         }
 
-        highscore.Add(name, score); 
+        
 
         // sort the dictionary
         Dictionary<string, float> sorted = new Dictionary<string, float>();
