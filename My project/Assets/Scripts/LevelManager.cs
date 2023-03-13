@@ -19,14 +19,14 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private ColliderCheck colliderCheck;
     [SerializeField] private ParkingAccuracy parkingAccuracy;
     public UnityEvent onRestart;
-    public bool showPointer = true;
+    public bool showPointer = false;
     public bool highscoreDisplayed = false;
     [System.NonSerialized] public bool isPaused = false, showHologram = true;
     private float elapsedTime = 0.0f;
     public string levelName;
     private Vector2 headRotation = Vector2.zero;
     private WebXRManager xrManager;
-    private bool isVR;
+    public bool isVR;
     public int currentLevelIndex;
     private string newSerializedString;
     [SerializeField] private List<Dictionary<string, string>> currentHighscores;
@@ -47,6 +47,7 @@ public class LevelManager : MonoBehaviour
     {
         xrManager = WebXRManager.Instance;
         isVR = xrManager.isSupportedVR;
+        if (isVR) showPointer = true;
         StartCoroutine(ExampleCoroutine(0.1f, false));
         StartCoroutine(ExampleCoroutine(0.2f, true));
     }
@@ -76,7 +77,7 @@ public class LevelManager : MonoBehaviour
             }
             if (isPaused) {
                 pauseMenu.SetActive(true);
-                showPointer = true;
+                if (isVR) showPointer = true;
                 lockmode = CursorLockMode.None;
                 Cursor.lockState = lockmode;
             } else {
@@ -287,7 +288,7 @@ public class LevelManager : MonoBehaviour
         pauseMenu.SetActive(false);
         lockmode = CursorLockMode.None;
         Cursor.lockState = lockmode;
-        showPointer = true;
+        if (isVR) showPointer = true;
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
         mainCamera.transform.rotation = Quaternion.identity;
