@@ -109,7 +109,12 @@ public class LevelManager : MonoBehaviour
     }
 
     public void Park(bool fl, bool fr, bool rl, bool rr) {
+
         if (!fl || !fr || !rl || !rr) return;
+
+
+
+
         float completeTime = elapsedTime;
         SaveHighScore(completeTime);
     }
@@ -120,12 +125,12 @@ public class LevelManager : MonoBehaviour
 
         float score,timeScore,collisionScore,parkingScore;
 
-        int numberOfCollisions = GetComponent<ColliderCheck>().getNumberOfCollisions();
-        float parkingAccuracy = GetComponent<ParkingAccuracy>().getAccuracyPercentage();
+        int numberOfCollisions = GetComponentInChildren<ColliderCheck>().getNumberOfCollisions();
+        float parkingAccuracy = GetComponentInChildren<ParkingAccuracy>().getAccuracyPercentage();
         //get values
 
-        GetComponent<ColliderCheck>().resetNumberOfCollisions();
-        GetComponent<ParkingAccuracy>().resetAccuracyPercentage();
+        GetComponentInChildren<ColliderCheck>().resetNumberOfCollisions();
+        GetComponentInChildren<ParkingAccuracy>().resetAccuracyPercentage();
         //reset values
 
 
@@ -133,42 +138,51 @@ public class LevelManager : MonoBehaviour
 
         if(time<60)
         {
-            score = 1000;
+            timeScore = 1000;
         }
         else if(time<120)
         {
-            score = 800;
+            timeScore = 800;
         }
         else if(time<250)
         {
-            score = 400;
+            timeScore = 400;
         }
         else if(time<500)
         {
-            score = 200;
+            timeScore = 200;
         }
         else
         {
-            score = 0;
+            timeScore = 0;
         }
 
         if(numberOfCollisions<1)
         {
-            score += 1500;
+            collisionScore = 1500;
         }
         else if(numberOfCollisions<4)
         {
-            score += 1100;
+            collisionScore = 1100;
         }
         else if(numberOfCollisions <8)
         {
-            score += 700;
+            collisionScore = 700;
+        }
+        else
+        {
+            collisionScore = 0;
         }
       
         
     
-       score +=  parkingAccuracy*20;
-        
+       parkingScore =  parkingAccuracy*20;
+
+        score = parkingScore + collisionScore + timeScore;
+
+        Debug.Log("Parking score:" + parkingScore + " Collision score:" + collisionScore + " time score:" + timeScore);
+
+
         //main focus on parking
 
 
@@ -198,7 +212,9 @@ public class LevelManager : MonoBehaviour
         // serialize the dictionary and save it back to playerprefs.
         newSerializedString = JsonConvert.SerializeObject(sorted);
         PlayerPrefs.SetString(currentLevelIndex.ToString(), newSerializedString);
-             
+
+        Debug.Log("Loading high score");
+
         LoadSceneHighscore();
     }
 

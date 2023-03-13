@@ -12,8 +12,9 @@ public class ParkingAccuracy : MonoBehaviour
 
     private void Start()
     {
-        if(parkingTrigger == null)
-        parkingTrigger = GameObject.FindGameObjectWithTag("ParkingSpot").GetComponent<BoxCollider>();
+        
+
+        
     }
 
 
@@ -35,7 +36,8 @@ public class ParkingAccuracy : MonoBehaviour
 
     private void Update()
     {
-
+        if (parkingTrigger == null)
+            parkingTrigger = GameObject.FindGameObjectWithTag("ParkingSpot").GetComponent<BoxCollider>();
 
         float overlapVolume = CalculateOverlapVolume(carTrigger, parkingTrigger);
         float carVolume = carTrigger.bounds.size.x * carTrigger.bounds.size.z * carTrigger.bounds.size.y;

@@ -110,9 +110,9 @@ public class CarController : MonoBehaviour
         accelInput = Input.GetButton("Accelerate") ? 1: 0;
         brakeInput = Input.GetKey(KeyCode.Space) ? 1 : 0;
         //horizontalInput = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate *1.2f;
-        if (Input.GetButton("Turn Right")) horizontalInput += keyboardRotateRate *1.2f;
-        horizontalInput = Mathf.Clamp(horizontalInput, -1.2f, 1.2f);
+        if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate *1f;
+        if (Input.GetButton("Turn Right")) horizontalInput += keyboardRotateRate *1f;
+        horizontalInput = Mathf.Clamp(horizontalInput, -1f, 1f);
         if (Input.GetButtonDown("Shift Up")) if (gearIndex != 1) gearIndex++;
         if (Input.GetButtonDown("Shift Down")) if (gearIndex != -1) gearIndex--;
         if (Input.GetButtonDown("Hand Brake")) isHandBrake = !isHandBrake;
@@ -195,6 +195,8 @@ public class CarController : MonoBehaviour
     }
 
     private void Park() {
+        
+
         if (gearIndex == 0 && isHandBrake) levelManager.Park(FL.GetValidation(), FR.GetValidation(), RL.GetValidation(), RR.GetValidation());
     }
 

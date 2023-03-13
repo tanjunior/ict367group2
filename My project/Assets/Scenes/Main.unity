@@ -428,10 +428,55 @@ PrefabInstance:
         Starts off with neutral
         gear'
       objectReference: {fileID: 0}
+    - target: {fileID: 1083820041139366577, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083820041139366606, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083820041139366606, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083820041634313323, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083820041634313325, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 2004319746197510395, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100405701990615448, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100405701990615454, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100405702569449275, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100405702569449275, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2100405702569449284, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
@@ -441,10 +486,15 @@ PrefabInstance:
         Starts with handbrake
         engaged'
       objectReference: {fileID: 0}
+    - target: {fileID: 2100405702569449284, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: fontSize
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2859917802825563599, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
       propertyPath: keyboardRotateRate
-      value: 0.005
+      value: 0.006
       objectReference: {fileID: 0}
     - target: {fileID: 3274084922760991502, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
@@ -607,6 +657,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.174425, y: 1.4222641, z: 4.6004066}
   m_Center: {x: 0, y: 0.7648746, z: -0.07923463}
+--- !u!114 &914878493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914878491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c59fd1b4a37cd4d9c71f8fb11d9fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carTrigger: {fileID: 914878492}
+  parkingTrigger: {fileID: 0}
+--- !u!114 &914878494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914878491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db671c9c30834f64fb80638cd7efb099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfCollisions: 0
 --- !u!4 &914878495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 686065134683528198, guid: 41a790c7b9baefa43b76fafc15f531a7,
