@@ -423,6 +423,7 @@ MonoBehaviour:
   outputSecondaryGrabAction: {fileID: 1025930578194844918}
   outputSecondaryUngrabAction: {fileID: 5417990672912984462}
   eventStack: {fileID: 2186977480708214751}
+  attemptSwapLogicContainer: {fileID: 0}
 --- !u!1 &96304364700504510
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,9 +788,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -1035,6 +1036,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ae75150f46dab4ea33112c08abb6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveToTargetValueEnabled:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveToTargetValueDisabled:
+    m_PersistentCalls:
+      m_Calls: []
   facade: {fileID: 1259734218105020102}
   eventOutputContainer: {fileID: 6414772260727542115}
   snapToStepContainer: {fileID: 776412518373344896}
@@ -1046,6 +1053,7 @@ MonoBehaviour:
   resetDriveOnSetupFirstTimeOnly: 1
   isGrabbable: 1
   initialValueDriveSpeed: 3500
+  decreaseInitialValueDriveSpeedEachProcessMultiplier: 1
   gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   targetValueReachedThreshold: 0.075
   emitEvents: 1
@@ -5098,6 +5106,7 @@ MonoBehaviour:
     type: 3}
   civic: {fileID: 574872534131405762}
   leftController: {fileID: 643390625458049541}
+  rightController: {fileID: 643535819741432859}
   mainCamera: {fileID: 666494683661057075}
   colliderCheck: {fileID: 6967480310963306966}
   parkingAccuracy: {fileID: 2223528219769951587}
@@ -5162,7 +5171,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 52e8e6da06ec31847b53bcd3b1998822, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5890,9 +5899,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -6465,9 +6474,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -9259,9 +9268,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -10067,9 +10076,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -10838,9 +10847,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -11533,9 +11542,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -11593,9 +11602,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -11916,6 +11925,7 @@ MonoBehaviour:
   velocityApplier: {fileID: 8247086171055774658}
   velocityMultiplier: {fileID: 4076515393959015894}
   precisionLogicContainer: {fileID: 1986692928057380385}
+  collisionPointContainerComponent: {fileID: 0}
   precisionCreateContainer: {fileID: 1714040523155712421}
   precisionForceCreateContainer: {fileID: 253695939997177901}
   orientationHandleContainer: {fileID: 1210790333223696770}
@@ -12662,9 +12672,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -14654,9 +14664,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -15530,9 +15540,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -16194,9 +16204,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -17240,9 +17250,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -17383,9 +17393,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -18076,9 +18086,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -20923,9 +20933,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -20983,9 +20993,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -21043,9 +21053,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -21103,9 +21113,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -21400,9 +21410,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -21460,9 +21470,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -25449,6 +25459,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ae75150f46dab4ea33112c08abb6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveToTargetValueEnabled:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveToTargetValueDisabled:
+    m_PersistentCalls:
+      m_Calls: []
   facade: {fileID: 1065378132006408430}
   eventOutputContainer: {fileID: 5095360353408786251}
   snapToStepContainer: {fileID: 1546385376379439272}
@@ -25460,6 +25476,7 @@ MonoBehaviour:
   resetDriveOnSetupFirstTimeOnly: 1
   isGrabbable: 1
   initialValueDriveSpeed: 3500
+  decreaseInitialValueDriveSpeedEachProcessMultiplier: 1
   gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   targetValueReachedThreshold: 0.075
   emitEvents: 1
@@ -25890,9 +25907,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -26163,9 +26180,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -27705,9 +27722,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -27765,9 +27782,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -28015,9 +28032,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -28075,9 +28092,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -28135,9 +28152,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -28195,9 +28212,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -28381,9 +28398,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -28441,9 +28458,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -29093,9 +29110,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -29153,9 +29170,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -30249,9 +30266,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -30474,9 +30491,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -30534,9 +30551,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -31320,9 +31337,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -32178,9 +32195,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -32238,9 +32255,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -32360,9 +32377,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -32420,9 +32437,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -32480,9 +32497,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -32540,9 +32557,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -36958,9 +36975,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -37018,9 +37035,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -37732,6 +37749,7 @@ MonoBehaviour:
         m_CallState: 2
   grabType: 0
   grabProviderIndex: 0
+  attemptSwapSecondaryForPrimaryOnPrimaryDrop: 0
 --- !u!54 &4478965836816547093
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38658,6 +38676,7 @@ MonoBehaviour:
         m_CallState: 2
   grabType: 0
   grabProviderIndex: 0
+  attemptSwapSecondaryForPrimaryOnPrimaryDrop: 0
 --- !u!54 &2421804026593325885
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -39138,9 +39157,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -40194,6 +40213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ae75150f46dab4ea33112c08abb6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveToTargetValueEnabled:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveToTargetValueDisabled:
+    m_PersistentCalls:
+      m_Calls: []
   facade: {fileID: 397740851634435126}
   eventOutputContainer: {fileID: 6786735901151124056}
   snapToStepContainer: {fileID: 5442074242301891955}
@@ -40205,6 +40230,7 @@ MonoBehaviour:
   resetDriveOnSetupFirstTimeOnly: 1
   isGrabbable: 1
   initialValueDriveSpeed: 3500
+  decreaseInitialValueDriveSpeedEachProcessMultiplier: 1
   gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   targetValueReachedThreshold: 0.075
   emitEvents: 1
@@ -47096,9 +47122,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -47156,9 +47182,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -48568,9 +48594,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -48628,9 +48654,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -48814,9 +48840,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -48874,9 +48900,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -48934,9 +48960,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -48994,9 +49020,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -49424,9 +49450,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -51334,9 +51360,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -51464,9 +51490,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -54057,9 +54083,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -54392,9 +54418,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -55810,9 +55836,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -55870,9 +55896,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -55930,9 +55956,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -55990,9 +56016,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -56176,9 +56202,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -56236,9 +56262,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -56530,9 +56556,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -56623,6 +56649,7 @@ MonoBehaviour:
   velocityApplier: {fileID: 5450081951375361290}
   velocityMultiplier: {fileID: 8115690885889969855}
   precisionLogicContainer: {fileID: 6365337481874042095}
+  collisionPointContainerComponent: {fileID: 0}
   precisionCreateContainer: {fileID: 5874289331869635217}
   precisionForceCreateContainer: {fileID: 3734508152166843926}
   orientationHandleContainer: {fileID: 1649715958197417275}
@@ -57157,6 +57184,7 @@ MonoBehaviour:
   velocityApplier: {fileID: 6116513515213752067}
   velocityMultiplier: {fileID: 8061467344915319990}
   precisionLogicContainer: {fileID: 5122445165194833638}
+  collisionPointContainerComponent: {fileID: 0}
   precisionCreateContainer: {fileID: 5675950654493479064}
   precisionForceCreateContainer: {fileID: 3211927910725878815}
   orientationHandleContainer: {fileID: 694781287984559922}
@@ -57580,6 +57608,7 @@ MonoBehaviour:
   velocityApplier: {fileID: 6057648212431653666}
   velocityMultiplier: {fileID: 8003806384923803799}
   precisionLogicContainer: {fileID: 5180752460992422599}
+  collisionPointContainerComponent: {fileID: 0}
   precisionCreateContainer: {fileID: 5635737453543234745}
   precisionForceCreateContainer: {fileID: 3197592277762394174}
   orientationHandleContainer: {fileID: 673136070314801939}
@@ -62029,9 +62058,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -63125,9 +63154,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -63231,9 +63260,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -69663,9 +69692,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -70130,6 +70159,7 @@ MonoBehaviour:
   outputSecondaryGrabAction: {fileID: 3251994069438521663}
   outputSecondaryUngrabAction: {fileID: 7326489643292107918}
   eventStack: {fileID: 199001568604657980}
+  attemptSwapLogicContainer: {fileID: 0}
 --- !u!1 &7556379076011617224
 GameObject:
   m_ObjectHideFlags: 0
@@ -70452,9 +70482,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -71176,9 +71206,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -71660,9 +71690,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -71860,9 +71890,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -71920,9 +71950,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -72272,9 +72302,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -74041,9 +74071,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -74101,9 +74131,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -74287,9 +74317,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -74347,9 +74377,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -74407,9 +74437,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -74467,9 +74497,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -76161,9 +76191,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -77111,9 +77141,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -77441,9 +77471,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -78618,9 +78648,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []
@@ -78971,6 +79001,7 @@ MonoBehaviour:
         m_CallState: 2
   grabType: 0
   grabProviderIndex: 0
+  attemptSwapSecondaryForPrimaryOnPrimaryDrop: 0
 --- !u!54 &487372659204004751
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79340,6 +79371,7 @@ MonoBehaviour:
   outputSecondaryGrabAction: {fileID: 3644227097455800087}
   outputSecondaryUngrabAction: {fileID: 8799868606612171430}
   eventStack: {fileID: 2121613804475701012}
+  attemptSwapLogicContainer: {fileID: 0}
 --- !u!1 &8594178322501672380
 GameObject:
   m_ObjectHideFlags: 0
@@ -85145,9 +85177,9 @@ MonoBehaviour:
     xState: 1
     yState: 1
     zState: 1
+  equalityTolerance: 1e-45
   transitionDuration: 0
   maxSpeed: Infinity
-  equalityTolerance: 1e-45
   Transitioned:
     m_PersistentCalls:
       m_Calls: []

@@ -14,14 +14,14 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject mainMenu, pauseMenu, highscoreMenu;
     [SerializeField] private TextMeshPro timer;
     [SerializeField] private GameObject highscoreRowPrefab, civic;
-    [SerializeField] private WebXRController leftController;
+    [SerializeField] private WebXRController leftController, rightController;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private ColliderCheck colliderCheck;
     [SerializeField] private ParkingAccuracy parkingAccuracy;
     public UnityEvent onRestart;
     public bool showPointer = true;
     public bool highscoreDisplayed = false;
-    [System.NonSerialized] public bool isPaused = false;
+    [System.NonSerialized] public bool isPaused = false, showHologram = true;
     private float elapsedTime = 0.0f;
     public string levelName;
     private Vector2 headRotation = Vector2.zero;
@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
     private bool isVR;
     public int currentLevelIndex;
     private string newSerializedString;
-    [SerializeField] private Dictionary<string, float> currentHighscores;
+    [SerializeField] private List<Dictionary<string, string>> currentHighscores;
     public WebXRState state = WebXRState.NORMAL;
     public CursorLockMode lockmode;
 
@@ -70,6 +70,9 @@ public class LevelManager : MonoBehaviour
             if (leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Escape)) {
                 isPaused = !isPaused;
                 //Time.timeScale = isPaused? 0 : 1;
+            }
+            if (rightController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Tab)) {
+                showHologram = !showHologram;
             }
             if (isPaused) {
                 pauseMenu.SetActive(true);
@@ -118,7 +121,6 @@ public class LevelManager : MonoBehaviour
 
     public void SaveHighScore(float time) {
         string name = Environment.UserName; //get player name from PC name.
-        Dictionary<string, float> highscore; // dictionary kv pair to store name and score
 
         float score,timeScore,collisionScore,parkingScore;
 
@@ -180,34 +182,36 @@ public class LevelManager : MonoBehaviour
 
         //main focus on parking
 
-
-
+        Dictionary<string, string> currentSession = new Dictionary<string, string>(); // dictionary kv pair to store level highscore)
+        currentSession.Add("name", name);
+        currentSession.Add("score", score.ToString());
+        List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
         if (PlayerPrefs.HasKey(currentLevelIndex.ToString())) { // check if highscore for this level exists in the playerprefs
             string serializedString = PlayerPrefs.GetString(currentLevelIndex.ToString());
             //Debug.Log(serializedString);
-            highscore = JsonConvert.DeserializeObject<Dictionary<string, float>>(serializedString); // the dictionary was serialized before saving so we need to deserialize the string
+            list = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(serializedString); // the dictionary was serialized before saving so we need to deserialize the string
             //Debug.Log(highscore.Count);
             //check if player already have a highscore
-            if (highscore.ContainsKey(name)){
-                if (time < highscore[name]) highscore[name] = score; // replace the score if the current score is higher
-            }
-        } else {
-            highscore = new Dictionary<string, float>(); // create a new dictionary if there is no record
-            highscore.Add(name, score); 
+            // if (highscore.ContainsKey(name)){
+            //     if (time < highscore[name]) highscore[name] = score; // replace the score if the current score is higher
+            // }
         }
 
-        
+        list.Add(currentSession); 
 
-        // sort the dictionary
-        Dictionary<string, float> sorted = new Dictionary<string, float>();
-        foreach (KeyValuePair<string, float> pair in highscore.OrderByDescending(key => key.Value)) {
-            sorted.Add(pair.Key, pair.Value);
-        }
+        // sort the list
+        var sortedList = list.OrderByDescending(d => float.Parse(d["score"])).ToList();
 
-        currentHighscores = sorted;
+        // // sort the dictionary
+        // Dictionary<string, float> sorted = new Dictionary<string, float>();
+        // foreach (KeyValuePair<string, float> pair in highscore.OrderByDescending(key => key.Value)) {
+        //     sorted.Add(pair.Key, pair.Value);
+        // }
+
+        currentHighscores = sortedList;
 
         // serialize the dictionary and save it back to playerprefs.
-        newSerializedString = JsonConvert.SerializeObject(sorted);
+        newSerializedString = JsonConvert.SerializeObject(sortedList);
         PlayerPrefs.SetString(currentLevelIndex.ToString(), newSerializedString);
 
         Debug.Log("Loading high score");
@@ -217,14 +221,20 @@ public class LevelManager : MonoBehaviour
 
     private void DisplayHighScore() {
         float height = 3;
-        foreach(var row in currentHighscores) {
-            Debug.Log(row.Key);
-            Debug.Log(row.Value);
+        currentHighscores.ForEach(d => {
             GameObject rowObject = Instantiate(highscoreRowPrefab, new Vector3(0.408f, height, 4), Quaternion.identity);
             HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
-            script.setRowValues(row.Key, row.Value.ToString());
+            script.setRowValues(d["name"], d["score"]);
             height -= 0.2f;
-        }
+        });
+        // foreach(var row in currentHighscores) {
+        //     Debug.Log(row.Key);
+        //     Debug.Log(row.Value);
+        //     GameObject rowObject = Instantiate(highscoreRowPrefab, new Vector3(0.408f, height, 4), Quaternion.identity);
+        //     HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
+        //     script.setRowValues(row.Key, row.Value.ToString());
+        //     height -= 0.2f;
+        // }
         highscoreDisplayed = true;
     }
 
