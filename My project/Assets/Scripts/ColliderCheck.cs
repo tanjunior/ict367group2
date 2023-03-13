@@ -14,15 +14,10 @@ public class ColliderCheck : MonoBehaviour
         if (c.gameObject.tag == "collider" && Time.time > lastCollisionTime + 4f)
         {
             numberOfCollisions++;
+            Debug.Log("Number of collisions:" + numberOfCollisions);
             lastCollisionTime = Time.time;
         }
     }
-
-    void Update()
-    {
-        Debug.Log("Number of collisions:" + numberOfCollisions);
-    }
-
 
     public int getNumberOfCollisions()
     {

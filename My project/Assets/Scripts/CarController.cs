@@ -110,8 +110,8 @@ public class CarController : MonoBehaviour
         accelInput = Input.GetButton("Accelerate") ? 1: 0;
         brakeInput = Input.GetKey(KeyCode.Space) ? 1 : 0;
         //horizontalInput = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate *1f;
-        if (Input.GetButton("Turn Right")) horizontalInput += keyboardRotateRate *1f;
+        if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate;
+        if (Input.GetButton("Turn Right")) horizontalInput += keyboardRotateRate;
         horizontalInput = Mathf.Clamp(horizontalInput, -1f, 1f);
         if (Input.GetButtonDown("Shift Up")) if (gearIndex != 1) gearIndex++;
         if (Input.GetButtonDown("Shift Down")) if (gearIndex != -1) gearIndex--;
@@ -182,8 +182,11 @@ public class CarController : MonoBehaviour
 
     private void UpdateUI() {
         speedometer.text = string.Format("torque {0:N0}\nspeed {1:N0}", currentTorque, rb.velocity.magnitude);
+        if (gearIndex == 0) debug.text = string.Format("P");
+        else if (gearIndex == 1) debug.text = string.Format("D");
+        else debug.text = string.Format("R");
         //debug.text = string.Format("steering wheel {0:N0}\nwheel angle {1:N0}", steeringWheelRotation, currentSteerAngle);
-        debug.text = string.Format("gear {0:N0}\naccel {1:N0}\nbrake {2:N0}", gearIndex, accelInput, brakeInput);
+        //debug.text = string.Format("gear {0:N0}\naccel {1:N0}\nbrake {2:N0}", gearIndex, accelInput, brakeInput);
     }
 
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform) {
@@ -195,8 +198,6 @@ public class CarController : MonoBehaviour
     }
 
     private void Park() {
-        
-
         if (gearIndex == 0 && isHandBrake) levelManager.Park(FL.GetValidation(), FR.GetValidation(), RL.GetValidation(), RR.GetValidation());
     }
 

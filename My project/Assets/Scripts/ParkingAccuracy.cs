@@ -6,16 +6,10 @@ public class ParkingAccuracy : MonoBehaviour
 {
 
     public BoxCollider carTrigger;
-    public BoxCollider parkingTrigger;
+    private BoxCollider parkingTrigger;
 
-    private float accuracyPercentage, parkedAccuracyPercentage;
+    private float accuracyPercentage;
 
-    private void Start()
-    {
-        
-
-        
-    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -31,10 +25,7 @@ public class ParkingAccuracy : MonoBehaviour
         return overlapSize.x * overlapSize.y * overlapSize.z;
     }
 
-
-
-
-    private void Update()
+    public float getAccuracyPercentage()
     {
         if (parkingTrigger == null)
             parkingTrigger = GameObject.FindGameObjectWithTag("ParkingSpot").GetComponent<BoxCollider>();
@@ -42,24 +33,12 @@ public class ParkingAccuracy : MonoBehaviour
         float overlapVolume = CalculateOverlapVolume(carTrigger, parkingTrigger);
         float carVolume = carTrigger.bounds.size.x * carTrigger.bounds.size.z * carTrigger.bounds.size.y;
         accuracyPercentage = overlapVolume / carVolume * 100f;
-
-
-
         Debug.Log("Parking accuracy: " + accuracyPercentage.ToString("F2") + "%");
-    }
-
-    public void setAccuracy()
-    {
-        parkedAccuracyPercentage = accuracyPercentage;
-    }
-
-    public float getAccuracyPercentage()
-    {
-        return parkedAccuracyPercentage;
+        return accuracyPercentage;
     }
 
     public void resetAccuracyPercentage()
     {
-        parkedAccuracyPercentage = 0;
+        accuracyPercentage = 0;
     }
 }
