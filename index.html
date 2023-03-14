@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
+<!-- Credits-->
+<!-- https://sketchfab.com/3d-models/stock-honda-civic-ep3-7d9c9fb0b7c94e998059e652ad9d3028 (car model) -->
+<!-- https://freesound.org/people/marlonhj/sounds/242740/ (sound effect)-->
+<!-- audio: silent-wood (background music)
+By Purple Cat
+audio: 242740_marlonhj_engine (engine sound)	->
+<!-- Audio: big thud2
+by: Reitanna-->
+<!-- From: https://free3d.com/3d-model/red-brick-building-35698.html  (Iridesium)-->
+<!-- Credits-->
+<!-- Credits-->
+
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -18,7 +32,7 @@
           onsuccess();
         }
       }
-      
+
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/be83532b37d195813405fa21b513853d.json", {onProgress: UnityProgress});
     </script>
   </head>
@@ -36,14 +50,14 @@
     <script>
       let enterARButton = document.getElementById('enterar');
       let enterVRButton = document.getElementById('entervr');
-      
+
       document.addEventListener('onARSupportedCheck', function (event) {
         enterARButton.disabled = !event.detail.supported;
       }, false);
       document.addEventListener('onVRSupportedCheck', function (event) {
         enterVRButton.disabled = !event.detail.supported;
       }, false);
-      
+
       enterARButton.addEventListener('click', function (event) {
         unityInstance.Module.WebXR.toggleAR();
       }, false);
