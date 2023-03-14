@@ -3418,7 +3418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &686065134683528198
 Transform:
   m_ObjectHideFlags: 0
@@ -14813,7 +14813,7 @@ MonoBehaviour:
 
     Starts off with neutral
     gear'
-  fontSize: 28
+  fontSize: 30
   fontColor: {r: 0, g: 0, b: 0, a: 1}
   outerBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   innerBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
@@ -14936,7 +14936,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 130}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1083820041186951394
 CanvasRenderer:
@@ -15418,7 +15418,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 330, y: 140}
+  m_SizeDelta: {x: 310, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1083820041924447748
 CanvasRenderer:
@@ -24925,7 +24925,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 330, y: 140}
+  m_SizeDelta: {x: 310, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2100405702237352945
 CanvasRenderer:
@@ -25014,7 +25014,7 @@ MonoBehaviour:
   tooltipText: 'Use this to engage parking brake(H for PC)
 
     Disengage to drive'
-  fontSize: 28
+  fontSize: 30
   fontColor: {r: 0, g: 0, b: 0, a: 1}
   outerBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   innerBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
@@ -25137,7 +25137,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 130}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2100405702575078679
 CanvasRenderer:

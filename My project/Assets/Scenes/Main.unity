@@ -134,11 +134,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 574872534131405762, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 677258876077330226, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
       propertyPath: m_Mesh
@@ -259,11 +254,6 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3901751093917588957, guid: 41a790c7b9baefa43b76fafc15f531a7,
-        type: 3}
-      propertyPath: colliderCheck
-      value: 
-      objectReference: {fileID: 1873231161}
     - target: {fileID: 4570037626297027516, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -818,18 +808,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59982d23121ff3242a7ae1f08a75d26a, type: 3}
---- !u!114 &1873231161 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1655834228564243836, guid: 41a790c7b9baefa43b76fafc15f531a7,
-    type: 3}
-  m_PrefabInstance: {fileID: 58974825}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db671c9c30834f64fb80638cd7efb099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1982386820
 PrefabInstance:
   m_ObjectHideFlags: 0
