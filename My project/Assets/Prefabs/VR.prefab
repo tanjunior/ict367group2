@@ -5013,7 +5013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &682505750581091669
 Transform:
   m_ObjectHideFlags: 0
@@ -5090,13 +5090,18 @@ MonoBehaviour:
   pauseMenu: {fileID: 920066705384590695}
   highscoreMenu: {fileID: 9118814087582509606}
   timer: {fileID: 7676247452905594873}
+  nameInput: {fileID: 0}
   highscoreRowPrefab: {fileID: 102071417489377901, guid: 7eb7cc985eca3ac46b13de9ecbb47d43,
     type: 3}
   civic: {fileID: 574872534131405762}
+  title: {fileID: 0}
+  webXRCameraSet: {fileID: 683710256460428993}
+  CameraRigs: {fileID: 683922084532665881}
+  VRTK: {fileID: 682505750581091668}
   leftController: {fileID: 643390625458049541}
   rightController: {fileID: 643535819741432859}
   mainCamera: {fileID: 666494683661057075}
-  colliderCheck: {fileID: 0}
+  colliderCheck: {fileID: 1655834228564243836}
   parkingAccuracy: {fileID: 2223528219769951587}
   onRestart:
     m_PersistentCalls:
@@ -5160,7 +5165,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 52e8e6da06ec31847b53bcd3b1998822, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7586,7 +7591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &677962051680865197
 Transform:
   m_ObjectHideFlags: 0
@@ -8872,7 +8877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &682027398312411493
 Transform:
   m_ObjectHideFlags: 0
