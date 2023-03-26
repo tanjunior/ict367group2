@@ -13,8 +13,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenu, pauseMenu, highscoreMenu;
     [SerializeField] private TextMeshPro timer;
-    [SerializeField] private TMP_InputField nameInput;
-    [SerializeField] private GameObject highscoreRowPrefab, civic, title, webXRCameraSet, CameraRigs, VRTK;
+    [SerializeField] private GameObject highscoreRowPrefab, civic;
     [SerializeField] private WebXRController leftController, rightController;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private ColliderCheck colliderCheck;
@@ -30,7 +29,6 @@ public class LevelManager : MonoBehaviour
     public bool isVR;
     public int currentLevelIndex;
     private string newSerializedString;
-    private string playerName = Environment.UserName; //get player name from PC name.
     [SerializeField] private List<Dictionary<string, string>> currentHighscores;
     public WebXRState state = WebXRState.NORMAL;
     public CursorLockMode lockmode;
@@ -47,19 +45,18 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        title.SetActive(true);
-        // xrManager = WebXRManager.Instance;
-        // isVR = xrManager.isSupportedVR;
-        // if (isVR) showPointer = true;
-        // StartCoroutine(ExampleCoroutine(0.1f, false));
-        // StartCoroutine(ExampleCoroutine(0.2f, true));
+        xrManager = WebXRManager.Instance;
+        isVR = xrManager.isSupportedVR;
+        if (isVR) showPointer = true;
+        StartCoroutine(ExampleCoroutine(0.1f, false));
+        StartCoroutine(ExampleCoroutine(0.2f, true));
     }
 
-    // IEnumerator ExampleCoroutine(float seconds, bool state)
-    // {
-    //     yield return new WaitForSeconds(seconds);
-    //     showPointer = state;
-    // }
+    IEnumerator ExampleCoroutine(float seconds, bool state)
+    {
+        yield return new WaitForSeconds(seconds);
+        showPointer = state;
+    }
 
     // Update is called once per frame
     void Update()
@@ -101,17 +98,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void onNameConfirmed() {
-        playerName = nameInput.text;
-        title.SetActive(false);
-        webXRCameraSet.SetActive(true);
-        CameraRigs.SetActive(true);
-        VRTK.SetActive(true);
-        xrManager = WebXRManager.Instance;
-        isVR = xrManager.isSupportedVR;
-        if (isVR) showPointer = true;
-    }
-
     private void MouseLook() {
         headRotation.y += Input.GetAxis ("Mouse X");
 		headRotation.x += -Input.GetAxis ("Mouse Y");
@@ -135,6 +121,8 @@ public class LevelManager : MonoBehaviour
     }
 
     public void SaveHighScore(float time) {
+        string name = Environment.UserName; //get player name from PC name.
+
         float score,timeScore,collisionScore,parkingScore;
 
         //get values
@@ -196,7 +184,7 @@ public class LevelManager : MonoBehaviour
         //main focus on parking
 
         Dictionary<string, string> currentSession = new Dictionary<string, string>(); // dictionary kv pair to store level highscore)
-        currentSession.Add("name", playerName);
+        currentSession.Add("name", name);
         currentSession.Add("score", score.ToString());
         List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
         if (PlayerPrefs.HasKey(currentLevelIndex.ToString())) { // check if highscore for this level exists in the playerprefs
