@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private ColliderCheck colliderCheck;
     [SerializeField] private ParkingAccuracy parkingAccuracy;
+    [SerializeField] private TextMeshPro[] chars = new TextMeshPro[3];
     public UnityEvent onRestart;
     public bool showPointer = true;
     public bool highscoreDisplayed = false;
@@ -34,6 +35,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<Dictionary<string, string>> currentHighscores;
     public WebXRState state = WebXRState.NORMAL;
     public CursorLockMode lockmode;
+    private int[] charsIndex = new int[] {0, 0, 0};
+    private char[] alphabet = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
     private void Awake() {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("VR");
@@ -70,7 +73,7 @@ public class LevelManager : MonoBehaviour
         levelName = SceneManager.GetActiveScene().name;
         if (levelName == "Highscore") {
             if (!highscoreDisplayed) DisplayHighScore();
-        } else if (levelName == "Main") {}
+        } else if (levelName == "Main" || levelName.Contains("Test")) {}
         else {
             if (leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Escape)) {
                 isPaused = !isPaused;
@@ -118,6 +121,18 @@ public class LevelManager : MonoBehaviour
         timer.text = string.Format("{0:N0}:{1:N0}", minutes, seconds);
     }
 
+    public void CharacterUp(int index) {
+        if (charsIndex[index] < alphabet.Length-1) charsIndex[index] += 1;
+        else charsIndex[index] = 0;
+        chars[index].text = alphabet[charsIndex[index]].ToString();
+    }
+
+    public void CharacterDown(int index) {
+        if (charsIndex[index] > 0) charsIndex[index] -= 1;
+        else charsIndex[index] = alphabet.Length-1;
+        chars[index].text = alphabet[charsIndex[index]].ToString();
+    }
+
     public void Park(bool fl, bool fr, bool rl, bool rr) {
         if (!fl || !fr || !rl || !rr) return;
         float completeTime = elapsedTime;
@@ -125,7 +140,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void SaveHighScore(float time) {
-        string name = Environment.UserName; //get player name from PC name.
+        string name = chars[0].text + chars[1].text + chars[2].text;
 
         float score,timeScore,collisionScore,parkingScore;
 
