@@ -10,7 +10,7 @@ public class ColliderCheck : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        Debug.Log("number of name=" + c.gameObject.tag);
+        //Debug.Log("number of name=" + c.gameObject.tag);
 
         if (c.gameObject.tag == "collider" && Time.time > lastCollisionTime + 4f)
         {
@@ -19,11 +19,6 @@ public class ColliderCheck : MonoBehaviour
             lastCollisionTime = Time.time;
             collisionSound.Play();
         }
-    }
-
-    private void OnCollisionEnter(Collision other) {
-        
-        Debug.Log("number of name=" + other.gameObject.tag);
     }
 
     public int getNumberOfCollisions()

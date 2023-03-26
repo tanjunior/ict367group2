@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Management;
 using TMPro;
 using WebXR;
 using Newtonsoft.Json;
@@ -19,13 +20,14 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private ColliderCheck colliderCheck;
     [SerializeField] private ParkingAccuracy parkingAccuracy;
     public UnityEvent onRestart;
-    public bool showPointer = false;
+    public bool showPointer = true;
     public bool highscoreDisplayed = false;
     [System.NonSerialized] public bool isPaused = false, showHologram = true;
     private float elapsedTime = 0.0f;
     public string levelName;
     private Vector2 headRotation = Vector2.zero;
     private WebXRManager xrManager;
+    public bool isOculus;
     public bool isVR;
     public int currentLevelIndex;
     private string newSerializedString;
@@ -42,20 +44,22 @@ public class LevelManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
+    
     // Start is called before the first frame update
     void Start()
     {
+        XRGeneralSettings instance = XRGeneralSettings.Instance;
         xrManager = WebXRManager.Instance;
-        isVR = xrManager.isSupportedVR;
-        if (isVR) showPointer = true;
+        isOculus = instance.Manager.activeLoader != null;
+        isVR = (xrManager.isSupportedVR || isOculus);
         StartCoroutine(ExampleCoroutine(0.1f, false));
         StartCoroutine(ExampleCoroutine(0.2f, true));
     }
 
-    IEnumerator ExampleCoroutine(float seconds, bool state)
+    IEnumerator ExampleCoroutine(float seconds, bool pointerState)
     {
         yield return new WaitForSeconds(seconds);
-        showPointer = state;
+        showPointer = pointerState;
     }
 
     // Update is called once per frame
@@ -77,7 +81,7 @@ public class LevelManager : MonoBehaviour
             }
             if (isPaused) {
                 pauseMenu.SetActive(true);
-                if (isVR) showPointer = true;
+                showPointer = true;
                 lockmode = CursorLockMode.None;
                 Cursor.lockState = lockmode;
             } else {

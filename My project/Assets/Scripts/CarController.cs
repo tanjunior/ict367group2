@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using WebXR;
-using UnityEngine.XR.Management;
 using Tilia.Interactions.Controllables.AngularDriver;
 
 public class CarController : MonoBehaviour
@@ -16,7 +15,6 @@ public class CarController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     // devmode
-    [SerializeField] private bool enableVRControlsInEditor = true;
     [SerializeField] private TextMeshProUGUI debug;
 
     // others
@@ -47,19 +45,13 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        XRGeneralSettings instance = XRGeneralSettings.Instance;
-        if (instance.Manager.activeLoader == null) enableVRControlsInEditor = false;
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (levelManager.isPaused) return;
         if (Application.isEditor) {
-            if (enableVRControlsInEditor) {
+            if (levelManager.isVR) {
                 Cursor.lockState = CursorLockMode.None;
                 GetVrInput();
             }
@@ -84,14 +76,14 @@ public class CarController : MonoBehaviour
 
     public void OnSteeringWheelValueChanged(float steeringWheelValue) {
         if (levelManager.isPaused) return;
-        if (levelManager.state == WebXRState.VR || enableVRControlsInEditor) {
+        if (levelManager.state == WebXRState.VR || levelManager.isVR) {
             currentSteerAngle =  steeringWheelValue * maxSteeringAngle / 486;
         }
     }
 
     public void OnHandBrakeStepValueChanged(float value) {
         if (levelManager.isPaused) return;
-        if (levelManager.state == WebXRState.VR || enableVRControlsInEditor) {       
+        if (levelManager.state == WebXRState.VR || levelManager.isVR) {       
             leftController.Pulse(gearHapticStrength, gearHapticDuration);
             isHandBrake = ((int)value == 1 ? true : false);
         }
@@ -99,7 +91,7 @@ public class CarController : MonoBehaviour
 
     public void OnGearShifterStepValueChanged(float value) {
         if (levelManager.isPaused) return;
-        if (levelManager.state == WebXRState.VR || enableVRControlsInEditor) {
+        if (levelManager.state == WebXRState.VR || levelManager.isVR) {
             if ((int)value-1 == gearIndex) return;
             leftController.Pulse(gearHapticStrength, gearHapticDuration);
             gearIndex = (int)value-1;
@@ -171,7 +163,7 @@ public class CarController : MonoBehaviour
     }
 
     private void HandleSteering() {
-        if (levelManager.state == WebXRState.NORMAL) currentSteerAngle = maxSteeringAngle * horizontalInput;
+        if (!levelManager.isVR) currentSteerAngle = maxSteeringAngle * horizontalInput;
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }

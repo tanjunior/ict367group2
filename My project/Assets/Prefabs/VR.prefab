@@ -5096,7 +5096,7 @@ MonoBehaviour:
   leftController: {fileID: 643390625458049541}
   rightController: {fileID: 643535819741432859}
   mainCamera: {fileID: 666494683661057075}
-  colliderCheck: {fileID: 0}
+  colliderCheck: {fileID: 1655834228564243836}
   parkingAccuracy: {fileID: 2223528219769951587}
   onRestart:
     m_PersistentCalls:

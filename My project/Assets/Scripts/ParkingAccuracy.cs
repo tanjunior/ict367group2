@@ -20,8 +20,8 @@ public class ParkingAccuracy : MonoBehaviour
     // calculate the overlap volume of two box colliders
     private float CalculateOverlapVolume(BoxCollider box1, BoxCollider box2)
     {
-        Debug.Log(box1.name);
-        Debug.Log(box2.name);
+        //Debug.Log(box1.name);
+        //Debug.Log(box2.name);
         Vector3 overlapSize = Vector3.Min(box1.bounds.max, box2.bounds.max) - Vector3.Max(box1.bounds.min, box2.bounds.min);
         overlapSize = Vector3.Max(overlapSize, Vector3.zero);
         return overlapSize.x * overlapSize.y * overlapSize.z;
