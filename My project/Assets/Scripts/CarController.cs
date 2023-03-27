@@ -70,7 +70,7 @@ public class CarController : MonoBehaviour
         if (levelManager.isPaused) return;
         Park();
         HandleMotor();
-        HandleSteering();
+        //HandleSteering();
         if (animateWheels) UpdateWheels();
     }
 
@@ -129,11 +129,17 @@ public class CarController : MonoBehaviour
         steeringWheel.TargetValue = steeringWheelValue + 0.5f;
         handbrake.TargetValue = isHandBrake ? 1 : 0;
         gearShifter.TargetValue = gearIndex == 0 ? gearIndex + 0.5f : gearIndex;
+
+        currentSteerAngle = maxSteeringAngle * horizontalInput;
     }
 
     private void GetVrInput() {
         accelInput = rightController.GetAxis(WebXRController.AxisTypes.Trigger);
         brakeInput = leftController.GetAxis(WebXRController.AxisTypes.Trigger);
+
+        
+        frontLeftWheelCollider.steerAngle = currentSteerAngle;
+        frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
 
     private void HandleMotor() {
@@ -160,12 +166,6 @@ public class CarController : MonoBehaviour
         frontLeftWheelCollider.brakeTorque = currentbreakForce;
         rearLeftWheelCollider.brakeTorque = currentbreakForce;
         rearRightWheelCollider.brakeTorque = currentbreakForce;
-    }
-
-    private void HandleSteering() {
-        if (!levelManager.isVR) currentSteerAngle = maxSteeringAngle * horizontalInput;
-        frontLeftWheelCollider.steerAngle = currentSteerAngle;
-        frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
 
     private void UpdateWheels() {
