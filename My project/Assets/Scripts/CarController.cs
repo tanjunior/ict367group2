@@ -70,7 +70,19 @@ public class CarController : MonoBehaviour
         if (levelManager.isPaused) return;
         Park();
         HandleMotor();
-        //HandleSteering();
+
+        if (Application.isEditor) {
+            if (levelManager.isVR) {
+                HandleVRSteering();
+            }
+            else {
+                HandlePCSteering();
+            }
+        } else if (levelManager.state == WebXRState.NORMAL) {
+            HandlePCSteering();
+        } else if (levelManager.state == WebXRState.VR) {
+            HandleVRSteering();
+        }
         if (animateWheels) UpdateWheels();
     }
 
@@ -129,17 +141,11 @@ public class CarController : MonoBehaviour
         steeringWheel.TargetValue = steeringWheelValue + 0.5f;
         handbrake.TargetValue = isHandBrake ? 1 : 0;
         gearShifter.TargetValue = gearIndex == 0 ? gearIndex + 0.5f : gearIndex;
-
-        currentSteerAngle = maxSteeringAngle * horizontalInput;
     }
 
     private void GetVrInput() {
         accelInput = rightController.GetAxis(WebXRController.AxisTypes.Trigger);
         brakeInput = leftController.GetAxis(WebXRController.AxisTypes.Trigger);
-
-        
-        frontLeftWheelCollider.steerAngle = currentSteerAngle;
-        frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
 
     private void HandleMotor() {
@@ -159,6 +165,18 @@ public class CarController : MonoBehaviour
 
         currentbreakForce = brakeInput * breakForce;
         ApplyBreaking();
+    }
+    
+    private void HandlePCSteering() {
+        Debug.Log("HandlePCSteering");
+        currentSteerAngle = maxSteeringAngle * horizontalInput;
+        frontLeftWheelCollider.steerAngle = currentSteerAngle;
+        frontRightWheelCollider.steerAngle = currentSteerAngle;
+    }
+
+    private void HandleVRSteering() {
+        frontLeftWheelCollider.steerAngle = currentSteerAngle;
+        frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
 
     private void ApplyBreaking() {
