@@ -3457,7 +3457,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4239129470638313403}
-  enableVRControlsInEditor: 1
   debug: {fileID: 677568663563339679}
   levelManager: {fileID: 3901751093917588957}
   engineSound: {fileID: 6983774413420089431}
@@ -5098,6 +5097,10 @@ MonoBehaviour:
   mainCamera: {fileID: 666494683661057075}
   colliderCheck: {fileID: 1655834228564243836}
   parkingAccuracy: {fileID: 2223528219769951587}
+  chars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   onRestart:
     m_PersistentCalls:
       m_Calls:
@@ -5115,6 +5118,7 @@ MonoBehaviour:
   showPointer: 1
   highscoreDisplayed: 0
   levelName: 
+  isOculus: 0
   isVR: 0
   currentLevelIndex: 0
   state: 2
@@ -14787,7 +14791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083820041139366576}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.242, y: 0.9063, z: 0.2918}
+  m_LocalPosition: {x: -0.242, y: 0.9063, z: 0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1083820041140916189}
@@ -14936,7 +14940,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 80}
+  m_SizeDelta: {x: 300, y: 135}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1083820041186951394
 CanvasRenderer:
@@ -15083,7 +15087,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2500, y: 80}
+  m_SizeDelta: {x: 2700, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1083820041634313322
 CanvasRenderer:
@@ -15418,7 +15422,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 310, y: 90}
+  m_SizeDelta: {x: 310, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1083820041924447748
 CanvasRenderer:
@@ -24590,7 +24594,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2500, y: 80}
+  m_SizeDelta: {x: 2700, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2100405701990615455
 CanvasRenderer:
@@ -24925,7 +24929,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 310, y: 90}
+  m_SizeDelta: {x: 310, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2100405702237352945
 CanvasRenderer:
@@ -25137,7 +25141,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 80}
+  m_SizeDelta: {x: 300, y: 135}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2100405702575078679
 CanvasRenderer:
@@ -64446,7 +64450,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6874857306105380929}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.273}
+  m_LocalPosition: {x: 0.011, y: 0, z: 0.273}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2100405702569449275}
@@ -86943,6 +86947,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682505750615688260}
     m_Modifications:
+    - target: {fileID: 3065241223767340, guid: fc0b9e75f3ed44c40878aaf442fc949c, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3065242007290957, guid: fc0b9e75f3ed44c40878aaf442fc949c, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 631259815436935809, guid: fc0b9e75f3ed44c40878aaf442fc949c,
         type: 3}
       propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -87053,6 +87065,16 @@ PrefabInstance:
       propertyPath: disabledInactive.isApplied
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2285347641038751629, guid: fc0b9e75f3ed44c40878aaf442fc949c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285347641884780268, guid: fc0b9e75f3ed44c40878aaf442fc949c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2311832335232968229, guid: fc0b9e75f3ed44c40878aaf442fc949c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -87118,6 +87140,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3114546937749316863, guid: fc0b9e75f3ed44c40878aaf442fc949c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114546938580682142, guid: fc0b9e75f3ed44c40878aaf442fc949c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3433139077073230752, guid: fc0b9e75f3ed44c40878aaf442fc949c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -87133,10 +87165,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0856b3ebfa34fd24791a80be945fcb0a, type: 2}
+    - target: {fileID: 4891114312190691531, guid: fc0b9e75f3ed44c40878aaf442fc949c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655606448637864554, guid: fc0b9e75f3ed44c40878aaf442fc949c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8225111794737224286, guid: fc0b9e75f3ed44c40878aaf442fc949c,
         type: 3}
       propertyPath: m_Name
       value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605959902927842233, guid: fc0b9e75f3ed44c40878aaf442fc949c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc0b9e75f3ed44c40878aaf442fc949c, type: 3}
