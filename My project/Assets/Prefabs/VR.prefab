@@ -87277,6 +87277,11 @@ PrefabInstance:
       propertyPath: StepValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2116566820272827043, guid: df854889ba8b3b248bf96424a3b89e17,
+        type: 3}
+      propertyPath: stepRange.maximum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4763570561051037854, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
       propertyPath: Grabbed.m_PersistentCalls.m_Calls.Array.size
