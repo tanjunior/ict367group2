@@ -29,12 +29,11 @@ public class LevelManager : MonoBehaviour
     public string levelName;
     private Vector2 headRotation = Vector2.zero;
     private WebXRManager xrManager;
-    public bool isOculus;
-    public bool isVR;
+    private XRGeneralSettings xrSettings; 
+    public bool isVR = false;
     public int currentLevelIndex;
     private string newSerializedString;
     [SerializeField] private List<Dictionary<string, string>> currentHighscores;
-    public WebXRState state = WebXRState.NORMAL;
     public CursorLockMode lockmode;
 
     private void Awake() {
@@ -50,10 +49,8 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        XRGeneralSettings instance = XRGeneralSettings.Instance;
+        xrSettings = XRGeneralSettings.Instance;
         xrManager = WebXRManager.Instance;
-        isOculus = instance.Manager.activeLoader != null;
-        isVR = (xrManager.isSupportedVR || isOculus);
         StartCoroutine(ExampleCoroutine(0.1f, false));
         StartCoroutine(ExampleCoroutine(0.2f, true));
     }
@@ -68,7 +65,8 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         // public enum WebXRState { VR, AR, NORMAL }
-        if (isVR) state = xrManager.XRState;
+        if (xrManager.XRState == WebXRState.VR && xrSettings.Manager.activeLoader != null) isVR = true;
+        else isVR = false;
         levelName = SceneManager.GetActiveScene().name;
         if (levelName == "Highscore") {
             if (!highscoreDisplayed) DisplayHighScore();
@@ -90,12 +88,12 @@ public class LevelManager : MonoBehaviour
                 TimeCounter();
                 showPointer = false;
                 pauseMenu.SetActive(false);
-                if (state == WebXRState.NORMAL) {
+                if (!isVR) {
                     
                     lockmode = CursorLockMode.Locked;
                     Cursor.lockState = lockmode;
                     MouseLook();
-                } else if (state == WebXRState.VR) {
+                } else if (isVR) {
                     
                     lockmode = CursorLockMode.None;
                     Cursor.lockState = lockmode;

@@ -50,17 +50,9 @@ public class CarController : MonoBehaviour
     void Update()
     {
         if (levelManager.isPaused) return;
-        if (Application.isEditor) {
-            if (levelManager.isVR) {
-                Cursor.lockState = CursorLockMode.None;
-                GetVrInput();
-            }
-            else {
-                GetPcInput();
-            }
-        } else if (levelManager.state == WebXRState.NORMAL) {
+        if (!levelManager.isVR) {
             GetPcInput();
-        } else if (levelManager.state == WebXRState.VR) {
+        } else if (levelManager.isVR) {
             GetVrInput();
         }
         UpdateUI();
@@ -70,32 +62,20 @@ public class CarController : MonoBehaviour
         if (levelManager.isPaused) return;
         Park();
         HandleMotor();
-
-        if (Application.isEditor) {
-            if (levelManager.isVR) {
-                HandleVRSteering();
-            }
-            else {
-                HandlePCSteering();
-            }
-        } else if (levelManager.state == WebXRState.NORMAL) {
-            HandlePCSteering();
-        } else if (levelManager.state == WebXRState.VR) {
-            HandleVRSteering();
-        }
+        HandleSteering();
         if (animateWheels) UpdateWheels();
     }
 
     public void OnSteeringWheelValueChanged(float steeringWheelValue) {
         if (levelManager.isPaused) return;
-        if (levelManager.state == WebXRState.VR || levelManager.isVR) {
+        if (levelManager.isVR) {
             currentSteerAngle =  steeringWheelValue * maxSteeringAngle / 486;
         }
     }
 
     public void OnHandBrakeStepValueChanged(float value) {
         if (levelManager.isPaused) return;
-        if (levelManager.state == WebXRState.VR || levelManager.isVR) {       
+        if (levelManager.isVR) {       
             leftController.Pulse(gearHapticStrength, gearHapticDuration);
             isHandBrake = ((int)value == 1 ? true : false);
         }
@@ -103,7 +83,7 @@ public class CarController : MonoBehaviour
 
     public void OnGearShifterStepValueChanged(float value) {
         if (levelManager.isPaused) return;
-        if (levelManager.state == WebXRState.VR || levelManager.isVR) {
+        if (levelManager.isVR) {
             if ((int)value-1 == gearIndex) return;
             leftController.Pulse(gearHapticStrength, gearHapticDuration);
             gearIndex = (int)value-1;
@@ -166,15 +146,9 @@ public class CarController : MonoBehaviour
         currentbreakForce = brakeInput * breakForce;
         ApplyBreaking();
     }
-    
-    private void HandlePCSteering() {
-        Debug.Log("HandlePCSteering");
-        currentSteerAngle = maxSteeringAngle * horizontalInput;
-        frontLeftWheelCollider.steerAngle = currentSteerAngle;
-        frontRightWheelCollider.steerAngle = currentSteerAngle;
-    }
 
-    private void HandleVRSteering() {
+    private void HandleSteering() {
+        if (!levelManager.isVR) currentSteerAngle = maxSteeringAngle * horizontalInput;
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
@@ -234,7 +208,7 @@ public class CarController : MonoBehaviour
     }
 
     public void OnSteeringWheelTargetValueReached(float value) {
-        if (levelManager.state == WebXRState.NORMAL) return;
+        if (!levelManager.isVR) return;
         if (value != 0.5f) {
             steeringWheel.TargetValue = 0.5f;
             return;
@@ -243,12 +217,12 @@ public class CarController : MonoBehaviour
     }
 
     public void OnGearShifterTargetValueReached() {
-        if (levelManager.state == WebXRState.NORMAL) return;
+        if (!levelManager.isVR) return;
         gearShifter.MoveToTargetValue = false;
     }
 
     public void OnHandbrakeTargetValueReached() {
-        if (levelManager.state == WebXRState.NORMAL) return;
+        if (!levelManager.isVR) return;
         handbrake.MoveToTargetValue = false;
         
     }
