@@ -3888,7 +3888,6 @@ MonoBehaviour:
   breakForce: 1000
   maxSteeringAngle: 30
   keyboardRotateRate: 0.006
-  animateWheels: 1
   torqueCurve:
     serializedVersion: 2
     m_Curve:
@@ -20019,8 +20018,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 41b54412c8f5d7c4f999870c69cdc4f8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.8
+  m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0
