@@ -52,10 +52,8 @@ public class LevelManager : MonoBehaviour
         xrSettings = XRGeneralSettings.Instance;
         xrManager = WebXRManager.Instance;
         isVR = CheckVR();
-        if (isVR) {
-            StartCoroutine(ExampleCoroutine(0.1f, false));
-            StartCoroutine(ExampleCoroutine(0.2f, true));
-        }
+        StartCoroutine(ExampleCoroutine(0.1f, false));
+        StartCoroutine(ExampleCoroutine(0.2f, true));
     }
 
     IEnumerator ExampleCoroutine(float seconds, bool pointerState)
@@ -106,8 +104,8 @@ public class LevelManager : MonoBehaviour
 
     private bool CheckVR() {
         if (Application.isEditor) {
-            if (xrSettings.Manager.activeLoader == null) return false;
-            else return true;
+            if (xrSettings.Manager.activeLoader != null) return true;
+            else return false;
         }
         return xrManager.XRState == WebXRState.VR;
     }
