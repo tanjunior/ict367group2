@@ -248,7 +248,7 @@ PrefabInstance:
     - target: {fileID: 8125524646385854856, guid: 702caa48c730e92469a1c5144fd8ed46,
         type: 3}
       propertyPath: velocityMultiplierFactor.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8125524646385854856, guid: 702caa48c730e92469a1c5144fd8ed46,
         type: 3}
@@ -263,6 +263,16 @@ PrefabInstance:
     - target: {fileID: 8125524646385854856, guid: 702caa48c730e92469a1c5144fd8ed46,
         type: 3}
       propertyPath: angularVelocityMultiplierFactor.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125524646385854856, guid: 702caa48c730e92469a1c5144fd8ed46,
+        type: 3}
+      propertyPath: velocityMultiplierFactor.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125524646385854856, guid: 702caa48c730e92469a1c5144fd8ed46,
+        type: 3}
+      propertyPath: velocityMultiplierFactor.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1941,17 +1951,17 @@ PrefabInstance:
     - target: {fileID: 7149407609728251122, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
       propertyPath: velocityMultiplierFactor.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7149407609728251122, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
       propertyPath: velocityMultiplierFactor.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7149407609728251122, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
       propertyPath: velocityMultiplierFactor.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7692042977776961813, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
