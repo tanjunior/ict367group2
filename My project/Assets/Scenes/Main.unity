@@ -548,7 +548,7 @@ PrefabInstance:
     - target: {fileID: 367273391513093873, guid: f353a3e11818a814483b03c5ba1db1c3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 367273391513093873, guid: f353a3e11818a814483b03c5ba1db1c3,
         type: 3}
@@ -558,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 367273391513093873, guid: f353a3e11818a814483b03c5ba1db1c3,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 367273391513093873, guid: f353a3e11818a814483b03c5ba1db1c3,
         type: 3}
@@ -573,7 +573,7 @@ PrefabInstance:
     - target: {fileID: 367273391513093873, guid: f353a3e11818a814483b03c5ba1db1c3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 367273391513093873, guid: f353a3e11818a814483b03c5ba1db1c3,
         type: 3}
@@ -1148,6 +1148,26 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6088448996562732580, guid: 28981cb5ab4b6aa428806349162c6031,
+        type: 3}
+      propertyPath: onNameChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1203132296}
+    - target: {fileID: 6088448996562732580, guid: 28981cb5ab4b6aa428806349162c6031,
+        type: 3}
+      propertyPath: onNameChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetName
+      objectReference: {fileID: 0}
+    - target: {fileID: 6088448996562732580, guid: 28981cb5ab4b6aa428806349162c6031,
+        type: 3}
+      propertyPath: onNameChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6088448996562732580, guid: 28981cb5ab4b6aa428806349162c6031,
+        type: 3}
+      propertyPath: onNameChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6088448996562732581, guid: 28981cb5ab4b6aa428806349162c6031,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1186,7 +1206,7 @@ PrefabInstance:
     - target: {fileID: 6088448996562732581, guid: 28981cb5ab4b6aa428806349162c6031,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6088448996562732581, guid: 28981cb5ab4b6aa428806349162c6031,
         type: 3}

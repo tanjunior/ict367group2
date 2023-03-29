@@ -33,6 +33,7 @@ public class LevelManager : MonoBehaviour
     public bool isVR;
     public int currentLevelIndex;
     private string newSerializedString;
+    private string playerName;
     [SerializeField] private List<Dictionary<string, string>> currentHighscores;
     public CursorLockMode lockmode;
 
@@ -132,9 +133,11 @@ public class LevelManager : MonoBehaviour
         SaveHighScore(completeTime);
     }
 
-    public void SaveHighScore(float time) {
-        string name = NameSelector.GetName();
+    public void SetName(string name) {
+        playerName = name;
+    }
 
+    public void SaveHighScore(float time) {
         float score,timeScore,collisionScore,parkingScore;
 
         //get values
@@ -196,7 +199,7 @@ public class LevelManager : MonoBehaviour
         //main focus on parking
 
         Dictionary<string, string> currentSession = new Dictionary<string, string>(); // dictionary kv pair to store level highscore)
-        currentSession.Add("name", name);
+        currentSession.Add("name", playerName);
         currentSession.Add("score", score.ToString());
         List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
         if (PlayerPrefs.HasKey(currentLevelIndex.ToString())) { // check if highscore for this level exists in the playerprefs
@@ -272,6 +275,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void NextLevel() {
+        onRestart.Invoke();
         LoadScene(currentLevelIndex+1);
     }
 
