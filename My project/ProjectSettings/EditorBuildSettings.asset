@@ -11,12 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level1.unity
     guid: 02480a8f495ac744b8eb6e7ce68119aa
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/level2.unity
+    guid: 27ca2b3bfc0b9c44f874945964c86eaa
+  - enabled: 1
+    path: Assets/Scenes/level3.unity
+    guid: 2fa5baef3072946499df007748875e48
   - enabled: 1
     path: Assets/Scenes/Highscore.unity
     guid: 4f291a9a5aac87540b9d8f89e59420a3
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
     path: Assets/Scenes/VRStateTest.unity
     guid: b7e79885b61e40742a515eff5b220283
