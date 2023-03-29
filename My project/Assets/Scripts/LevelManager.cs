@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
     public string levelName;
     private Vector2 headRotation = Vector2.zero;
     private WebXRManager xrManager;
-    private XRGeneralSettings xrSettings; 
+    private XRGeneralSettings xrSettings;
     public bool isVR = false;
     public int currentLevelIndex;
     private string newSerializedString;

@@ -11,7 +11,6 @@ public class CarController : MonoBehaviour
     private float currentTorque, currentSteerAngle, currentbreakForce;
     private bool isHandBrake = true;
     private int gearIndex = 0;
-    private WebXRState state = WebXRState.NORMAL;
     [SerializeField] private Rigidbody rb;
 
     // devmode
