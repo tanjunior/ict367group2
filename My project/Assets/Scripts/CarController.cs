@@ -29,7 +29,6 @@ public class CarController : MonoBehaviour
 
     // Settings
     [SerializeField] private float motorTorque, breakForce, maxSteeringAngle, keyboardRotateRate = 0.005f;
-    [SerializeField] private bool animateWheels;
     [SerializeField] private AnimationCurve torqueCurve, gearCurve, engineSoundCurve;
     [SerializeField] private float finalDriveRatio = 3;
     [SerializeField] private int gearHapticDuration = 100;
@@ -62,7 +61,7 @@ public class CarController : MonoBehaviour
         Park();
         HandleMotor();
         HandleSteering();
-        if (animateWheels) UpdateWheels();
+        UpdateWheels();
     }
 
     public void OnSteeringWheelValueChanged(float steeringWheelValue) {
@@ -91,11 +90,7 @@ public class CarController : MonoBehaviour
 
     private void GetPcInput() {
         accelInput = Input.GetButton("Accelerate") ? 1: 0;
-        if (Input.GetKey(KeyCode.Space)) {
-            brakeSound.Play();
-            brakeInput = 1;
-        } else brakeInput = 0;
-        //horizontalInput = Input.GetAxisRaw("Horizontal");
+        brakeInput = Input.GetKey(KeyCode.Space) ? 1: 0;
         if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate;
         if (Input.GetButton("Turn Right")) horizontalInput += keyboardRotateRate;
         horizontalInput = Mathf.Clamp(horizontalInput, -1f, 1f);
@@ -143,7 +138,7 @@ public class CarController : MonoBehaviour
         }
 
         currentbreakForce = brakeInput * breakForce;
-        ApplyBreaking();
+        ApplyBraking();
     }
 
     private void HandleSteering() {
@@ -152,7 +147,8 @@ public class CarController : MonoBehaviour
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
 
-    private void ApplyBreaking() {
+    private void ApplyBraking() {
+        brakeSound.Play();
         frontRightWheelCollider.brakeTorque = currentbreakForce;
         frontLeftWheelCollider.brakeTorque = currentbreakForce;
         rearLeftWheelCollider.brakeTorque = currentbreakForce;
@@ -194,35 +190,8 @@ public class CarController : MonoBehaviour
         gearShifter.MoveToTargetValue = true;
         handbrake.TargetValue = 1;       
         handbrake.MoveToTargetValue = true;
-        StartCoroutine(Delay(0.5f));
         gearIndex = 0;
         horizontalInput = 0;
         isHandBrake = true;
-    }
-
-    IEnumerator Delay(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        steeringWheel.MoveToTargetValue = false;
-    }
-
-    public void OnSteeringWheelTargetValueReached(float value) {
-        if (!levelManager.isVR) return;
-        if (value != 0.5f) {
-            steeringWheel.TargetValue = 0.5f;
-            return;
-        }
-        steeringWheel.MoveToTargetValue = false;
-    }
-
-    public void OnGearShifterTargetValueReached() {
-        if (!levelManager.isVR) return;
-        gearShifter.MoveToTargetValue = false;
-    }
-
-    public void OnHandbrakeTargetValueReached() {
-        if (!levelManager.isVR) return;
-        handbrake.MoveToTargetValue = false;
-        
     }
 }
