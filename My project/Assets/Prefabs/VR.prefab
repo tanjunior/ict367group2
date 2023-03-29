@@ -87412,6 +87412,11 @@ PrefabInstance:
       propertyPath: followOnAxis.zState
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9194919288075826165, guid: df854889ba8b3b248bf96424a3b89e17,
+        type: 3}
+      propertyPath: ancestor
+      value: 
+      objectReference: {fileID: 8674396655302497354}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df854889ba8b3b248bf96424a3b89e17, type: 3}
 --- !u!4 &8779023984557874886 stripped
@@ -87984,6 +87989,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9194919288075826165, guid: df854889ba8b3b248bf96424a3b89e17,
+        type: 3}
+      propertyPath: ancestor
+      value: 
+      objectReference: {fileID: 1034379131901005958}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df854889ba8b3b248bf96424a3b89e17, type: 3}
 --- !u!114 &3134173185490467959 stripped
@@ -88030,12 +88040,12 @@ PrefabInstance:
     - target: {fileID: 2116566820272827043, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
       propertyPath: driveSpeed
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2116566820272827043, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
       propertyPath: ungrabbedDrag
-      value: 100
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2116566820272827043, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
