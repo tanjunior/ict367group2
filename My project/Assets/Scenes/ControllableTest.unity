@@ -228,7 +228,17 @@ PrefabInstance:
     - target: {fileID: 3607323991379943426, guid: 702caa48c730e92469a1c5144fd8ed46,
         type: 3}
       propertyPath: isKinematicWhenInactive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607323991379943426, guid: 702caa48c730e92469a1c5144fd8ed46,
+        type: 3}
+      propertyPath: isKinematicWhenActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607323991379943426, guid: 702caa48c730e92469a1c5144fd8ed46,
+        type: 3}
+      propertyPath: willInheritIsKinematicWhenInactiveFromConsumerRigidbody
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5701689818747509894, guid: 702caa48c730e92469a1c5144fd8ed46,
         type: 3}
@@ -1851,12 +1861,12 @@ PrefabInstance:
     - target: {fileID: 2116566820272827043, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
       propertyPath: driveLimit.minimum
-      value: 486
+      value: -486
       objectReference: {fileID: 0}
     - target: {fileID: 2116566820272827043, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
       propertyPath: driveLimit.maximum
-      value: -486
+      value: 486
       objectReference: {fileID: 0}
     - target: {fileID: 2116566820272827043, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
@@ -1868,6 +1878,21 @@ PrefabInstance:
       propertyPath: startAtInitialTargetValue
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2448744079595617656, guid: df854889ba8b3b248bf96424a3b89e17,
+        type: 3}
+      propertyPath: isKinematicWhenActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448744079595617656, guid: df854889ba8b3b248bf96424a3b89e17,
+        type: 3}
+      propertyPath: isKinematicWhenInactive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448744079595617656, guid: df854889ba8b3b248bf96424a3b89e17,
+        type: 3}
+      propertyPath: willInheritIsKinematicWhenInactiveFromConsumerRigidbody
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4465908825043848386, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
       propertyPath: m_RootOrder
@@ -1877,6 +1902,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149407609728251122, guid: df854889ba8b3b248bf96424a3b89e17,
+        type: 3}
+      propertyPath: angularVelocityMultiplierFactor.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149407609728251122, guid: df854889ba8b3b248bf96424a3b89e17,
+        type: 3}
+      propertyPath: angularVelocityMultiplierFactor.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149407609728251122, guid: df854889ba8b3b248bf96424a3b89e17,
+        type: 3}
+      propertyPath: angularVelocityMultiplierFactor.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7692042977776961813, guid: df854889ba8b3b248bf96424a3b89e17,
         type: 3}
