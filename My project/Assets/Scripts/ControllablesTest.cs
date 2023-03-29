@@ -97,8 +97,8 @@ public class ControllablesTest : MonoBehaviour
             //brakeInput = 1;
         //} else brakeInput = 0;
         //horizontalInput = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButton("Turn Left")) horizontalInput += keyboardRotateRate;
-        if (Input.GetButton("Turn Right")) horizontalInput -= keyboardRotateRate;
+        if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate;
+        if (Input.GetButton("Turn Right")) horizontalInput += keyboardRotateRate;
         horizontalInput = Mathf.Clamp(horizontalInput, -1f, 1f);
         if (Input.GetButtonDown("Shift Up")) if (gearIndex != 1) gearIndex++;
         if (Input.GetButtonDown("Shift Down")) if (gearIndex != -1) gearIndex--;
@@ -119,7 +119,7 @@ public class ControllablesTest : MonoBehaviour
         gearShifter.MoveToTargetValue = true;
         testShifter.MoveToTargetValue = true;
 
-        float steeringWheelValue = ((486 / maxSteeringAngle) * currentSteerAngle) / 972;
+        float steeringWheelValue = ((486 / maxSteeringAngle) * -currentSteerAngle) / 972;
         steeringWheel.TargetValue = steeringWheelValue + 0.5f;
         handbrake.TargetValue = isHandBrake ? 1 : 0;
         gearShifter.TargetValue = gearIndex == 0 ? gearIndex + 0.5f : gearIndex;
