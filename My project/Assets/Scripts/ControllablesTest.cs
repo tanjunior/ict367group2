@@ -29,11 +29,13 @@ public class ControllablesTest : MonoBehaviour
     {
         xrSettings = XRGeneralSettings.Instance;
         xrManager = WebXRManager.Instance;
+        isVR = CheckVR();
     }
 
     // Update is called once per frame
     void Update()
     {
+        isVR = CheckVR();
         if (leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Escape)) {
             showPointer = !showPointer;
         }
@@ -50,6 +52,14 @@ public class ControllablesTest : MonoBehaviour
 
     private void FixedUpdate() {
         HandleSteering();
+    }
+
+    private bool CheckVR() {
+        if (Application.isEditor) {
+            if (xrSettings.Manager.activeLoader != null) return true;
+            else return false;
+        }
+        return xrManager.XRState == WebXRState.VR;
     }
 
     private void MouseLook() {

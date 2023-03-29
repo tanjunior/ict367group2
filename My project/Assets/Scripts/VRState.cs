@@ -26,7 +26,7 @@ public class VRState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = string.Format("isEditor: {0}\nXRState: {1}\nactiveLoader: {2}\nisVR:{3}",Application.isEditor, xrManager.XRState, xrSettings.Manager.activeLoader, CheckVR());
+        text.text = string.Format("isEditor: {0}\nXRState: {1}\nactiveLoader: {2}\nisSupportedVR:{3}\nisVR:{4}",Application.isEditor, xrManager.XRState, xrSettings.Manager.activeLoader, xrManager.isSupportedVR, CheckVR());
     }
 
     private bool CheckVR() {
