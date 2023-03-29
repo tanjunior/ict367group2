@@ -22,7 +22,7 @@ public class ControllablesTest : MonoBehaviour
     private int gearIndex = 0;
     private WebXRManager xrManager;
     private XRGeneralSettings xrSettings; 
-    public bool isVR = false;
+    public bool isVR;
     public bool showPointer = false;
     // Start is called before the first frame update
     void Start()
