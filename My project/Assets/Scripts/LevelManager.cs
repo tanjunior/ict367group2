@@ -302,7 +302,7 @@ public class LevelManager : MonoBehaviour
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #elif UNITY_WEBGL
-            if (state == WebXRState.VR) xrManager.ToggleVR();
+            if (isVR) xrManager.ToggleVR();
         #else
             Application.Quit();
         #endif
