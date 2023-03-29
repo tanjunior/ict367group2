@@ -11,11 +11,11 @@ public class VRState : MonoBehaviour
     //public WebXRState state;
     public TextMeshPro text;
     public WebXRManager xrManager;
-    public XRGeneralSettings instance;
+    public XRGeneralSettings xrSettings;
     // Start is called before the first frame update
     void Start()
     {
-        instance = XRGeneralSettings.Instance;
+        xrSettings = XRGeneralSettings.Instance;
         //isOculus = instance.Manager.activeLoader != null;
         xrManager = WebXRManager.Instance;
         //state = xrManager.XRState;
@@ -26,6 +26,14 @@ public class VRState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = string.Format("isEditor: {0}\nXRState: {1}\nactiveLoader: {2}",Application.isEditor, xrManager.XRState, instance.Manager.activeLoader);
+        text.text = string.Format("isEditor: {0}\nXRState: {1}\nactiveLoader: {2}\nisVR:{3}",Application.isEditor, xrManager.XRState, xrSettings.Manager.activeLoader, CheckVR());
+    }
+
+    private bool CheckVR() {
+        if (Application.isEditor) {
+            if (xrSettings.Manager.activeLoader != null) return true;
+            else return false;
+        }
+        return xrManager.XRState == WebXRState.VR;
     }
 }
