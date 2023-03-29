@@ -9,7 +9,7 @@ using Zinnia.Action;
 public class ControllablesTest : MonoBehaviour
 {
     [SerializeField] private WebXRController leftController;
-    [SerializeField] private AngularDriveFacade handbrake, gearShifter, steeringWheel;
+    [SerializeField] private AngularDriveFacade handbrake, gearShifter, steeringWheel, testShifter;
     [SerializeField] private Camera mainCamera;
 
     // Settings
@@ -143,6 +143,8 @@ public class ControllablesTest : MonoBehaviour
     public void ResetGearShifter() {
         gearShifter.TargetValue = 0.5f;
         gearShifter.MoveToTargetValue = true;
+        testShifter.TargetValue = 0.5f;
+        testShifter.MoveToTargetValue = true;
         gearIndex = 0;
     }
 
@@ -165,10 +167,10 @@ public class ControllablesTest : MonoBehaviour
     //     steeringWheel.MoveToTargetValue = false;
     // }
 
-    // public void OnGearShifterTargetValueReached() {
-    //     if (!isVR) return;
-    //     gearShifter.MoveToTargetValue = false;
-    // }
+    public void OnGearShifterTargetValueReached() {
+        if (!isVR) return;
+        gearShifter.MoveToTargetValue = false;
+    }
 
     // public void OnHandbrakeTargetValueReached() {
     //     if (!isVR) return;
