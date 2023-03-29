@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour
     private Vector2 headRotation = Vector2.zero;
     private WebXRManager xrManager;
     private XRGeneralSettings xrSettings;
-    public bool isVR = false;
+    public bool isVR;
     public int currentLevelIndex;
     private string newSerializedString;
     [SerializeField] private List<Dictionary<string, string>> currentHighscores;
@@ -51,8 +51,11 @@ public class LevelManager : MonoBehaviour
     {
         xrSettings = XRGeneralSettings.Instance;
         xrManager = WebXRManager.Instance;
-        StartCoroutine(ExampleCoroutine(0.1f, false));
-        StartCoroutine(ExampleCoroutine(0.2f, true));
+        isVR = CheckVR();
+        if (isVR) {
+            StartCoroutine(ExampleCoroutine(0.1f, false));
+            StartCoroutine(ExampleCoroutine(0.2f, true));
+        }
     }
 
     IEnumerator ExampleCoroutine(float seconds, bool pointerState)
@@ -65,8 +68,7 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         // public enum WebXRState { VR, AR, NORMAL }
-        if (xrManager.XRState == WebXRState.VR && xrSettings.Manager.activeLoader != null) isVR = true;
-        else isVR = false;
+        isVR = CheckVR();
         levelName = SceneManager.GetActiveScene().name;
         if (levelName == "Highscore") {
             if (!highscoreDisplayed) DisplayHighScore();
@@ -100,6 +102,10 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool CheckVR() {
+        return xrManager.XRState == WebXRState.VR && xrSettings.Manager.activeLoader != null;
     }
 
     private void MouseLook() {

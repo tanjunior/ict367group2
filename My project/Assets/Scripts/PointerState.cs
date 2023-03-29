@@ -13,7 +13,6 @@ public class PointerState : BooleanAction
     // Update is called once per frame
     void Update()
     {
-        if (!levelManager.isVR) return;
         bool showPointer = levelManager.showPointer;
         Receive(showPointer);
     }
