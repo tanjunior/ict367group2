@@ -105,7 +105,11 @@ public class LevelManager : MonoBehaviour
     }
 
     private bool CheckVR() {
-        return xrManager.XRState == WebXRState.VR && xrSettings.Manager.activeLoader != null;
+        if (Application.isEditor) {
+            if (xrSettings.Manager.activeLoader == null) return false;
+            else return true;
+        }
+        return xrManager.XRState == WebXRState.VR;
     }
 
     private void MouseLook() {
