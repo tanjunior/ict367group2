@@ -117,10 +117,13 @@ public class ControllablesTest : MonoBehaviour
         steeringWheel.MoveToTargetValue = true;
         handbrake.MoveToTargetValue = true;
         gearShifter.MoveToTargetValue = true;
+        testShifter.MoveToTargetValue = true;
+
         float steeringWheelValue = ((486 / maxSteeringAngle) * currentSteerAngle) / 972;
         steeringWheel.TargetValue = steeringWheelValue + 0.5f;
         handbrake.TargetValue = isHandBrake ? 1 : 0;
         gearShifter.TargetValue = gearIndex == 0 ? gearIndex + 0.5f : gearIndex;
+        testShifter.TargetValue = gearIndex == 0 ? gearIndex + 0.5f : gearIndex;
     }
 
     private void HandleSteering() {
