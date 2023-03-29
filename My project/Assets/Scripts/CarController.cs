@@ -148,7 +148,7 @@ public class CarController : MonoBehaviour
     }
 
     private void ApplyBraking() {
-        brakeSound.Play();
+        if (brakeInput > 0) brakeSound.Play();
         frontRightWheelCollider.brakeTorque = currentbreakForce;
         frontLeftWheelCollider.brakeTorque = currentbreakForce;
         rearLeftWheelCollider.brakeTorque = currentbreakForce;
