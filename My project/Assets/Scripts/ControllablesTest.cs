@@ -39,8 +39,6 @@ public class ControllablesTest : MonoBehaviour
         if (leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Escape)) {
             showPointer = !showPointer;
         }
-        if (xrManager.XRState == WebXRState.VR && xrSettings.Manager.activeLoader != null) isVR = true;
-        else isVR = false;
         if (!isVR) {
             GetPcInput();
             Cursor.lockState = CursorLockMode.Locked;
