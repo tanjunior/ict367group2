@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
     public bool isVR;
     public int currentLevelIndex;
     private string newSerializedString;
-    private string playerName;
+    private string playerName = "ICT";
     [SerializeField] private List<Dictionary<string, string>> currentHighscores;
     public CursorLockMode lockmode;
 
