@@ -87142,6 +87142,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3527365182890565175, guid: 702caa48c730e92469a1c5144fd8ed46,
+        type: 3}
+      propertyPath: attachmentPoint
+      value: 
+      objectReference: {fileID: 682505750615688263}
     - target: {fileID: 3607323991379943426, guid: 702caa48c730e92469a1c5144fd8ed46,
         type: 3}
       propertyPath: followTracking
@@ -87346,7 +87351,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ancestor
       value: 
-      objectReference: {fileID: 3937801251058411478}
+      objectReference: {fileID: 682505750615688263}
     - target: {fileID: 8293574385253417171, guid: 702caa48c730e92469a1c5144fd8ed46,
         type: 3}
       propertyPath: m_Layer
