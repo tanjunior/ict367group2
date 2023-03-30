@@ -43,11 +43,17 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
 
-
     // Update is called once per frame
     void Update()
     {
-        if (levelManager.isPaused) return;
+        
+        if (levelManager.isPaused) {
+            engineSound.Pause();
+            return;
+        }
+
+        engineSound.UnPause();
+        
         if (!levelManager.isVR) {
             GetPcInput();
         } else if (levelManager.isVR) {
@@ -131,13 +137,15 @@ public class CarController : MonoBehaviour
         float rpmForAudio = Mathf.Clamp(motorRpm * accelInput, -1000, 1000);
         float pitch = engineSoundCurve.Evaluate(rpmForAudio);
         engineSound.pitch = pitch;
-        
-        if (!isHandBrake) {
-            frontLeftWheelCollider.motorTorque = currentTorque/2;
-            frontRightWheelCollider.motorTorque = currentTorque/2;
+        frontLeftWheelCollider.motorTorque = currentTorque/2;
+        frontRightWheelCollider.motorTorque = currentTorque/2;
+
+        if (isHandBrake) {
+            currentbreakForce = 2000;
+        } else {
+            currentbreakForce = brakeInput * breakForce;
         }
 
-        currentbreakForce = brakeInput * breakForce;
         ApplyBraking();
     }
 
@@ -184,6 +192,8 @@ public class CarController : MonoBehaviour
     }
 
     public void Reset() {
+        rb.isKinematic = true;
+        currentbreakForce = Mathf.Infinity;
         steeringWheel.TargetValue = 0.5f;
         steeringWheel.MoveToTargetValue = true; 
         gearShifter.TargetValue = 0.5f;
@@ -193,5 +203,6 @@ public class CarController : MonoBehaviour
         gearIndex = 0;
         horizontalInput = 0;
         isHandBrake = true;
+        rb.isKinematic = false;
     }
 }

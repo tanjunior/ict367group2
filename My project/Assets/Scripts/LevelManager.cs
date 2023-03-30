@@ -75,7 +75,7 @@ public class LevelManager : MonoBehaviour
         else {
             if (leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Escape)) {
                 isPaused = !isPaused;
-                //Time.timeScale = isPaused? 0 : 1;
+                Time.timeScale = isPaused? 0 : 1;
             }
             if (rightController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Tab)) {
                 showHologram = !showHologram;
@@ -266,6 +266,7 @@ public class LevelManager : MonoBehaviour
         highscoreMenu.SetActive(false);
         pauseMenu.SetActive(false);
         civic.SetActive(true);
+        Time.timeScale = 1;
     }
 
     public void RestartLevel() {
@@ -290,6 +291,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadSceneMain() {
         StartCoroutine(Delay(1));
+        Time.timeScale = 1;
         isPaused = false;
         civic.SetActive(false);
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
