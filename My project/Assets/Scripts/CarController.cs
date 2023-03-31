@@ -46,19 +46,15 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (levelManager.isPaused) {
             engineSound.Pause();
             return;
         }
-
         engineSound.UnPause();
         
-        if (!levelManager.isVR) {
-            GetPcInput();
-        } else if (levelManager.isVR) {
-            GetVrInput();
-        }
+        if (levelManager.isVR) GetVrInput();
+        else  GetPcInput();
+
         UpdateUI();
 	}
 
@@ -72,9 +68,7 @@ public class CarController : MonoBehaviour
 
     public void OnSteeringWheelValueChanged(float steeringWheelValue) {
         if (levelManager.isPaused) return;
-        if (levelManager.isVR) {
-            currentSteerAngle =  steeringWheelValue * maxSteeringAngle / 486;
-        }
+        if (levelManager.isVR)  currentSteerAngle =  steeringWheelValue * maxSteeringAngle / 486;
     }
 
     public void OnHandBrakeStepValueChanged(float value) {
@@ -100,8 +94,8 @@ public class CarController : MonoBehaviour
         if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate;
         if (Input.GetButton("Turn Right")) horizontalInput += keyboardRotateRate;
         horizontalInput = Mathf.Clamp(horizontalInput, -1f, 1f);
-        if (Input.GetButtonDown("Shift Up")) if (gearIndex != 1) gearIndex++;
-        if (Input.GetButtonDown("Shift Down")) if (gearIndex != -1) gearIndex--;
+        if (Input.GetButtonDown("Shift Up") && gearIndex != 1) gearIndex++;
+        if (Input.GetButtonDown("Shift Down") && gearIndex != -1) gearIndex--;
         if (Input.GetButtonDown("Hand Brake")) isHandBrake = !isHandBrake;
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) gearIndex = -1;
@@ -140,11 +134,8 @@ public class CarController : MonoBehaviour
         frontLeftWheelCollider.motorTorque = currentTorque/2;
         frontRightWheelCollider.motorTorque = currentTorque/2;
 
-        if (isHandBrake) {
-            currentbreakForce = 2000;
-        } else {
-            currentbreakForce = brakeInput * breakForce;
-        }
+        if (isHandBrake) currentbreakForce = 2000;
+        else currentbreakForce = brakeInput * breakForce;
 
         ApplyBraking();
     }
@@ -192,18 +183,29 @@ public class CarController : MonoBehaviour
     }
 
     public void Reset() {
-        Time.timeScale = 1;
-        rb.isKinematic = true;
-        currentbreakForce = Mathf.Infinity;
-        steeringWheel.TargetValue = 0.5f;
-        steeringWheel.MoveToTargetValue = true; 
-        gearShifter.TargetValue = 0.5f;
-        gearShifter.MoveToTargetValue = true;
-        handbrake.TargetValue = 1;       
-        handbrake.MoveToTargetValue = true;
+        if (levelManager.isVR) {
+            steeringWheel.TargetValue = 0.5f;
+            steeringWheel.MoveToTargetValue = true; 
+            gearShifter.TargetValue = 0.5f;
+            gearShifter.MoveToTargetValue = true;
+            handbrake.TargetValue = 1;
+            handbrake.MoveToTargetValue = true;
+            StartCoroutine(Delay(0.3f));
+        }
         gearIndex = 0;
         horizontalInput = 0;
         isHandBrake = true;
+
+        rb.isKinematic = true; //remove all forces from a rigid body
+        currentbreakForce = Mathf.Infinity;
         rb.isKinematic = false;
+    }
+
+    IEnumerator Delay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        steeringWheel.MoveToTargetValue = false;
+        gearShifter.MoveToTargetValue = false;
+        handbrake.MoveToTargetValue = false;
     }
 }

@@ -281,7 +281,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void LoadSceneHighscore() {
-        StartCoroutine(Delay(1));
+        StartCoroutine(Delay(0.2f));
         isPaused = false;
         highscoreDisplayed = false;
         civic.SetActive(false);
@@ -290,7 +290,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void LoadSceneMain() {
-        StartCoroutine(Delay(1));
+        StartCoroutine(Delay(0.2f));
         Time.timeScale = 1;
         isPaused = false;
         civic.SetActive(false);
