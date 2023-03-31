@@ -192,6 +192,7 @@ public class CarController : MonoBehaviour
     }
 
     public void Reset() {
+        Time.timeScale = 1;
         rb.isKinematic = true;
         currentbreakForce = Mathf.Infinity;
         steeringWheel.TargetValue = 0.5f;
