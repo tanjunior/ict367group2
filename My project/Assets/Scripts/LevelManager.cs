@@ -255,6 +255,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void LoadScene(int index) {
+        Time.timeScale = 1;
         SceneManager.LoadScene(index, LoadSceneMode.Single);
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
@@ -266,7 +267,6 @@ public class LevelManager : MonoBehaviour
         highscoreMenu.SetActive(false);
         pauseMenu.SetActive(false);
         civic.SetActive(true);
-        Time.timeScale = 1;
     }
 
     public void RestartLevel() {
