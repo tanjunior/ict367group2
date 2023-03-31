@@ -12,14 +12,13 @@ using Newtonsoft.Json;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenu, pauseMenu, highscoreMenu;
+    [SerializeField] private GameObject pauseMenu, highscoreMenu, toolTips, NameSelector;
     [SerializeField] private TextMeshPro timer;
-    [SerializeField] private GameObject highscoreRowPrefab, civic;
+    [SerializeField] private GameObject highscoreRowPrefab;
     [SerializeField] private WebXRController leftController, rightController;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private ColliderCheck colliderCheck;
     [SerializeField] private ParkingAccuracy parkingAccuracy;
-    [SerializeField] private NameSelector NameSelector;
     [SerializeField] private AudioSource engineSound, engineStartSound;
     [SerializeField] private Animation MoveToCar;
     [SerializeField] private Rigidbody rb;
@@ -145,12 +144,13 @@ public class LevelManager : MonoBehaviour
             engineSound.Play();
             rb.constraints = RigidbodyConstraints.None;
             collider.enabled = true;
+            firstStart = false;
+            NameSelector.SetActive(false);
         }
-        playerName = NameSelector.GetName();
-        firstStart = false;
+        playerName = NameSelector.GetComponent<NameSelector>().GetName();
         engineStartSound.Play();
         StartCoroutine(PlayEngineSound(1.8f));
-        MoveToCar.Play();    
+        MoveToCar.Play();
     }
 
     public void SaveHighScore(float time) {
@@ -271,6 +271,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void LoadScene(int index) {
+        onRestart.Invoke();
         Time.timeScale = 1;
         SceneManager.LoadScene(index, LoadSceneMode.Single);
         transform.position = Vector3.zero;
@@ -279,10 +280,9 @@ public class LevelManager : MonoBehaviour
         showPointer = false;
         elapsedTime = 0;
         currentLevelIndex = index;
-        mainMenu.SetActive(false);
         highscoreMenu.SetActive(false);
         pauseMenu.SetActive(false);
-        civic.SetActive(true);
+        toolTips.SetActive(false);
     }
 
     public void RestartLevel() {
@@ -300,7 +300,6 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(Delay(0.2f));
         isPaused = false;
         highscoreDisplayed = false;
-        civic.SetActive(false);
         SceneManager.LoadScene("Highscore", LoadSceneMode.Single);
         highscoreMenu.SetActive(true);
     }
@@ -309,9 +308,7 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(Delay(0.2f));
         Time.timeScale = 1;
         isPaused = false;
-        civic.SetActive(false);
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
-        mainMenu.SetActive(true);
         highscoreMenu.SetActive(false);
     }
 
