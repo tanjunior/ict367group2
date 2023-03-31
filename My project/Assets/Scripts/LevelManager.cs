@@ -20,7 +20,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private ColliderCheck colliderCheck;
     [SerializeField] private ParkingAccuracy parkingAccuracy;
     [SerializeField] private NameSelector NameSelector;
-    private bool firstStart = true;
+    [SerializeField] private AudioSource engineSound, engineStartSound;
+    [SerializeField] private Animation MoveToCar;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private BoxCollider collider;
+    public bool firstStart = true;
     public UnityEvent onRestart;
     public bool showPointer = true;
     public bool highscoreDisplayed = false;
@@ -71,8 +75,9 @@ public class LevelManager : MonoBehaviour
         levelName = SceneManager.GetActiveScene().name;
         if (levelName == "Highscore") {
             if (!highscoreDisplayed) DisplayHighScore();
-        } else if (levelName == "Main" || levelName.Contains("Test")) {}
-        else {
+        } else if (levelName == "Main" || levelName.Contains("Test")) {
+            if (!firstStart) MouseLook();
+        } else {
             if (leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Escape)) {
                 isPaused = !isPaused;
                 Time.timeScale = isPaused? 0 : 1;
@@ -133,8 +138,19 @@ public class LevelManager : MonoBehaviour
         SaveHighScore(completeTime);
     }
 
-    public void SetName(string name) {
-        playerName = name;
+    public void ConfirmName() {
+        IEnumerator PlayEngineSound(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            engineSound.Play();
+            rb.constraints = RigidbodyConstraints.None;
+            collider.enabled = true;
+        }
+        playerName = NameSelector.GetName();
+        firstStart = false;
+        engineStartSound.Play();
+        StartCoroutine(PlayEngineSound(1.8f));
+        MoveToCar.Play();    
     }
 
     public void SaveHighScore(float time) {

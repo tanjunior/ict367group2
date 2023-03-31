@@ -49,7 +49,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (levelManager.isPaused) {
+        if (levelManager.isPaused || levelManager.firstStart) {
             engineSound.Pause();
             return;
         }
@@ -62,7 +62,7 @@ public class CarController : MonoBehaviour
 	}
 
     private void FixedUpdate() {
-        if (levelManager.isPaused) return;
+        if (levelManager.isPaused || levelManager.firstStart) return;
         Park();
         HandleMotor();
         HandleSteering();
