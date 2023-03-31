@@ -4021,6 +4021,7 @@ MonoBehaviour:
   frontRightWheelTransform: {fileID: 8805464322976400048}
   rearLeftWheelTransform: {fileID: 2530073941451827433}
   rearRightWheelTransform: {fileID: 5816495315686352795}
+  rearMirror: {fileID: 3932976327248302387}
 --- !u!114 &2223528219769951587
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,6 +43,9 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
 
+    //
+    public Transform rearMirror;
+
     // Update is called once per frame
     void Update()
     {
@@ -108,6 +111,17 @@ public class CarController : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") > 0f) gearIndex++;
         if (Input.GetAxis("Mouse ScrollWheel") < 0f) gearIndex--;
 
+        
+        if (Input.GetKey(KeyCode.LeftArrow))
+            rearMirror.Rotate(Vector3.up, -12 * Time.deltaTime);
+        
+        if (Input.GetKey(KeyCode.RightArrow))
+            rearMirror.Rotate(Vector3.up, 12 * Time.deltaTime);
+
+        
+
+
+
         steeringWheel.MoveToTargetValue = true;
         handbrake.MoveToTargetValue = true;
         gearShifter.MoveToTargetValue = true;
@@ -115,6 +129,8 @@ public class CarController : MonoBehaviour
         steeringWheel.TargetValue = steeringWheelValue + 0.5f;
         handbrake.TargetValue = isHandBrake ? 1 : 0;
         gearShifter.TargetValue = gearIndex == 0 ? gearIndex + 0.5f : gearIndex;
+
+  
     }
 
     private void GetVrInput() {
