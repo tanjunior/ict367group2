@@ -105,22 +105,11 @@ public class CarController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2)) gearIndex = 0;
         if (Input.GetKeyDown(KeyCode.Alpha3)) gearIndex = 1;
 
-        if (Input.GetMouseButtonDown(0) && gearIndex != 1) gearIndex++;
-        if (Input.GetMouseButtonDown(1) && gearIndex != -1) gearIndex--;
-
         if (Input.GetAxis("Mouse ScrollWheel") > 0f) gearIndex++;
         if (Input.GetAxis("Mouse ScrollWheel") < 0f) gearIndex--;
 
-        
-        if (Input.GetKey(KeyCode.LeftArrow))
-            rearMirror.Rotate(Vector3.up, -12 * Time.deltaTime);
-        
-        if (Input.GetKey(KeyCode.RightArrow))
-            rearMirror.Rotate(Vector3.up, 12 * Time.deltaTime);
-
-        
-
-
+        rearMirror.Rotate(Vector3.up, Input.GetAxisRaw("Horizontal") * -12 * Time.deltaTime);
+        rearMirror.Rotate(Vector3.right, Input.GetAxisRaw("Vertical") * -12 * Time.deltaTime);
 
         steeringWheel.MoveToTargetValue = true;
         handbrake.MoveToTargetValue = true;
