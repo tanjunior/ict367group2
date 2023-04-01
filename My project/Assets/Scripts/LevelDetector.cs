@@ -12,12 +12,12 @@ public class LevelDetector : MonoBehaviour
         if(!PlayerPrefs.HasKey("levelCompleted"))
         {
             Debug.Log("Resetting level");
-            PlayerPrefs.SetInt("levelCompleted", 1);
+            PlayerPrefs.SetInt("levelCompleted", 0);
         }
 
         Debug.Log("current level is "+ PlayerPrefs.GetInt("levelCompleted"));
 
-     for (int i=0;i< PlayerPrefs.GetInt("levelCompleted"); i++)
+     for (int i=0;i< PlayerPrefs.GetInt("levelCompleted")+1; i++)
         {
             LevelStages[i].SetActive(true);
         }
