@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenu, highscoreMenu, toolTips, NameSelector, highscoreRowPrefab;
+    [SerializeField] private GameObject pauseMenu, highscoreMenu, toolTips, NameSelector, highscoreRowPrefab, startButton, quitButton, nameSelectorTooltip;
     [SerializeField] private TextMeshPro timer;
     [SerializeField] private WebXRController leftController, rightController;
     [SerializeField] private Transform mainCamera, highscore;
@@ -52,6 +52,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         xrSettings = XRGeneralSettings.Instance;
         xrManager = WebXRManager.Instance;
         isVR = CheckVR();
@@ -86,17 +87,19 @@ public class LevelManager : MonoBehaviour
                 showPointer = true;
                 lockmode = CursorLockMode.None;
                 Cursor.lockState = lockmode;
+            } else if (levelCompleted) {
+                showPointer = true;
+                lockmode = CursorLockMode.None;
+                Cursor.lockState = lockmode;
             } else {
                 TimeCounter();
                 showPointer = false;
                 pauseMenu.SetActive(false);
                 if (!isVR) {
-                    
                     lockmode = CursorLockMode.Locked;
                     Cursor.lockState = lockmode;
-                    if (!levelCompleted) MouseLook();
+                    MouseLook();
                 } else if (isVR) {
-                    
                     lockmode = CursorLockMode.None;
                     Cursor.lockState = lockmode;
                 }
@@ -131,6 +134,13 @@ public class LevelManager : MonoBehaviour
     public void Park(bool fl, bool fr, bool rl, bool rr) {
         if (!fl || !fr || !rl || !rr) return;
         levelCompleted = true;
+        if (currentLevelIndex == 1) {
+            //unlock level 2
+        } else if (currentLevelIndex == 2) {
+            //unlock level 2
+        } else if (currentLevelIndex == 3) {
+            highscoreMenu.transform.GetChild(2).gameObject.SetActive(false); //disable next level button
+        }
         rigAnimator.Play("TopView");
         float completeTime = elapsedTime;
         SaveHighScore(completeTime);
@@ -150,6 +160,9 @@ public class LevelManager : MonoBehaviour
         engineStartSound.Play();
         StartCoroutine(PlayEngineSound(1.8f));
         rigAnimator.Play("MoveToCar");
+        quitButton.SetActive(false);
+        startButton.SetActive(false);
+        nameSelectorTooltip.SetActive(false);
     }
 
     public void SaveHighScore(float time) {
@@ -252,6 +265,7 @@ public class LevelManager : MonoBehaviour
     }
 
     private void DisplayHighScore() {
+        highscoreMenu.SetActive(true);
         float height = 0;
         for (int i = 0; i < currentHighscores.Count; i++) {
             if (i == 9) return;
@@ -261,40 +275,34 @@ public class LevelManager : MonoBehaviour
             HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
             script.setRowValues(d["name"], d["score"]);
             height -= 0.2f;
-
         }
-        // currentHighscores.ForEach((d, i) => {
-        //     GameObject rowObject = Instantiate(highscoreRowPrefab, highscore);
-        //     rowObject.transform.localPosition = new Vector3(0, height, 0);
-        //     HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
-        //     script.setRowValues(d["name"], d["score"]);
-        //     height -= 0.2f;
-        // });
-        
-        highscoreMenu.SetActive(true);
-        showPointer = true;
-        lockmode = CursorLockMode.None;
-        Cursor.lockState = lockmode;
     }
 
     public void LoadScene(int index) {
+        foreach (Transform child in highscore) {
+            GameObject.Destroy(child.gameObject);
+        }
         onRestart.Invoke();
         Time.timeScale = 1;
         SceneManager.LoadScene(index, LoadSceneMode.Single);
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
         mainCamera.localEulerAngles = Vector3.zero;
+        rigAnimator.Play("Idle");
+        levelCompleted = false;
         showPointer = false;
+        isPaused = false;
         elapsedTime = 0;
         currentLevelIndex = index;
         highscoreMenu.SetActive(false);
         pauseMenu.SetActive(false);
         toolTips.SetActive(false);
+        lockmode = CursorLockMode.Locked;
+        Cursor.lockState = lockmode;
     }
 
     public void RestartLevel() {
         onRestart.Invoke();
-        isPaused = false;
         LoadScene(currentLevelIndex);
     }
 
@@ -305,10 +313,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadSceneMain() {
         StartCoroutine(Delay(0.2f));
-        Time.timeScale = 1;
-        isPaused = false;
-        SceneManager.LoadScene("Main", LoadSceneMode.Single);
-        highscoreMenu.SetActive(false);
+        LoadScene(0);
     }
 
     

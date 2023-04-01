@@ -17,6 +17,8 @@ public class ColliderCheck : MonoBehaviour
             levelManager.LoadScene(2);
         } else if (c.name == "Level3Trigger") {
             levelManager.LoadScene(3);
+        } else if (c.name == "QuitGameTrigger") {
+            levelManager.QuitGame();
         }
 
         if (c.gameObject.tag == "collider" && Time.time > lastCollisionTime + 4f)
