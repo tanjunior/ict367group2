@@ -89383,7 +89383,7 @@ PrefabInstance:
         type: 3}
       propertyPath: spatialTargetDispatcher
       value: 
-      objectReference: {fileID: 7161169359367673719}
+      objectReference: {fileID: 0}
     - target: {fileID: 3301418165769402000, guid: e3240c0657ddbb44cb94c841e36053d9,
         type: 3}
       propertyPath: Activated.m_PersistentCalls.m_Calls.Array.size

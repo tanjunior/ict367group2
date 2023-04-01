@@ -253,16 +253,26 @@ public class LevelManager : MonoBehaviour
 
     private void DisplayHighScore() {
         float height = 0;
-        currentHighscores.ForEach(d => {
+        for (int i = 0; i < currentHighscores.Count; i++) {
+            if (i == 9) return;
+            var d = currentHighscores.ElementAt(i);
             GameObject rowObject = Instantiate(highscoreRowPrefab, highscore);
-            //rowObject.transform.parent = highscore;
             rowObject.transform.localPosition = new Vector3(0, height, 0);
             HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
             script.setRowValues(d["name"], d["score"]);
             height -= 0.2f;
-        });
+
+        }
+        // currentHighscores.ForEach((d, i) => {
+        //     GameObject rowObject = Instantiate(highscoreRowPrefab, highscore);
+        //     rowObject.transform.localPosition = new Vector3(0, height, 0);
+        //     HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
+        //     script.setRowValues(d["name"], d["score"]);
+        //     height -= 0.2f;
+        // });
         
         highscoreMenu.SetActive(true);
+        showPointer = true;
         lockmode = CursorLockMode.None;
         Cursor.lockState = lockmode;
     }
