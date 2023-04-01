@@ -144,6 +144,14 @@ public class LevelManager : MonoBehaviour
         rigAnimator.Play("TopView");
         float completeTime = elapsedTime;
         SaveHighScore(completeTime);
+
+        if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("levelCompleted"))
+        {
+            PlayerPrefs.SetInt("levelCompleted", SceneManager.GetActiveScene().buildIndex+1);
+        }
+            
+
+           
     }
 
     public void ConfirmName() {
