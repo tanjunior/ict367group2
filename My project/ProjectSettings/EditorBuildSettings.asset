@@ -17,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level3.unity
     guid: 2fa5baef3072946499df007748875e48
-  - enabled: 1
-    path: Assets/Scenes/Highscore.unity
-    guid: 4f291a9a5aac87540b9d8f89e59420a3
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 30a938427e3d4b449bffd043207fe0cb,
       type: 2}
