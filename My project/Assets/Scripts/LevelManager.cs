@@ -145,9 +145,10 @@ public class LevelManager : MonoBehaviour
         float completeTime = elapsedTime;
         SaveHighScore(completeTime);
 
-        if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("levelCompleted"))
+        if (SceneManager.GetActiveScene().buildIndex+1 >= PlayerPrefs.GetInt("levelCompleted") && SceneManager.GetActiveScene().buildIndex != 3)
         {
             PlayerPrefs.SetInt("levelCompleted", SceneManager.GetActiveScene().buildIndex+1);
+            Debug.Log("Enabling up to level"+ SceneManager.GetActiveScene().buildIndex + 1);
         }
             
 
