@@ -12,33 +12,32 @@ using Newtonsoft.Json;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenu, highscoreMenu, toolTips, NameSelector;
+    [SerializeField] private GameObject pauseMenu, highscoreMenu, toolTips, NameSelector, highscoreRowPrefab;
     [SerializeField] private TextMeshPro timer;
-    [SerializeField] private GameObject highscoreRowPrefab;
     [SerializeField] private WebXRController leftController, rightController;
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Transform mainCamera, highscore;
     [SerializeField] private ColliderCheck colliderCheck;
     [SerializeField] private ParkingAccuracy parkingAccuracy;
     [SerializeField] private AudioSource engineSound, engineStartSound;
-    [SerializeField] private Animation MoveToCar;
+    [SerializeField] private Animator rigAnimator;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private BoxCollider collider;
-    public bool firstStart = true;
+    [SerializeField] private List<Dictionary<string, string>> currentHighscores;
     public UnityEvent onRestart;
+    public CursorLockMode lockmode;
+    public bool firstStart = true;
     public bool showPointer = true;
-    public bool highscoreDisplayed = false;
-    [System.NonSerialized] public bool isPaused = false, showHologram = true;
-    private float elapsedTime = 0.0f;
+    public bool isVR;
+    public int currentLevelIndex;
     public string levelName;
+    [System.NonSerialized] public bool isPaused = false, showHologram = true;
     private Vector2 headRotation = Vector2.zero;
     private WebXRManager xrManager;
     private XRGeneralSettings xrSettings;
-    public bool isVR;
-    public int currentLevelIndex;
     private string newSerializedString;
     private string playerName = "ICT";
-    [SerializeField] private List<Dictionary<string, string>> currentHighscores;
-    public CursorLockMode lockmode;
+    private float elapsedTime = 0.0f;
+    private bool levelCompleted = false;
 
     private void Awake() {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("VR");
@@ -72,12 +71,10 @@ public class LevelManager : MonoBehaviour
         // public enum WebXRState { VR, AR, NORMAL }
         isVR = CheckVR();
         levelName = SceneManager.GetActiveScene().name;
-        if (levelName == "Highscore") {
-            if (!highscoreDisplayed) DisplayHighScore();
-        } else if (levelName == "Main" || levelName.Contains("Test")) {
+        if (levelName == "Main" || levelName.Contains("Test")) {
             if (!firstStart) MouseLook();
         } else {
-            if (leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Escape)) {
+            if (leftController.GetButtonDown(WebXRController.ButtonTypes.ButtonB) || Input.GetKeyDown(KeyCode.Escape) && !levelCompleted) {
                 isPaused = !isPaused;
                 Time.timeScale = isPaused? 0 : 1;
             }
@@ -97,7 +94,7 @@ public class LevelManager : MonoBehaviour
                     
                     lockmode = CursorLockMode.Locked;
                     Cursor.lockState = lockmode;
-                    MouseLook();
+                    if (!levelCompleted) MouseLook();
                 } else if (isVR) {
                     
                     lockmode = CursorLockMode.None;
@@ -121,7 +118,7 @@ public class LevelManager : MonoBehaviour
 
         headRotation.x = Mathf.Clamp(headRotation.x, -30, 30);
 
-        mainCamera.transform.localEulerAngles = headRotation * 3;
+        mainCamera.localEulerAngles = headRotation * 3;
     }
 
     private void TimeCounter() {
@@ -133,6 +130,8 @@ public class LevelManager : MonoBehaviour
 
     public void Park(bool fl, bool fr, bool rl, bool rr) {
         if (!fl || !fr || !rl || !rr) return;
+        levelCompleted = true;
+        rigAnimator.Play("TopView");
         float completeTime = elapsedTime;
         SaveHighScore(completeTime);
     }
@@ -150,7 +149,7 @@ public class LevelManager : MonoBehaviour
         playerName = NameSelector.GetComponent<NameSelector>().GetName();
         engineStartSound.Play();
         StartCoroutine(PlayEngineSound(1.8f));
-        MoveToCar.Play();
+        rigAnimator.Play("MoveToCar");
     }
 
     public void SaveHighScore(float time) {
@@ -248,26 +247,24 @@ public class LevelManager : MonoBehaviour
 
         Debug.Log("Loading high score");
 
-        LoadSceneHighscore();
+        
+        DisplayHighScore();
     }
 
     private void DisplayHighScore() {
-        float height = 3;
+        float height = 0;
         currentHighscores.ForEach(d => {
-            GameObject rowObject = Instantiate(highscoreRowPrefab, new Vector3(0.408f, height, 4), Quaternion.identity);
+            GameObject rowObject = Instantiate(highscoreRowPrefab, highscore);
+            //rowObject.transform.parent = highscore;
+            rowObject.transform.localPosition = new Vector3(0, height, 0);
             HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
             script.setRowValues(d["name"], d["score"]);
             height -= 0.2f;
         });
-        // foreach(var row in currentHighscores) {
-        //     Debug.Log(row.Key);
-        //     Debug.Log(row.Value);
-        //     GameObject rowObject = Instantiate(highscoreRowPrefab, new Vector3(0.408f, height, 4), Quaternion.identity);
-        //     HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
-        //     script.setRowValues(row.Key, row.Value.ToString());
-        //     height -= 0.2f;
-        // }
-        highscoreDisplayed = true;
+        
+        highscoreMenu.SetActive(true);
+        lockmode = CursorLockMode.None;
+        Cursor.lockState = lockmode;
     }
 
     public void LoadScene(int index) {
@@ -276,7 +273,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(index, LoadSceneMode.Single);
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
-        mainCamera.transform.rotation = Quaternion.identity;
+        mainCamera.localEulerAngles = Vector3.zero;
         showPointer = false;
         elapsedTime = 0;
         currentLevelIndex = index;
@@ -294,14 +291,6 @@ public class LevelManager : MonoBehaviour
     public void NextLevel() {
         onRestart.Invoke();
         LoadScene(currentLevelIndex+1);
-    }
-
-    public void LoadSceneHighscore() {
-        StartCoroutine(Delay(0.2f));
-        isPaused = false;
-        highscoreDisplayed = false;
-        SceneManager.LoadScene("Highscore", LoadSceneMode.Single);
-        highscoreMenu.SetActive(true);
     }
 
     public void LoadSceneMain() {
@@ -322,7 +311,7 @@ public class LevelManager : MonoBehaviour
         if (isVR) showPointer = true;
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
-        mainCamera.transform.rotation = Quaternion.identity;
+        mainCamera.localEulerAngles = Vector3.zero;
     }
 
     public void QuitGame() {

@@ -473,6 +473,21 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1472720535914812776, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472720535914812776, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: 16510758863476d458b4d7428a490eaa, type: 2}
+    - target: {fileID: 1472720535914812776, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: fbf29331d0d97b74fab14cce7082c694, type: 2}
     - target: {fileID: 2004319746197510395, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
       propertyPath: m_Mesh
@@ -633,6 +648,11 @@ PrefabInstance:
       propertyPath: MoveToCar
       value: 
       objectReference: {fileID: 1253082434}
+    - target: {fileID: 3901751093917588957, guid: 41a790c7b9baefa43b76fafc15f531a7,
+        type: 3}
+      propertyPath: cameras
+      value: 
+      objectReference: {fileID: 360951436}
     - target: {fileID: 4239129470638313403, guid: 41a790c7b9baefa43b76fafc15f531a7,
         type: 3}
       propertyPath: m_IsKinematic
@@ -1610,6 +1630,12 @@ Material:
     - _Color: {r: 0.099368125, g: 0.40182608, b: 0.7264151, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
+--- !u!4 &360951436 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 682031921859932321, guid: 41a790c7b9baefa43b76fafc15f531a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 58974825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &399763054
 GameObject:
   m_ObjectHideFlags: 0
