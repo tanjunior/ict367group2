@@ -134,29 +134,14 @@ public class LevelManager : MonoBehaviour
     public void Park(bool fl, bool fr, bool rl, bool rr) {
         if (!fl || !fr || !rl || !rr) return;
         levelCompleted = true;
-        if (currentLevelIndex == 1) {
-            //unlock level 2
-            PlayerPrefs.SetInt("levelCompleted", 1);
-
-        } else if (currentLevelIndex == 2) {
-            //unlock level 3
-            PlayerPrefs.SetInt("levelCompleted", 2);
-        } else if (currentLevelIndex == 3) {
+        if (currentLevelIndex == 3) {
             highscoreMenu.transform.GetChild(2).gameObject.SetActive(false); //disable next level button
+        } else {
+            PlayerPrefs.SetInt("levelCompleted", currentLevelIndex);
         }
         rigAnimator.Play("TopView");
         float completeTime = elapsedTime;
-        SaveHighScore(completeTime);
-
-        /*
-        if (SceneManager.GetActiveScene().buildIndex+1 >= PlayerPrefs.GetInt("levelCompleted") && SceneManager.GetActiveScene().buildIndex != 3)
-        {
-            PlayerPrefs.SetInt("levelCompleted", SceneManager.GetActiveScene().buildIndex);
-            Debug.Log("Enabling up to level"+ SceneManager.GetActiveScene().buildIndex );
-        }
-        */    
-
-           
+        SaveHighScore(completeTime);          
     }
 
     public void ConfirmName() {

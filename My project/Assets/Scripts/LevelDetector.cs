@@ -9,15 +9,7 @@ public class LevelDetector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!PlayerPrefs.HasKey("levelCompleted"))
-        {
-            Debug.Log("Resetting level");
-            PlayerPrefs.SetInt("levelCompleted", 0);
-        }
-
-        Debug.Log("current level is "+ PlayerPrefs.GetInt("levelCompleted"));
-
-     for (int i=0;i< PlayerPrefs.GetInt("levelCompleted")+1; i++)
+        for (int i = 0; i <= PlayerPrefs.GetInt("levelCompleted"); i++)
         {
             LevelStages[i].SetActive(true);
         }
