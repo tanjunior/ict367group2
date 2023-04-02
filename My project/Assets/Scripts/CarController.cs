@@ -123,6 +123,9 @@ public class CarController : MonoBehaviour
     }
 
     private void GetVrInput() {
+        steeringWheel.MoveToTargetValue = false;
+        handbrake.MoveToTargetValue = false;
+        gearShifter.MoveToTargetValue = false;
         accelInput = rightController.GetAxis(WebXRController.AxisTypes.Trigger);
         brakeInput = leftController.GetAxis(WebXRController.AxisTypes.Trigger);
     }
