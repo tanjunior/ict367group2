@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,34 +7,29 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.Management;
 using TMPro;
 using WebXR;
-using Newtonsoft.Json;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenu, highscoreMenu, toolTips, NameSelector, highscoreRowPrefab, startButton, quitButton, nameSelectorTooltip;
+    [SerializeField] private GameObject pauseMenu, toolTips, NameSelector, startButton, quitButton, nameSelectorTooltip, highscoreMenu;
     [SerializeField] private TextMeshPro timer;
     [SerializeField] private WebXRController leftController, rightController;
-    [SerializeField] private Transform mainCamera, highscore;
-    [SerializeField] private ColliderCheck colliderCheck;
-    [SerializeField] private ParkingAccuracy parkingAccuracy;
+    [SerializeField] private Transform mainCamera;
     [SerializeField] private AudioSource engineSound, engineStartSound;
     [SerializeField] private Animator rigAnimator;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private BoxCollider collider;
-    [SerializeField] private List<Dictionary<string, string>> currentHighscores;
+    [SerializeField] private HighscoreManager highscoreManager;
     public UnityEvent onRestart;
     public CursorLockMode lockmode;
     public bool firstStart = true;
     public bool showPointer = true;
     public bool isVR;
     public int currentLevelIndex;
-    public string levelName;
     [System.NonSerialized] public bool isPaused = false, showHologram = true;
     private Vector2 headRotation = Vector2.zero;
     private WebXRManager xrManager;
     private XRGeneralSettings xrSettings;
-    private string newSerializedString;
-    private string playerName = "ICT";
+    public string playerName = "ICT";
     private float elapsedTime = 0.0f;
     private bool levelCompleted = false;
 
@@ -71,7 +65,7 @@ public class LevelManager : MonoBehaviour
     {
         // public enum WebXRState { VR, AR, NORMAL }
         isVR = CheckVR();
-        levelName = SceneManager.GetActiveScene().name;
+        string levelName = SceneManager.GetActiveScene().name;
         if (levelName == "Main" || levelName.Contains("Test")) {
             if (!firstStart) MouseLook();
         } else {
@@ -141,7 +135,8 @@ public class LevelManager : MonoBehaviour
         }
         rigAnimator.Play("TopView");
         float completeTime = elapsedTime;
-        SaveHighScore(completeTime);          
+        highscoreManager.SaveHighScore(completeTime);
+        highscoreMenu.SetActive(true);   
     }
 
     public void ConfirmName() {
@@ -163,123 +158,8 @@ public class LevelManager : MonoBehaviour
         nameSelectorTooltip.SetActive(false);
     }
 
-    public void SaveHighScore(float time) {
-        float score,timeScore,collisionScore,parkingScore;
-
-        //get values
-        int numberOfCollisions = colliderCheck.getNumberOfCollisions();
-        float parkingAccuracyPercentage = parkingAccuracy.getAccuracyPercentage();
-
-        //reset values
-        colliderCheck.resetNumberOfCollisions();
-        parkingAccuracy.resetAccuracyPercentage();
-      
-
-        if(time<60)
-        {
-            timeScore = 1000;
-        }
-        else if(time<120)
-        {
-            timeScore = 800;
-        }
-        else if(time<250)
-        {
-            timeScore = 400;
-        }
-        else if(time<500)
-        {
-            timeScore = 200;
-        }
-        else
-        {
-            timeScore = 0;
-        }
-
-        if(numberOfCollisions<1)
-        {
-            collisionScore = 1500;
-        }
-        else if(numberOfCollisions<4)
-        {
-            collisionScore = 1100;
-        }
-        else if(numberOfCollisions <8)
-        {
-            collisionScore = 700;
-        }
-        else
-        {
-            collisionScore = 0;
-        }
-      
-        
-    
-       parkingScore =  parkingAccuracyPercentage*20;
-
-        score = parkingScore + collisionScore + timeScore;
-
-        Debug.Log("Parking score:" + parkingScore + " Collision score:" + collisionScore + " time score:" + timeScore);
-
-
-        //main focus on parking
-
-        Dictionary<string, string> currentSession = new Dictionary<string, string>(); // dictionary kv pair to store level highscore)
-        currentSession.Add("name", playerName);
-        currentSession.Add("score", score.ToString());
-        List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
-        if (PlayerPrefs.HasKey(currentLevelIndex.ToString())) { // check if highscore for this level exists in the playerprefs
-            string serializedString = PlayerPrefs.GetString(currentLevelIndex.ToString());
-            //Debug.Log(serializedString);
-            list = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(serializedString); // the dictionary was serialized before saving so we need to deserialize the string
-            //Debug.Log(highscore.Count);
-            //check if player already have a highscore
-            // if (highscore.ContainsKey(name)){
-            //     if (time < highscore[name]) highscore[name] = score; // replace the score if the current score is higher
-            // }
-        }
-
-        list.Add(currentSession); 
-
-        // sort the list
-        var sortedList = list.OrderByDescending(d => float.Parse(d["score"])).ToList();
-
-        // // sort the dictionary
-        // Dictionary<string, float> sorted = new Dictionary<string, float>();
-        // foreach (KeyValuePair<string, float> pair in highscore.OrderByDescending(key => key.Value)) {
-        //     sorted.Add(pair.Key, pair.Value);
-        // }
-
-        currentHighscores = sortedList;
-
-        // serialize the dictionary and save it back to playerprefs.
-        newSerializedString = JsonConvert.SerializeObject(sortedList);
-        PlayerPrefs.SetString(currentLevelIndex.ToString(), newSerializedString);
-
-        Debug.Log("Loading high score");
-
-        
-        DisplayHighScore();
-    }
-
-    private void DisplayHighScore() {
-        highscoreMenu.SetActive(true);
-        float height = 0;
-        for (int i = 0; i < currentHighscores.Count; i++) {
-            if (i == 9) return;
-            var d = currentHighscores.ElementAt(i);
-            GameObject rowObject = Instantiate(highscoreRowPrefab, highscore);
-            rowObject.transform.localPosition = new Vector3(0, height, 0);
-            HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
-            script.setRowValues(d["name"], d["score"]);
-            height -= 0.2f;
-        }
-    }
 
     public void LoadScene(int index) {
-        foreach (Transform child in highscore) {
-            GameObject.Destroy(child.gameObject);
-        }
         onRestart.Invoke();
         Time.timeScale = 1;
         SceneManager.LoadScene(index, LoadSceneMode.Single);
