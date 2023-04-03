@@ -77,8 +77,6 @@ public class HighscoreManager : MonoBehaviour
 
         Debug.Log("Loading high score");
         
-        
-        gameObject.SetActive(true);
         timeValueText.text = time.ToString();
         timeScoreText.text = timeScore.ToString();
         collisionValueText.text = numberOfCollisions.ToString();
