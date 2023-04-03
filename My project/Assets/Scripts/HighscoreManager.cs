@@ -7,6 +7,7 @@ using TMPro;
 
 public class HighscoreManager : MonoBehaviour
 {
+    //TODO: bring merge parkingaccuracy script into here
     [SerializeField] private GameObject highscoreRowPrefab;
     [SerializeField] private Transform highscore;
     [SerializeField] private List<Dictionary<string, string>> currentHighscores;
@@ -38,55 +39,19 @@ public class HighscoreManager : MonoBehaviour
         colliderCheck.resetNumberOfCollisions();
         parkingAccuracy.resetAccuracyPercentage();
       
+        if(time<60) timeScore = 1000;
+        else if(time<120) timeScore = 800;
+        else if(time<250) timeScore = 400;
+        else if(time<500) timeScore = 200;
+        else timeScore = 0;
 
-        if(time<60)
-        {
-            timeScore = 1000;
-        }
-        else if(time<120)
-        {
-            timeScore = 800;
-        }
-        else if(time<250)
-        {
-            timeScore = 400;
-        }
-        else if(time<500)
-        {
-            timeScore = 200;
-        }
-        else
-        {
-            timeScore = 0;
-        }
-
-        if(numberOfCollisions<1)
-        {
-            collisionScore = 1500;
-        }
-        else if(numberOfCollisions<4)
-        {
-            collisionScore = 1100;
-        }
-        else if(numberOfCollisions <8)
-        {
-            collisionScore = 700;
-        }
-        else
-        {
-            collisionScore = 0;
-        }
-      
-        
+        if(numberOfCollisions<1) collisionScore = 1500;
+        else if(numberOfCollisions<4) collisionScore = 1100;
+        else if(numberOfCollisions <8) collisionScore = 700;
+        else collisionScore = 0;
     
         float parkingScore =  parkingAccuracyPercentage*20;
-
         float score = parkingScore + collisionScore + timeScore;
-
-        //Debug.Log("Parking score:" + parkingScore + " Collision score:" + collisionScore + " time score:" + timeScore);
-
-
-        //main focus on parking
 
         Dictionary<string, string> currentSession = new Dictionary<string, string>(); // dictionary kv pair to store level highscore)
         currentSession.Add("name", levelManager.playerName);
