@@ -77,13 +77,13 @@ public class HighscoreManager : MonoBehaviour
 
         Debug.Log("Loading high score");
         
-        timeValueText.text = time.ToString();
+        timeValueText.text = time.ToString("F2");
         timeScoreText.text = timeScore.ToString();
         collisionValueText.text = numberOfCollisions.ToString();
         collisionScoreText.text = collisionScore.ToString();
-        accuracyValueText.text = parkingAccuracyPercentage.ToString();
-        accuracyScoreText.text = parkingScore.ToString();
-        totalScoreText.text = score.ToString();
+        accuracyValueText.text = parkingAccuracyPercentage.ToString("F2");
+        accuracyScoreText.text = parkingScore.ToString("F0");
+        totalScoreText.text = score.ToString("F0");
         DisplayHighScore();
     }
 
@@ -100,7 +100,7 @@ public class HighscoreManager : MonoBehaviour
             GameObject rowObject = Instantiate(highscoreRowPrefab, highscore.transform);
             rowObject.transform.localPosition = new Vector3(0, height, 0);
             HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
-            script.setRowValues(d["name"], d["score"]);
+            script.setRowValues((i+1)+"."+d["name"], d["score"]);
             height -= 0.2f;
         }
     }
