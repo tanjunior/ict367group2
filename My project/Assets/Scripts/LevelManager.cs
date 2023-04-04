@@ -8,8 +8,17 @@ using UnityEngine.XR.Management;
 using TMPro;
 using WebXR;
 
+[System.Serializable]
+public class OnParked : UnityEvent<float> {}
+
 public class LevelManager : MonoBehaviour
 {
+    private CursorLockMode lockmode;
+    private Vector2 headRotation = Vector2.zero;
+    private WebXRManager xrManager;
+    private XRGeneralSettings xrSettings;
+    private float elapsedTime = 0.0f;
+    private bool levelCompleted = false;
     [SerializeField] private GameObject pauseMenu, toolTips, NameSelector, startButton, quitButton, nameSelectorTooltip, highscoreMenu;
     [SerializeField] private TextMeshPro timer;
     [SerializeField] private WebXRController leftController, rightController;
@@ -19,19 +28,12 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private BoxCollider collider;
     [SerializeField] private HighscoreManager highscoreManager;
+    [System.NonSerialized] public bool isPaused = false, showHologram = true, firstStart = true, showPointer = true;
+    [System.NonSerialized] public string playerName;
     public UnityEvent onRestart;
-    public CursorLockMode lockmode;
-    public bool firstStart = true;
-    public bool showPointer = true;
+    public OnParked onParked;
     public bool isVR;
     public int currentLevelIndex;
-    [System.NonSerialized] public bool isPaused = false, showHologram = true;
-    private Vector2 headRotation = Vector2.zero;
-    private WebXRManager xrManager;
-    private XRGeneralSettings xrSettings;
-    public string playerName = "ICT";
-    private float elapsedTime = 0.0f;
-    private bool levelCompleted = false;
 
     private void Awake() {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("VR");
@@ -130,12 +132,13 @@ public class LevelManager : MonoBehaviour
         levelCompleted = true;
         if (currentLevelIndex == 3) {
             highscoreMenu.transform.GetChild(2).gameObject.SetActive(false); //disable next level button
-        } else {
+        } else if (PlayerPrefs.GetInt("levelCompleted") < currentLevelIndex) {
             PlayerPrefs.SetInt("levelCompleted", currentLevelIndex);
         }
         rigAnimator.Play("TopView");
         float completeTime = elapsedTime;
-        highscoreManager.SaveHighScore(completeTime);
+        onParked.Invoke(completeTime);
+        //highscoreManager.SaveHighScore();
         highscoreMenu.SetActive(true);   
     }
 

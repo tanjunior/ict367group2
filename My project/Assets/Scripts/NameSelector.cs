@@ -5,7 +5,7 @@ using UnityEngine;
 public class NameSelector : MonoBehaviour
 {
     [SerializeField] private CharacterSelector[] chars = new CharacterSelector[3];
-    private string name = "ICT";
+    private string name = "AAA";
 
     public string GetName() {
         return name;
