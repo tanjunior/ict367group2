@@ -18,7 +18,7 @@
           onsuccess();
         }
       }
-      
+
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/6b40b694366c94c3550c115f1710d8c6.json", {onProgress: UnityProgress});
     </script>
   </head>
@@ -32,7 +32,7 @@
         <li>Y to pause</li>
         <li>B toggle hologram</li>
       </ul>
-      
+
       <h3>Controls for PC</h3>
       <ul>
         <li>[W] to accelerate</li>
@@ -61,21 +61,21 @@
         <li>big thud2</li>
         <li>silent-wood (background music)</li>
         <li>car model <a href="https://sketchfab.com/3d-models/stock-honda-civic-ep3-7d9c9fb0b7c94e998059e652ad9d3028">Stock Honda Civic EP3</a></li>
-        <li>Engine start sound <a href="https://freesound.org/people/Iamgiorgio/sounds/371832/">J2_Engine_Start.mp3</a></li>
-        
-      </ul>      
+        <li>Interface <a href="https://opengameart.org/content/assets-wenrexa-free-ui-kit-white-interface-5-panels-buttons">UI KIT</a></li>
+
+      </ul>
     </div>
     <script>
       let enterARButton = document.getElementById('enterar');
       let enterVRButton = document.getElementById('entervr');
-      
+
       document.addEventListener('onARSupportedCheck', function (event) {
         enterARButton.disabled = !event.detail.supported;
       }, false);
       document.addEventListener('onVRSupportedCheck', function (event) {
         enterVRButton.disabled = !event.detail.supported;
       }, false);
-      
+
       enterARButton.addEventListener('click', function (event) {
         unityInstance.Module.WebXR.toggleAR();
       }, false);
