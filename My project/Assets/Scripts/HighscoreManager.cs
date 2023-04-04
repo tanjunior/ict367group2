@@ -112,9 +112,7 @@ public class HighscoreManager : MonoBehaviour
         string newSerializedString = JsonConvert.SerializeObject(sortedList);
         PlayerPrefs.SetString(levelManager.currentLevelIndex.ToString(), newSerializedString);
 
-        Debug.Log("Loading high score");
-        
-        
+        //Debug.Log("Loading high score");
         DisplayHighScore();
     }
 
@@ -131,7 +129,7 @@ public class HighscoreManager : MonoBehaviour
             GameObject rowObject = Instantiate(highscoreRowPrefab, highscore.transform);
             rowObject.transform.localPosition = new Vector3(0, height, 0);
             HighscoreRow script = rowObject.GetComponent<HighscoreRow>();
-            script.setRowValues((i+1)+"."+d["name"], d["score"]);
+            script.setRowValues((i+1)+". "+d["name"], d["score"]);
             height -= 0.2f;
         }
     }
