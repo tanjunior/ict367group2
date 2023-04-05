@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
     [System.NonSerialized] public bool isPaused = false, showHologram = true, firstStart = true, showPointer = true;
     [System.NonSerialized] public string playerName;
     public UnityEvent onRestart;
+    public UnityEvent onQuit;
     public OnParked onParked;
     public bool isVR;
     public int currentLevelIndex;
@@ -214,7 +215,10 @@ public class LevelManager : MonoBehaviour
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #elif UNITY_WEBGL
-            if (isVR) xrManager.ToggleVR();
+            if (isVR) {
+                xrManager.ToggleVR();
+                onQuit.Invoke();
+            }
         #else
             Application.Quit();
         #endif

@@ -11,15 +11,16 @@ public class CarController : MonoBehaviour
     private float currentTorque, currentSteerAngle, currentbreakForce;
     private bool isHandBrake = true;
     private int gearIndex = 0;
-    [SerializeField] private Rigidbody rb;
 
     // devmode
     [SerializeField] private TextMeshProUGUI debug;
 
     // others
+    [SerializeField] private Rigidbody rb;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private AudioSource engineSound, brakeSound;
     [SerializeField] private AngularDriveFacade handbrake, gearShifter, steeringWheel;
+    [SerializeField] private Transform rearMirror;
 
     // WebXR
     [SerializeField] private WebXRController leftController, rightController;
@@ -43,8 +44,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
 
-    //
-    public Transform rearMirror;
+    
 
     // Update is called once per frame
     void Update()
@@ -111,9 +111,8 @@ public class CarController : MonoBehaviour
         rearMirror.Rotate(Vector3.up, Input.GetAxisRaw("Horizontal") * -12 * Time.deltaTime);
         rearMirror.Rotate(Vector3.right, Input.GetAxisRaw("Vertical") * -12 * Time.deltaTime);
 
-        steeringWheel.MoveToTargetValue = true;
-        handbrake.MoveToTargetValue = true;
-        gearShifter.MoveToTargetValue = true;
+        
+        SetControllablesMove(true);
         float steeringWheelValue = ((486 / maxSteeringAngle) * currentSteerAngle) / 972;
         steeringWheel.TargetValue = steeringWheelValue + 0.5f;
         handbrake.TargetValue = isHandBrake ? 1 : 0;
@@ -123,9 +122,6 @@ public class CarController : MonoBehaviour
     }
 
     private void GetVrInput() {
-        steeringWheel.MoveToTargetValue = false;
-        handbrake.MoveToTargetValue = false;
-        gearShifter.MoveToTargetValue = false;
         accelInput = rightController.GetAxis(WebXRController.AxisTypes.Trigger);
         brakeInput = leftController.GetAxis(WebXRController.AxisTypes.Trigger);
     }
@@ -193,11 +189,9 @@ public class CarController : MonoBehaviour
     public void Reset() {
         if (levelManager.isVR) {
             steeringWheel.TargetValue = 0.5f;
-            steeringWheel.MoveToTargetValue = true; 
             gearShifter.TargetValue = 0.5f;
-            gearShifter.MoveToTargetValue = true;
             handbrake.TargetValue = 1;
-            handbrake.MoveToTargetValue = true;
+            SetControllablesMove(true);
             StartCoroutine(Delay(0.3f));
         }
         gearIndex = 0;
@@ -209,11 +203,15 @@ public class CarController : MonoBehaviour
         rb.isKinematic = false;
     }
 
+    public void SetControllablesMove(bool b) {
+        steeringWheel.MoveToTargetValue = b;
+        handbrake.MoveToTargetValue = b;
+        gearShifter.MoveToTargetValue = b;
+    }
+
     IEnumerator Delay(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        steeringWheel.MoveToTargetValue = false;
-        gearShifter.MoveToTargetValue = false;
-        handbrake.MoveToTargetValue = false;
+        SetControllablesMove(false);
     }
 }

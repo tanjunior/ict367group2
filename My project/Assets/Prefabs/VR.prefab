@@ -4288,14 +4288,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7baedf8a5318aa64abfc6361460d05d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 4239129470638313403}
   debug: {fileID: 677568663563339679}
+  rb: {fileID: 4239129470638313403}
   levelManager: {fileID: 3901751093917588957}
   engineSound: {fileID: 6983774413420089431}
   brakeSound: {fileID: 1057962058877633593}
   handbrake: {fileID: 4335112814273422813}
   gearShifter: {fileID: 3134173185490467959}
   steeringWheel: {fileID: 2585509215439872490}
+  rearMirror: {fileID: 3932976327248302387}
   leftController: {fileID: 643390625458049541}
   rightController: {fileID: 643535819741432859}
   speedometer: {fileID: 9193519037913708977}
@@ -4435,7 +4436,6 @@ MonoBehaviour:
   frontRightWheelTransform: {fileID: 8805464322976400048}
   rearLeftWheelTransform: {fileID: 2530073941451827433}
   rearRightWheelTransform: {fileID: 5816495315686352795}
-  rearMirror: {fileID: 3932976327248302387}
 --- !u!1 &587414101478959130
 GameObject:
   m_ObjectHideFlags: 0
@@ -5405,6 +5405,20 @@ MonoBehaviour:
       - m_Target: {fileID: 2859917802825563599}
         m_MethodName: Reset
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onQuit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2859917802825563599}
+        m_MethodName: SetControllablesMove
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
