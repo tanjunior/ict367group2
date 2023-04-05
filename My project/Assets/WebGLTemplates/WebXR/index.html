@@ -10,6 +10,32 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="%UNITY_WEBGL_LOADER_URL%"></script>
     <script>
+      function show(element) {
+        element.classList.toggle("active")
+        var content = element.nextElementSibling;
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      }
+
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        console.log(coll[i])
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.maxHeight){
+            content.style.maxHeight = null;
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+        });
+      }
+
       UnityLoader.compatibilityCheck = function (unityInstance, onsuccess, onerror) {
         if (!UnityLoader.SystemInfo.hasWebGL) {
           unityInstance.popup('Your browser does not support WebGL',
@@ -18,14 +44,16 @@
           onsuccess();
         }
       }
+      
       %UNITY_CUSTOM_WEBXR_POLYFILL_CONFIG%
       var unityInstance = UnityLoader.instantiate("unityContainer", "%UNITY_WEBGL_BUILD_URL%", {onProgress: UnityProgress});
     </script>
   </head>
   <body>
-    <div style="position:absolute; left:2px">
-      <h2>Controls:</h2>
-      <h3>Controls for VR</h3>
+    
+    <button type="button" class="collapsible" onclick="show(this)">Controls</button>
+    <div class="content">
+      <h3>VR</h3>
       <ul>
         <li>Move vr controller to move hands</li>
         <li>Press left/right grip to grab on Interactables (Highlighted objects)</li>
@@ -33,7 +61,7 @@
         <li>B toggle hologram</li>
       </ul>
       
-      <h3>Controls for PC</h3>
+      <h3>Keyboard</h3>
       <ul>
         <li>[W] to accelerate</li>
         <li>[Left and right click] to change gear</li>
@@ -42,6 +70,18 @@
         <li>[A] and [D] to turn the steering wheel and</li>
         <li>[tab] toggle hologram</li>
       </ul>
+    </div>
+
+    <button type="button" class="collapsible" onclick="show(this)">Credits</button>
+    <div class="content">
+      <ul>
+        <li>Car Model<a href="https://sketchfab.com/3d-models/stock-honda-civic-ep3-7d9c9fb0b7c94e998059e652ad9d3028">Stock Honda Civic EP3</a></li>
+        <li>Building Model<a href="https://free3d.com/3d-model/red-brick-building-35698.html">Red Brick Building</a></li>
+        <li>Background Music<a href="https://www.chosic.com/download-audio/29960/">Silent Wood</a> </li>
+        <li>Engine Start sound<a href="https://freesound.org/people/Iamgiorgio/sounds/371832/">J2_Engine_Start.mp3</a></li>
+        <li>Engine Sound<a href="https://freesound.org/people/marlonhj/sounds/242740/">242740_marlonhj_engine</a></li>
+        <li>Collision Sound<a href="https://freesound.org/people/Reitanna/sounds/332668/">big thud2</a></li>
+      </ul>      
     </div>
     <div class="webgl-content">
       <div id="unityContainer" style="width: %UNITY_WIDTH%px; height: %UNITY_HEIGHT%px"></div>
@@ -52,18 +92,6 @@
         <div class="webxr-link">Using <a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export">WebXR Export</a></div>
         <div class="title">%UNITY_WEB_NAME%</div>
       </div>
-    </div>
-    <div style="position:absolute; right:2px">
-      <h2>Credits</h2>
-      <ul>
-        <li>Red Brick Building (Iridesium) <a href="https://free3d.com/3d-model/red-brick-building-35698.html">chocolatechipmonster</a></li>
-        <li>242740_marlonhj_engine (engine sound) <a href="https://freesound.org/people/marlonhj/sounds/242740/">Marlonhj Car crash sound effect version 1</a></li>
-        <li>big thud2</li>
-        <li>silent-wood (background music)</li>
-        <li>car model <a href="https://sketchfab.com/3d-models/stock-honda-civic-ep3-7d9c9fb0b7c94e998059e652ad9d3028">Stock Honda Civic EP3</a></li>
-        <li>Engine start sound <a href="https://freesound.org/people/Iamgiorgio/sounds/371832/">J2_Engine_Start.mp3</a></li>
-        
-      </ul>      
     </div>
     <script>
       let enterARButton = document.getElementById('enterar');
