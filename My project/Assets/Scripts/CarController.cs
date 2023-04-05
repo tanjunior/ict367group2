@@ -11,15 +11,16 @@ public class CarController : MonoBehaviour
     private float currentTorque, currentSteerAngle, currentbreakForce;
     private bool isHandBrake = true;
     private int gearIndex = 0;
-    [SerializeField] private Rigidbody rb;
 
     // devmode
     [SerializeField] private TextMeshProUGUI debug;
 
     // others
+    [SerializeField] private Rigidbody rb;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private AudioSource engineSound, brakeSound;
     [SerializeField] private AngularDriveFacade handbrake, gearShifter, steeringWheel;
+    [SerializeField] private Transform rearMirror;
 
     // WebXR
     [SerializeField] private WebXRController leftController, rightController;
@@ -43,21 +44,25 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
 
+    
 
     // Update is called once per frame
     void Update()
     {
-        if (levelManager.isPaused) return;
-        if (!levelManager.isVR) {
-            GetPcInput();
-        } else if (levelManager.isVR) {
-            GetVrInput();
+        if (levelManager.isPaused || levelManager.firstStart) {
+            engineSound.Pause();
+            return;
         }
+        engineSound.UnPause();
+        
+        if (levelManager.isVR) GetVrInput();
+        else  GetPcInput();
+
         UpdateUI();
 	}
 
     private void FixedUpdate() {
-        if (levelManager.isPaused) return;
+        if (levelManager.isPaused || levelManager.firstStart) return;
         Park();
         HandleMotor();
         HandleSteering();
@@ -66,9 +71,7 @@ public class CarController : MonoBehaviour
 
     public void OnSteeringWheelValueChanged(float steeringWheelValue) {
         if (levelManager.isPaused) return;
-        if (levelManager.isVR) {
-            currentSteerAngle =  steeringWheelValue * maxSteeringAngle / 486;
-        }
+        if (levelManager.isVR)  currentSteerAngle =  steeringWheelValue * maxSteeringAngle / 486;
     }
 
     public void OnHandBrakeStepValueChanged(float value) {
@@ -94,27 +97,28 @@ public class CarController : MonoBehaviour
         if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate;
         if (Input.GetButton("Turn Right")) horizontalInput += keyboardRotateRate;
         horizontalInput = Mathf.Clamp(horizontalInput, -1f, 1f);
-        if (Input.GetButtonDown("Shift Up")) if (gearIndex != 1) gearIndex++;
-        if (Input.GetButtonDown("Shift Down")) if (gearIndex != -1) gearIndex--;
+        if (Input.GetButtonDown("Shift Up") && gearIndex != 1) gearIndex++;
+        if (Input.GetButtonDown("Shift Down") && gearIndex != -1) gearIndex--;
         if (Input.GetButtonDown("Hand Brake")) isHandBrake = !isHandBrake;
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) gearIndex = -1;
         if (Input.GetKeyDown(KeyCode.Alpha2)) gearIndex = 0;
         if (Input.GetKeyDown(KeyCode.Alpha3)) gearIndex = 1;
 
-        if (Input.GetMouseButtonDown(0) && gearIndex != 1) gearIndex++;
-        if (Input.GetMouseButtonDown(1) && gearIndex != -1) gearIndex--;
-
         if (Input.GetAxis("Mouse ScrollWheel") > 0f) gearIndex++;
         if (Input.GetAxis("Mouse ScrollWheel") < 0f) gearIndex--;
 
-        steeringWheel.MoveToTargetValue = true;
-        handbrake.MoveToTargetValue = true;
-        gearShifter.MoveToTargetValue = true;
+        rearMirror.Rotate(Vector3.up, Input.GetAxisRaw("Horizontal") * -12 * Time.deltaTime);
+        rearMirror.Rotate(Vector3.right, Input.GetAxisRaw("Vertical") * -12 * Time.deltaTime);
+
+        
+        SetControllablesMove(true);
         float steeringWheelValue = ((486 / maxSteeringAngle) * currentSteerAngle) / 972;
         steeringWheel.TargetValue = steeringWheelValue + 0.5f;
         handbrake.TargetValue = isHandBrake ? 1 : 0;
         gearShifter.TargetValue = gearIndex == 0 ? gearIndex + 0.5f : gearIndex;
+
+  
     }
 
     private void GetVrInput() {
@@ -131,13 +135,12 @@ public class CarController : MonoBehaviour
         float rpmForAudio = Mathf.Clamp(motorRpm * accelInput, -1000, 1000);
         float pitch = engineSoundCurve.Evaluate(rpmForAudio);
         engineSound.pitch = pitch;
-        
-        if (!isHandBrake) {
-            frontLeftWheelCollider.motorTorque = currentTorque/2;
-            frontRightWheelCollider.motorTorque = currentTorque/2;
-        }
+        frontLeftWheelCollider.motorTorque = currentTorque/2;
+        frontRightWheelCollider.motorTorque = currentTorque/2;
 
-        currentbreakForce = brakeInput * breakForce;
+        if (isHandBrake) currentbreakForce = 2000;
+        else currentbreakForce = brakeInput * breakForce;
+
         ApplyBraking();
     }
 
@@ -184,14 +187,31 @@ public class CarController : MonoBehaviour
     }
 
     public void Reset() {
-        steeringWheel.TargetValue = 0.5f;
-        steeringWheel.MoveToTargetValue = true; 
-        gearShifter.TargetValue = 0.5f;
-        gearShifter.MoveToTargetValue = true;
-        handbrake.TargetValue = 1;       
-        handbrake.MoveToTargetValue = true;
+        if (levelManager.isVR) {
+            steeringWheel.TargetValue = 0.5f;
+            gearShifter.TargetValue = 0.5f;
+            handbrake.TargetValue = 1;
+            SetControllablesMove(true);
+            StartCoroutine(Delay(0.3f));
+        }
         gearIndex = 0;
         horizontalInput = 0;
         isHandBrake = true;
+
+        rb.isKinematic = true; //remove all forces from a rigid body
+        currentbreakForce = Mathf.Infinity;
+        rb.isKinematic = false;
+    }
+
+    public void SetControllablesMove(bool b) {
+        steeringWheel.MoveToTargetValue = b;
+        handbrake.MoveToTargetValue = b;
+        gearShifter.MoveToTargetValue = b;
+    }
+
+    IEnumerator Delay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        SetControllablesMove(false);
     }
 }
