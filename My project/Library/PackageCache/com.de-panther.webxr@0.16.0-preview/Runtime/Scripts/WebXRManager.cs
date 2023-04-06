@@ -97,7 +97,7 @@ namespace WebXR
     public void ToggleVR()
     {
       subsystem?.ToggleVR();
-      onToggleVR.Invoke();
+      if (XRState == XRState.VR) onToggleVR.Invoke();
     }
 
     public void HapticPulse(WebXRControllerHand hand, float intensity, float duration)

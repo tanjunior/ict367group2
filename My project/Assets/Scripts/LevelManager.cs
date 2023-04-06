@@ -152,6 +152,7 @@ public class LevelManager : MonoBehaviour
             firstStart = false;
             NameSelector.SetActive(false);
         }
+        showPointer = false;
         playerName = NameSelector.GetComponent<NameSelector>().GetName();
         engineStartSound.Play();
         StartCoroutine(PlayEngineSound(1.8f));

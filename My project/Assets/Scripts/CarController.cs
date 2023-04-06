@@ -204,11 +204,9 @@ public class CarController : MonoBehaviour
     }
 
     public void SetControllablesMove() {
-        bool b = true;
-        if (levelManager.isVR) b = false;
-        steeringWheel.MoveToTargetValue = b;
-        handbrake.MoveToTargetValue = b;
-        gearShifter.MoveToTargetValue = b;
+        steeringWheel.MoveToTargetValue = false;
+        handbrake.MoveToTargetValue = false;
+        gearShifter.MoveToTargetValue = false;
     }
 
     public void SetControllablesMove(bool b) {
