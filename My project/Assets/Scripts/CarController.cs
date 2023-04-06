@@ -203,6 +203,14 @@ public class CarController : MonoBehaviour
         rb.isKinematic = false;
     }
 
+    public void SetControllablesMove() {
+        bool b = true;
+        if (levelManager.isVR) b = false;
+        steeringWheel.MoveToTargetValue = b;
+        handbrake.MoveToTargetValue = b;
+        gearShifter.MoveToTargetValue = b;
+    }
+
     public void SetControllablesMove(bool b) {
         steeringWheel.MoveToTargetValue = b;
         handbrake.MoveToTargetValue = b;
