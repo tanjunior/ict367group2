@@ -2,8 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-!WebXRManager.cs
-!WebXRManager.cs.meta
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
