@@ -9,7 +9,7 @@ public class CarController : MonoBehaviour
 {
     private float horizontalInput = 0, accelInput, brakeInput;
     private float currentTorque, currentSteerAngle, currentbreakForce;
-    private bool isHandBrake = true;
+    private bool isHandBrake = true, vrInput = false;
     private int gearIndex = 0;
 
     // devmode
@@ -92,6 +92,7 @@ public class CarController : MonoBehaviour
     }
 
     private void GetPcInput() {
+        if (vrInput) vrInput = false;
         accelInput = Input.GetButton("Accelerate") ? 1: 0;
         brakeInput = Input.GetKey(KeyCode.Space) ? 1: 0;
         if (Input.GetButton("Turn Left")) horizontalInput -= keyboardRotateRate;
@@ -122,6 +123,10 @@ public class CarController : MonoBehaviour
     }
 
     private void GetVrInput() {
+        if (!vrInput) {
+            SetControllablesMove(false);
+            vrInput = true;
+        }
         accelInput = rightController.GetAxis(WebXRController.AxisTypes.Trigger);
         brakeInput = leftController.GetAxis(WebXRController.AxisTypes.Trigger);
     }
@@ -201,12 +206,6 @@ public class CarController : MonoBehaviour
         rb.isKinematic = true; //remove all forces from a rigid body
         currentbreakForce = Mathf.Infinity;
         rb.isKinematic = false;
-    }
-
-    public void SetControllablesMove() {
-        steeringWheel.MoveToTargetValue = false;
-        handbrake.MoveToTargetValue = false;
-        gearShifter.MoveToTargetValue = false;
     }
 
     public void SetControllablesMove(bool b) {

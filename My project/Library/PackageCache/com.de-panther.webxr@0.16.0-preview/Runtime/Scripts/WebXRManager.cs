@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace WebXR
 {
@@ -14,7 +13,6 @@ namespace WebXR
   [DefaultExecutionOrder(-2020)]
   public class WebXRManager : SubsystemLifecycleManager<WebXRSubsystem, WebXRSubsystemDescriptor>
   {
-    public UnityEvent onToggleVR;
     public static WebXRManager Instance { get; private set; }
 
     public WebXRState XRState => subsystem == null ? WebXRState.NORMAL : subsystem.xrState;
@@ -97,7 +95,6 @@ namespace WebXR
     public void ToggleVR()
     {
       subsystem?.ToggleVR();
-      if (XRState == XRState.VR) onToggleVR.Invoke();
     }
 
     public void HapticPulse(WebXRControllerHand hand, float intensity, float duration)
