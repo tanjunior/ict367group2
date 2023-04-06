@@ -3,8 +3,8 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 /[Ll]ibrary/
-!/[Ll]ibrary/PackageCache/com.de-panther.webxr@0.16.0-preview/Runtime/Scripts/WebXRManager.cs
-!/[Ll]ibrary/PackageCache/com.de-panther.webxr@0.16.0-preview/Runtime/Scripts/WebXRManager.cs.meta
+!*/WebXRManager.cs
+!*/WebXRManager.cs.meta
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
