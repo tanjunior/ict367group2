@@ -2,9 +2,9 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+!/[Ll]ibrary/PackageCache/*/Runtime/Scripts/WebXRManager.cs
+!/[Ll]ibrary/PackageCache/*/Runtime/Scripts/WebXRManager.cs.meta
 /[Ll]ibrary/
-!**/WebXRManager.cs
-!**/WebXRManager.cs.meta
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
