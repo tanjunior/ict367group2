@@ -10,32 +10,6 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="%UNITY_WEBGL_LOADER_URL%"></script>
     <script>
-      function show(element) {
-        element.classList.toggle("active")
-        var content = element.nextElementSibling;
-        if (content.style.maxHeight){
-          content.style.maxHeight = null;
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      }
-
-      var coll = document.getElementsByClassName("collapsible");
-      var i;
-
-      for (i = 0; i < coll.length; i++) {
-        console.log(coll[i])
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-          if (content.style.maxHeight){
-            content.style.maxHeight = null;
-          } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-          }
-        });
-      }
-
       UnityLoader.compatibilityCheck = function (unityInstance, onsuccess, onerror) {
         if (!UnityLoader.SystemInfo.hasWebGL) {
           unityInstance.popup('Your browser does not support WebGL',
@@ -50,41 +24,54 @@
     </script>
   </head>
   <body>
-    
     <div id="info">
-      <button type="button" class="collapsible" onclick="show(this)">Controls</button>
-      <div class="content">
-        <h3>VR</h3>
-        <ul>
-          <li>Move vr controller to move hands</li>
-          <li>Press left/right grip to grab on Interactables (Highlighted objects)</li>
-          <li>Y to pause</li>
-          <li>B toggle hologram</li>
-        </ul>
-        
-        <h3>Keyboard</h3>
-        <ul>
-          <li>[W] to accelerate</li>
-          <li>[Left and right click] to change gear</li>
-          <li>[H] for handbrake</li>
-          <li>[space-bar] for braking</li>
-          <li>[A] and [D] to turn the steering wheel and</li>
-          <li>[tab] toggle hologram</li>
-        </ul>
-      </div>
-
-      <button type="button" class="collapsible" onclick="show(this)">Credits</button>
-      <div class="content">
-        <ul>
-          <li>Car Model<a href="https://sketchfab.com/3d-models/stock-honda-civic-ep3-7d9c9fb0b7c94e998059e652ad9d3028">Stock Honda Civic EP3</a></li>
-          <li>Building Model<a href="https://free3d.com/3d-model/red-brick-building-35698.html">Red Brick Building</a></li>
-          <li>Background Music<a href="https://www.chosic.com/download-audio/29960/">Silent Wood</a> </li>
-          <li>Engine Start sound<a href="https://freesound.org/people/Iamgiorgio/sounds/371832/">J2_Engine_Start.mp3</a></li>
-          <li>Engine Sound<a href="https://freesound.org/people/marlonhj/sounds/242740/">242740_marlonhj_engine</a></li>
-          <li>Collision Sound<a href="https://freesound.org/people/Reitanna/sounds/332668/">big thud2</a></li>
-          <li>Made with<a href="https://www.vrtk.io/">VRTK</a></li>
-          <li>Build using <a href="https://github.com/De-Panther/unity-webxr-export">De-Panther's Unity WebXR Export</a></li>
-        </ul>      
+      <div class="tabs">
+        <div class="tab">
+          <input type="radio" id="rd1" name="rd">
+          <label class="tab-label" for="rd1">Description</label>
+          <div class="tab-content">
+            <p>This game challenges players to park their car accurately and quickly, while avoiding collisions. The objective is to get a high score, but it also serves as a tool for improving parking skills and learning how to park in different scenarios. Players can develop their spatial awareness, reaction time, and decision-making skills, becoming better drivers in real-life situations.</p>
+          </div>
+        </div>
+        <div class="tab">
+          <input type="radio" id="rd2" name="rd">
+          <label class="tab-label" for="rd2">Controls</label>
+          <div class="tab-content">
+            <h3>VR</h3>
+          <ul>
+            <li>Move vr controller to move hands</li>
+            <li>Press left/right grip to grab on Interactables (Highlighted objects)</li>
+            <li>Y to pause</li>
+            <li>B toggle hologram</li>
+          </ul>
+          
+          <h3>Keyboard</h3>
+          <ul>
+            <li>[W] to accelerate</li>
+            <li>[Left and right click] to change gear</li>
+            <li>[H] for handbrake</li>
+            <li>[space-bar] for braking</li>
+            <li>[A] and [D] to turn the steering wheel and</li>
+            <li>[tab] toggle hologram</li>
+          </ul>
+          </div>
+        </div>
+        <div class="tab">
+          <input type="radio" id="rd3" name="rd">
+          <label class="tab-label" for="rd3">Credits</label>
+          <div class="tab-content">
+            <ul>
+            <li>Car Model<a href="https://sketchfab.com/3d-models/stock-honda-civic-ep3-7d9c9fb0b7c94e998059e652ad9d3028">Stock Honda Civic EP3</a></li>
+            <li>Building Model<a href="https://free3d.com/3d-model/red-brick-building-35698.html">Red Brick Building</a></li>
+            <li>Background Music<a href="https://www.chosic.com/download-audio/29960/">Silent Wood</a> </li>
+            <li>Engine Start sound<a href="https://freesound.org/people/Iamgiorgio/sounds/371832/">J2_Engine_Start.mp3</a></li>
+            <li>Engine Sound<a href="https://freesound.org/people/marlonhj/sounds/242740/">242740_marlonhj_engine</a></li>
+            <li>Collision Sound<a href="https://freesound.org/people/Reitanna/sounds/332668/">big thud2</a></li>
+            <li>Made with<a href="https://www.vrtk.io/">VRTK</a></li>
+            <li>Build using <a href="https://github.com/De-Panther/unity-webxr-export">De-Panther's Unity WebXR Export</a></li>
+          </ul>   
+          </div>
+        </div>
       </div>
     </div>
     

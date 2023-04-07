@@ -26,29 +26,83 @@
     margin: auto;
 }
 
-/* Style the button that is used to open and close the collapsible content */
-.collapsible {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
+input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
 }
-  
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
-    background-color: #ccc;
-}
-  
-/* Style the collapsible content. Note: hidden by default */
-.content {
-    padding: 0 18px;
-    background-color: white;
-    max-height: 0;
+
+
+/* Accordion styles */
+.tabs {
+    border-radius: 8px;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
+    box-shadow: 0 4px 4px -2px rgba(0,0,0,0.5);
+}
+
+.tab {
+    width: 100%;
+    color: white;
+    overflow: hidden;
+}
+
+.tab-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background: #2c3e50;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tab-label:hover {
+    background: darken(#2c3e50, 10%);
+}
+
+.tab-label::after {
+    content: "\276F";
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    transition: all .35s;
+}
+
+.tab-content {
+    max-height: 0;
+    padding: 0 1em;
+    color: #2c3e50;
+    background: white;
+    transition: all .35s;
+}
+
+.tab-content * {
+    margin: 0; 
+}
+
+.tab-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: #2c3e50;
+    cursor: pointer;
+}
+
+.tab-close:hover {
+    background: darken(#2c3e50, 10%);
+}
+  
+/* :checked */
+
+input:checked + .tab-label {
+    background: darken(#2c3e50, 10%);
+}
+
+input:checked + .tab-label::after {
+    transform: rotate(90deg);
+}
+
+input:checked ~ .tab-content {
+    max-height: 100vh;
+    padding: 1em;
 }
